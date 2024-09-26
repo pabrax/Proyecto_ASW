@@ -1,0 +1,37 @@
+
+.navbar {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    font-size: 15px;
+    background: #202020;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    color: unset;
+}
+
+.navbar_logo {
+    display: flex;
+    flex-direction: row;
+}
+
+.img_logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+ul li {
+    padding: 0px 1vh;
+}
