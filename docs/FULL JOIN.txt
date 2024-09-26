@@ -1,0 +1,27 @@
+SELECT *
+FROM universidad
+FULL OUTER JOIN facultad ON universidad.id = facultad.universidad
+FULL OUTER JOIN programa ON facultad.id = programa.facultad
+FULL OUTER JOIN docente_departamento ON programa.id = docente_departamento.departamento
+FULL OUTER JOIN docente ON docente_departamento.docente = docente.cedula
+FULL OUTER JOIN estudios_realizados ON docente.cedula = estudios_realizados.docente
+FULL OUTER JOIN alianza ON programa.id = alianza.departamento
+FULL OUTER JOIN aliado ON alianza.aliado = aliado.nit
+FULL OUTER JOIN proyecto ON programa.id = proyecto.id
+FULL OUTER JOIN producto ON producto.proyecto = proyecto.id
+FULL OUTER JOIN tipo_producto ON producto.tipo_producto = tipo_producto.id
+FULL OUTER JOIN palabras_clave ON proyecto.id = palabras_clave.proyecto
+FULL OUTER JOIN termino_clave ON palabras_clave.termino_clave = termino_clave.termino
+FULL OUTER JOIN aa_proyecto ON proyecto.id = aa_proyecto.proyecto
+FULL OUTER JOIN area_aplicacion ON aa_proyecto.area_aplicacion = area_aplicacion.id
+FULL OUTER JOIN ods_proyecto ON proyecto.id = ods_proyecto.proyecto
+FULL OUTER JOIN objetivo_desarrollo_sostenible ON ods_proyecto.ods = objetivo_desarrollo_sostenible.id
+FULL OUTER JOIN ac_proyecto ON proyecto.id = ac_proyecto.proyecto
+FULL OUTER JOIN area_conocimiento ON ac_proyecto.area_conocimiento = area_conocimiento.id
+FULL OUTER JOIN linea_investigacion ON docente.linea_investigacion_principal = linea_investigacion.id
+FULL OUTER JOIN grupo_investigacion ON universidad.id = grupo_investigacion.universidad
+FULL OUTER JOIN semillero ON grupo_investigacion.id = semillero.grupo_investigacion
+FULL OUTER JOIN desarrolla ON docente.cedula = desarrolla.docente AND proyecto.id = desarrolla.proyecto
+FULL OUTER JOIN reconocimiento ON docente.cedula = reconocimiento.docente
+FULL OUTER JOIN red_docente ON docente.cedula = red_docente.docente
+FULL OUTER JOIN red ON red_docente.red = red.idr;
