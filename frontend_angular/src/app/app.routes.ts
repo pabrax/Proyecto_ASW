@@ -24,7 +24,6 @@ export const routes: Routes = [
     {path: 'services', component: ServicesPageComponent},
     {path: 'login', component: LoginPageComponent},
 
-
     // private routes
     {path: 'app/home', component: HomePageComponent},
 

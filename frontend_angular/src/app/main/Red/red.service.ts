@@ -16,7 +16,7 @@ export interface Red {
 })
 export class RedService {
 
-  private apiUrl = "http://127.0.0.1:8080/api/redes"
+  private apiUrl = "http://localhost:5254/api/red"
   constructor(private http: HttpClient) { }
 
   // get all

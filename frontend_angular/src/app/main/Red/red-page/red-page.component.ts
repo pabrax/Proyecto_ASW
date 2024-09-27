@@ -5,14 +5,16 @@ import { Router } from '@angular/router';
 
 
 import { RedService, Red } from '../red.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-red-page',
   standalone: true,
-  imports: [AplicationNavbarComponent, CommonModule],
+  imports: [AplicationNavbarComponent, CommonModule, HttpClientModule],
   templateUrl: './red-page.component.html',
-  styleUrl: './red-page.component.css'
+  styleUrl: './red-page.component.css',
+  providers: [RedService]
 })
 export class RedPageComponent {
   redes: Red[] = [];
