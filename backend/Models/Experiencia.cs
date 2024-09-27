@@ -1,7 +1,9 @@
 #nullable enable
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoBackend.Models
 {
+    [Table("Experiencia", Schema = "knowledge_map_db")] 
     public class Experiencia
     {
         public int Id { set; get; }
@@ -11,7 +13,6 @@ namespace ProyectoBackend.Models
         public DateTime FechaInicio { set; get; }
         public DateTime FechaFin { set; get; }
         public int DocenteId { set; get; }
-        public Docente Docente { set; get; }
 
     }
 }

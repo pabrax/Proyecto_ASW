@@ -1,6 +1,9 @@
 #nullable enable
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ProyectoBackend.Models
 {
+    [Table("EstudiosRealizados", Schema = "knowledge_map_db")]
     public class EstudiosRealizados
     {
         public int Id {set; get;}

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoBackend.Models;
+using ProyectoBackend.Data;
+
 
 namespace ProyectoBackend.Controllers
 {
@@ -8,8 +10,8 @@ namespace ProyectoBackend.Controllers
     [Route("api/[controller]")]
     public class RedController : ControllerBase
     {
-        private readonly MyDbContext _context;
-        public RedController(MyDbContext context)
+        private readonly AplicationDBContext _context;
+        public RedController(AplicationDBContext context)
         {
             _context = context;
         }
@@ -18,14 +20,14 @@ namespace ProyectoBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Red>>> GetRedes()
         {
-            return await _context.Redes.Include(r => r.RedDocentes).ToListAsync();
+            return await _context.Redes.ToListAsync();
         }
 
         // GET 1
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Red>>> GetRed(int id)
+        public async Task<ActionResult<Red>> GetRed(int id)
         {
-            var red = await _context.Redes.Include(r => r.RedDocentes).FirstOrDefaultAsync(r => r.Idr == id);
+            var red = await _context.Redes.FindAsync(id);
 
             if (red == null)
             {
@@ -77,6 +79,10 @@ namespace ProyectoBackend.Controllers
             return NoContent();
         }
 
+        private bool RedExists(int id)
+        {
+            return _context.Redes.Any(e => e.Idr == id);
+        }
     }
 }
     
