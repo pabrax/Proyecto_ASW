@@ -1,0 +1,41 @@
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Editar Evaluación Docente</h1>
+                    <p>Modifica los detalles de la evaluación seleccionada.</p>
+                </section>
+            </div>
+  
+            <div class="form-container">
+                <form [formGroup]="evaluacionDocenteForm" (ngSubmit)="onSubmit()" class="formContent">
+                    <label for="calificacion">Calificación:</label>
+                    <input id="calificacion" formControlName="calificacion" type="number">
+                    <div *ngIf="evaluacionDocenteForm.get('calificacion')?.invalid && evaluacionDocenteForm.get('calificacion')?.touched">
+                        La calificación es requerida.
+                    </div>
+
+                    <label for="semestre">Semestre:</label>
+                    <input id="semestre" formControlName="semestre" type="text">
+                    <div *ngIf="evaluacionDocenteForm.get('semestre')?.invalid && evaluacionDocenteForm.get('semestre')?.touched">
+                        El semestre es requerido.
+                    </div>
+  
+                    <label for="docente">ID del Docente:</label>
+                    <input id="docente" formControlName="docente" type="number">
+                    <div *ngIf="evaluacionDocenteForm.get('docente')?.invalid && evaluacionDocenteForm.get('docente')?.touched">
+                        El ID del docente es requerido.
+                    </div>
+  
+                    <button type="submit" [disabled]="evaluacionDocenteForm.invalid">Guardar Cambios</button>
+                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

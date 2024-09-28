@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AplicationNavbarComponent } from "../../../shared/aplication-navbar/aplication-navbar.component";
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
+// service
 import { RedService, Red } from '../red.service';
-import { HttpClientModule } from '@angular/common/http';
+
+// shared
+import { AplicationNavbarComponent } from "../../../shared/aplication-navbar/aplication-navbar.component";
+import { AplicationHeaderComponent } from '../../../shared/aplication-header/aplication-header.component';
 
 
 @Component({
   selector: 'app-red-page',
   standalone: true,
-  imports: [AplicationNavbarComponent, CommonModule, HttpClientModule],
+  imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule],
   templateUrl: './red-page.component.html',
   styleUrl: './red-page.component.css',
   providers: [RedService]
@@ -28,6 +31,8 @@ export class RedPageComponent {
     this.redService.getRedes().subscribe (
       (data) => {
         this.redes = data;
+        console.log(this.redes);
+        
       },
       (error) => {
         console.error("error al obtener las redes", error);
@@ -49,12 +54,12 @@ export class RedPageComponent {
 
   // Método para navegar al formulario de creación de una red
   createRed(): void {
-    this.router.navigate(['/red-create']);
+    this.router.navigate(['/app/red/create']);
   }
 
   // Método para navegar al formulario de edición de una red
   editRed(idr: number): void {
-    this.router.navigate(['/red-edit', idr]);
+    this.router.navigate(['/app/red/edit', idr]);
   }
 
 }

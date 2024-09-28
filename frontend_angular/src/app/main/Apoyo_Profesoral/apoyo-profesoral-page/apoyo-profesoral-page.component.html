@@ -1,0 +1,51 @@
+<div class="view">
+    <app-aplication-navbar/>
+
+    <div class="main">
+        <app-aplication-header/>
+        <div class="content">
+    
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Apoyo Profesoral</h1>
+                    <p>Este apartado esta pensado para manejar peticiones crud hacia el apoyo profesoral</p>
+                </section>
+    
+                <!-- boton de redireccion a pagina para crear una red -->
+                 <section class="createModelButton">
+                     <button (click)="createApoyoProfesoral()">Crear Apoyo Profesoral</button>
+                 </section>
+            </div>
+    
+            <div class="tableContainer">
+                <!-- Tabla para mostrar las redes -->
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Estudios</th>
+                            <th>Con Apoyo</th>
+                            <th>institucion</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ap of apoyoProfesoral">
+                            <td>{{ ap.id }}</td>
+                            <td>{{ ap.con_apoyo }}</td>
+                            <td>{{ ap.institucion }}</td>
+                            <td>{{ ap.tipo }}</td>
+                            <td>
+                                <button (click)="editApoyoProfesoral(ap.id)" class="editButton">Editar</button>
+                                <button (click)="deleteApoyoProfesoral(ap.id)" class="deleteButton">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                    
+            </div>
+    
+        </div>
+    </div>
+
+</div>

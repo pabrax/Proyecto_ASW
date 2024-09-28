@@ -1,4 +1,92 @@
 .view {
+    width: 100%;
     display: flex;
     flex-direction: row;
+    color: white;
+}
+
+/*  */
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    /* aplica margen por izquierda y derecha de 2 rem */
+    margin: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: 90%;
+    height: 100%;
+    margin-top: 2rem;
+
+}
+
+.titleZone {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    width: 70%;
+}
+.title h1 {
+    font-size: 3rem;
+    font-weight: bolder;
+    color: #4CAF50;
+    margin: 0;
+}
+
+.createModelButton {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ /* estiliza la tabla custom-table para que se vea mejor y se adapte a la pantalla y que utilice todo el archo de su contenedor*/
+
+.tableContainer {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.custom-table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: visible;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+/* estiliza el boton dentro de la clase createModelButton */
+.createModelButton button {
+    width: 50%;
+    height: 100%;
+    padding: 0.5rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
