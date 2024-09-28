@@ -1,37 +1,51 @@
 <div class="view">
     <app-aplication-navbar/>
 
-    <div class="content">
-        <h1>Redes</h1>
-        <p>Apartado para manejar las redes a las que los docentes hacen parte</p>
-
-        <button>Crear Red</button>
-        <!-- Tabla para mostrar las redes -->
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>URL</th>
-                    <th>País</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                Recorremos las redes usando *ngFor
-                <tr *ngFor="let red of redes">
-                    <td>{{ red.idr }}</td>
-                    <td>{{ red.nombre }}</td>
-                    <td>{{ red.url }}</td>
-                    <td>{{ red.pais }}</td>
-                    <td>
-                        Botones para editar o eliminar
-                        <button (click)="editRed(red.idr)">Editar</button>
-                        <button (click)="deleteRed(red.idr)">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+    <div class="main">
+        <app-aplication-header/>
+        <div class="content">
+    
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Redes</h1>
+                    <p>Apartado para manejar las redes a las que los docentes hacen parte</p>
+                </section>
+    
+                <!-- boton de redireccion a pagina para crear una red -->
+                 <section class="createModelButton">
+                    <button (click)="createRed()">Crear Red</button>
+                 </section>
+            </div>
+    
+            <div class="tableContainer">
+                <!-- Tabla para mostrar las redes -->
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>URL</th>
+                            <th>País</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let red of redes">
+                            <td>{{ red.idr }}</td>
+                            <td>{{ red.nombre }}</td>
+                            <td>{{ red.url }}</td>
+                            <td>{{ red.pais }}</td>
+                            <td>
+                                <button (click)="editRed(red.idr)" class="editButton">Editar</button>
+                                <button (click)="deleteRed(red.idr)" class="deleteButton">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                    
+            </div>
+    
+        </div>
     </div>
+
 </div>

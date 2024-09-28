@@ -1,0 +1,103 @@
+.view {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+
+/*  */
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  /* aplica margen por izquierda y derecha de 2 rem */
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  width: 90%;
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.titleZone {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  width: 85%;
+}
+.title h1 {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: #4caf50;
+  margin: 0;
+}
+
+.createModelButton {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* estilos para el formulario */
+
+.form-container {
+  width: 80%;
+  margin: auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    margin-top: 2rem;
+
+}
+.form-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #4caf50;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  width: 75%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
