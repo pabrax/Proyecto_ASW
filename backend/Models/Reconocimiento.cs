@@ -12,7 +12,7 @@ namespace ProyectoBackend.Models
         public string Institucion { set; get; }
         public string Nombre { set; get; }
         public string Ambito { set; get; }
-        public int DocenteId { set; get; }
+        // public int DocenteId { set; get; }
 
     }
 }
