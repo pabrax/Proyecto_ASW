@@ -22,10 +22,10 @@ namespace ProyectoBackend.Controllers
         }
 
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Beca>> GetBeca(int id)
+        [HttpGet("{estudios}")]
+        public async Task<ActionResult<Beca>> GetBeca(int estudios)
         {
-            var beca = await _context.Becas.FindAsync(id);
+            var beca = await _context.Becas.FindAsync(estudios);
 
             if (beca == null)
             {
@@ -40,7 +40,7 @@ namespace ProyectoBackend.Controllers
             _context.Becas.Add(beca);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBeca), new { id = beca.Estudios }, beca);
+            return CreatedAtAction(nameof(GetBeca), new { id = beca.Estudios}, beca);
         }
 
         [HttpPut("{id}")]
@@ -80,10 +80,10 @@ namespace ProyectoBackend.Controllers
             return _context.Becas.Any(b => b.Estudios == id);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBeca(int id)
+        [HttpDelete("{estudios}")]
+        public async Task<IActionResult> DeleteBeca(int estudios)
         {
-            var beca = await _context.Becas.FindAsync(id);
+            var beca = await _context.Becas.FindAsync(estudios);
             if (beca == null)
             {
                 return NotFound();
