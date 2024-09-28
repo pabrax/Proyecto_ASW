@@ -1,4 +1,5 @@
 #nullable enable
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoBackend.Models
@@ -6,6 +7,7 @@ namespace ProyectoBackend.Models
     [Table("Beca", Schema = "knowledge_map_db")]
     public class Beca
     {
+        [Key]
         public int Estudios { set; get; }
         public string Tipo { set; get; }
         public string Institucion { set; get; }

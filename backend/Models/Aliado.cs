@@ -10,7 +10,7 @@ namespace ProyectoBackend.Models
     {
         [Key]
         public int Nit { set; get; }
-        public string Razon_sociall { set; get; }
+        public string Razon_social { set; get; }
         public string Nombre_contacto { set; get; }
         public string Correo { set; get; }
         public string Telefono { set; get; }
