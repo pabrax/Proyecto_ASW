@@ -42,6 +42,10 @@ namespace ProyectoBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Red>> PostRed(Red red)
         {
+            // Obtener el último ID disponible y sumarle 1
+            int maxId = _context.Redes.Max(r => r.Idr);
+            red.Idr = maxId + 1;
+            
             _context.Redes.Add(red);
             await _context.SaveChangesAsync();
 
