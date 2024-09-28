@@ -1,0 +1,53 @@
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Editar Experiencia</h1>
+                    <p>Modifica los detalles de la experiencia seleccionada.</p>
+                </section>
+            </div>
+  
+            <div class="form-container">
+                <form [formGroup]="experienciaForm" (ngSubmit)="onSubmit()" class="formContent">
+                    <label for="nombre_cargo">Nombre del Cargo:</label>
+                    <input id="nombre_cargo" formControlName="nombre_cargo" type="text">
+                    <div *ngIf="experienciaForm.get('nombre_cargo')?.invalid && experienciaForm.get('nombre_cargo')?.touched">
+                        El nombre del cargo es requerido.
+                    </div>
+
+                    <label for="institucion">Institución:</label>
+                    <input id="institucion" formControlName="institucion" type="text">
+                    <div *ngIf="experienciaForm.get('institucion')?.invalid && experienciaForm.get('institucion')?.touched">
+                        La institución es requerida.
+                    </div>
+  
+                    <label for="fecha_inicio">Fecha de Inicio:</label>
+                    <input id="fecha_inicio" formControlName="fecha_inicio" type="date">
+                    <div *ngIf="experienciaForm.get('fecha_inicio')?.invalid && experienciaForm.get('fecha_inicio')?.touched">
+                        La fecha de inicio es requerida.
+                    </div>
+
+                    <label for="fecha_fin">Fecha de Fin:</label>
+                    <input id="fecha_fin" formControlName="fecha_fin" type="date">
+                    <div *ngIf="experienciaForm.get('fecha_fin')?.invalid && experienciaForm.get('fecha_fin')?.touched">
+                        La fecha de fin es requerida.
+                    </div>
+  
+                    <label for="docente">ID del Docente:</label>
+                    <input id="docente" formControlName="docente" type="number">
+                    <div *ngIf="experienciaForm.get('docente')?.invalid && experienciaForm.get('docente')?.touched">
+                        El ID del docente es requerido.
+                    </div>
+  
+                    <button type="submit" [disabled]="experienciaForm.invalid">Guardar Cambios</button>
+                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
