@@ -8,7 +8,7 @@ namespace ProyectoBackend.Models
     {
         public int Id { set; get; }
         public int Estudios { set; get; }
-        public bool ConApoyo { set; get; }
+        public bool Con_Apoyo { set; get; }
         public string Institucion { set; get; }
         public string Tipo { set; get; }
 
