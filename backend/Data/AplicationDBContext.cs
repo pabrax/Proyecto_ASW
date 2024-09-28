@@ -16,7 +16,7 @@ namespace ProyectoBackend.Data
 
         public DbSet<Beca> Becas { get; set; }
         public DbSet<Aliado> Aliados { get; set; }
-        public DbSet<ApoyoProfesoral> ApoyoProfesorals { get; set; }
+        public DbSet<ApoyoProfesoral> ApoyosProfesorales { get; set; }
         public DbSet<Experiencia> Experiencias { get; set; }
         public DbSet<EstudiosRealizados> EstudiosRealizados { get; set; }
 
