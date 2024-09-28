@@ -1,0 +1,50 @@
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Editar Apoyo Profesional</h1>
+                    <p>Modifica los detalles del apoyo profesional seleccionado.</p>
+                </section>
+            </div>
+  
+            <div class="form-container">
+                <form [formGroup]="apoyoProfesoralForm" (ngSubmit)="onSubmit()" class="formContent">
+                    <label for="estudios">Número de Estudios:</label>
+                    <input id="estudios" formControlName="estudios" type="number">
+                    <div *ngIf="apoyoProfesoralForm.get('estudios')?.invalid && apoyoProfesoralForm.get('estudios')?.touched">
+                        El número de estudios es requerido.
+                    </div>
+
+                    <label for="con_apoyo">¿Con Apoyo?</label>
+                    <select id="con_apoyo" formControlName="con_apoyo">
+                        <option [value]="true">Sí</option>
+                        <option [value]="false">No</option>
+                    </select>
+                    <div *ngIf="apoyoProfesoralForm.get('con_apoyo')?.invalid && apoyoProfesoralForm.get('con_apoyo')?.touched">
+                        Debe seleccionar si tiene apoyo.
+                    </div>
+  
+                    <label for="institucion">Institución:</label>
+                    <input id="institucion" formControlName="institucion" type="text">
+                    <div *ngIf="apoyoProfesoralForm.get('institucion')?.invalid && apoyoProfesoralForm.get('institucion')?.touched">
+                        La institución es requerida.
+                    </div>
+  
+                    <label for="tipo">Tipo:</label>
+                    <input id="tipo" formControlName="tipo" type="text">
+                    <div *ngIf="apoyoProfesoralForm.get('tipo')?.invalid && apoyoProfesoralForm.get('tipo')?.touched">
+                        El tipo es requerido.
+                    </div>
+  
+                    <button type="submit" [disabled]="apoyoProfesoralForm.invalid">Guardar Cambios</button>
+                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
