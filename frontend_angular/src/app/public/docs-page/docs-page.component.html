@@ -1,1 +1,62 @@
-<p>docs-page works!</p>
+<app-nav-bar/>
+<div class="container">
+    
+    <div class="navigation-bar">
+        <ul>
+            <li><a [routerLink]="[]" [fragment]="'docente'">docente</a></li>
+            <li><a [routerLink]="[]" [fragment]="'red'">red</a></li>
+            <li><a [routerLink]="[]" [fragment]="'red_docente'">red docente</a></li>
+            <li><a [routerLink]="[]" [fragment]="'reconocimiento'">reconocimiento</a></li>
+            <li><a [routerLink]="[]" [fragment]="'experiencia'">experiencia</a></li>
+            <li><a [routerLink]="[]" [fragment]="'evaluacion_docente'">evaluacion_docente</a></li>
+            <li><a [routerLink]="[]" [fragment]="'docente_departamento'">docente_departamento</a></li>
+            <li><a [routerLink]="[]" [fragment]="'alianza'">alianza</a></li>
+            <li><a [routerLink]="[]" [fragment]="'aliado'">aliado</a></li>
+            <li><a [routerLink]="[]" [fragment]="'beca'">beca</a></li>
+            <li><a [routerLink]="[]" [fragment]="'apoyo_profesoral'">apoyo_profesoral</a></li>
+            <li><a [routerLink]="[]" [fragment]="'estudios_realizados'">estudios_realizados</a></li>
+            <li><a [routerLink]="[]" [fragment]="'estudio_ac'">estudio_ac</a></li>
+            <li><a [routerLink]="[]" [fragment]="'intereses_futuros'">intereses_futuros</a></li>
+        </ul>
+    </div>
+
+
+    <div class="docs-container">
+        <h1>Documentacion</h1>
+        <p>En esta seccion se encuentra la documentacion de la aplicacion</p>
+
+        <div class="doc-item">
+            <h2>Documentacion de la API</h2>
+            <p>En esta seccion se encuentra la documentacion de la API</p>
+            <a href=" ">Ver documentacion</a>
+
+        </div>
+
+        <div class="doc-item" id="red">
+            <h2>Documentacion al estilo Markdown</h2>
+            <p>En esta seccion se encuentra la documentacion al estilo Markdown que explica las consultas a los diferentes endpoints de la API.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/red</td>
+                        <td>Obtiene todos los datos de red</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/red</td>
+                        <td>crea un nuevo item en red</td>
+                        <td>POST</td>
+                    </tr>
+                    <!-- Agrega más filas para cada endpoint -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

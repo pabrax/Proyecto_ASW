@@ -4,9 +4,7 @@ import { Routes } from '@angular/router';
 
 import {WelcomePageComponent} from './public/welcome-page/welcome-page.component';
 import {AboutUsPageComponent} from './public/about-us-page/about-us-page.component';
-import {SupportPageComponent} from './public/support-page/support-page.component';
 import {ContactPageComponent} from './public/contact-page/contact-page.component';
-import {ServicesPageComponent} from './public/services-page/services-page.component';
 import { LoginPageComponent } from './public/login-page/login-page.component';
 
 // private components
@@ -49,6 +47,7 @@ import { ReconocimientoEditPageComponent } from './main/Reconocimiento/reconocim
 import { ExperienciaPageComponent } from './main/Experiencia/experiencia-page/experiencia-page.component';
 import { ExperienciaCreatePageComponent } from './main/Experiencia/experiencia-create-page/experiencia-create-page.component';
 import { ExperienciaEditPageComponent } from './main/Experiencia/experiencia-edit-page/experiencia-edit-page.component';
+import { DocsPageComponent } from './public/docs-page/docs-page.component';
 
 
 export const routes: Routes = [
@@ -57,8 +56,7 @@ export const routes: Routes = [
     {path: '', component: WelcomePageComponent},
     {path: 'contact', component: ContactPageComponent},
     {path: 'about-us', component: AboutUsPageComponent},
-    {path: 'support', component: SupportPageComponent},
-    {path: 'services', component: ServicesPageComponent},
+    {path: 'docs', component: DocsPageComponent},
     {path: 'login', component: LoginPageComponent},
 
     // private routes
