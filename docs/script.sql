@@ -86,10 +86,10 @@ CREATE TABLE knowledge_map_db.docente (
   cat_minciencia NVARCHAR(45) NULL,
   conv_minciencia NVARCHAR(45) NOT NULL,
   nacionalidaad NVARCHAR(45) NOT NULL,
-  linea_investigacion_principal INT NULL,
-  CONSTRAINT fk_docente_linea_investigacion FOREIGN KEY (linea_investigacion_principal)
-    REFERENCES knowledge_map_db.linea_investigacion (id)
-    ON DELETE NO ACTION ON UPDATE NO ACTION
+  linea_investigacion_principal INT NULL
+  -- CONSTRAINT fk_docente_linea_investigacion FOREIGN KEY (linea_investigacion_principal)
+  --   REFERENCES knowledge_map_db.linea_investigacion (id)
+  --   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 GO
 
@@ -262,10 +262,10 @@ CREATE TABLE knowledge_map_db.docente_departamento (
   PRIMARY KEY (docente, departamento),
   CONSTRAINT fk_docente_departamento_docente FOREIGN KEY (docente)
     REFERENCES knowledge_map_db.docente (cedula)
-    ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT fk_docente_departamento_departamento FOREIGN KEY (departamento)
-    REFERENCES knowledge_map_db.programa (id)
     ON DELETE NO ACTION ON UPDATE NO ACTION
+  -- CONSTRAINT fk_docente_departamento_departamento FOREIGN KEY (departamento)
+  --   REFERENCES knowledge_map_db.programa (id)
+  --   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 GO
 
@@ -314,9 +314,9 @@ CREATE TABLE knowledge_map_db.alianza (
   CONSTRAINT fk_alianza_aliado FOREIGN KEY (aliado)
     REFERENCES knowledge_map_db.aliado (nit)
     ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT fk_alianza_departamento FOREIGN KEY (departamento)
-    REFERENCES knowledge_map_db.programa (id)
-    ON DELETE NO ACTION ON UPDATE NO ACTION,
+  -- CONSTRAINT fk_alianza_departamento FOREIGN KEY (departamento)
+  --   REFERENCES knowledge_map_db.programa (id)
+  --   ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT fk_alianza_docente FOREIGN KEY (docente)
     REFERENCES knowledge_map_db.docente (cedula)
     ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -486,10 +486,10 @@ CREATE TABLE knowledge_map_db.estudio_ac (
   PRIMARY KEY (estudio, area_conocimiento),
   CONSTRAINT fk_estudio_ac_estudio FOREIGN KEY (estudio)
     REFERENCES knowledge_map_db.estudios_realizados (id)
-    ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT fk_estudio_ac_area_conocimiento FOREIGN KEY (area_conocimiento)
-    REFERENCES knowledge_map_db.area_conocimiento (id)
     ON DELETE NO ACTION ON UPDATE NO ACTION
+  -- CONSTRAINT fk_estudio_ac_area_conocimiento FOREIGN KEY (area_conocimiento)
+  --   REFERENCES knowledge_map_db.area_conocimiento (id)
+  --   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 GO
 
@@ -798,10 +798,10 @@ CREATE TABLE knowledge_map_db.intereses_futuros (
   PRIMARY KEY (docente, termino_clave),
   CONSTRAINT fk_intereses_futuros_termino_clave FOREIGN KEY (docente)
     REFERENCES knowledge_map_db.docente (cedula)
-    ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT fk_intereses_futuros_docente FOREIGN KEY (termino_clave)
-    REFERENCES knowledge_map_db.termino_clave (termino)
     ON DELETE NO ACTION ON UPDATE NO ACTION
+  -- CONSTRAINT fk_intereses_futuros_docente FOREIGN KEY (termino_clave)
+  --   REFERENCES knowledge_map_db.termino_clave (termino)
+  --   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 GO
 
