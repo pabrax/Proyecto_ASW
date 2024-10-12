@@ -1,23 +1,35 @@
 #nullable enable
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoBackend.Models
 {
-    [Table("EstudiosRealizados", Schema = "knowledge_map_db")]
+    [Table("Estudios_Realizados", Schema = "knowledge_map_db")]
     public class EstudiosRealizados
     {
+        [Key]
         public int Id {set; get;}
-        public int Titulo {set; get;}
-        public int Universidad {set; get;}
-        public int Fecha {set; get;}
-        public int Tipo {set; get;}
+        public string Titulo {set; get;}
+        public string Universidad {set; get;}
+        public DateTime Fecha {set; get;}
+        public string Tipo {set; get;}
         public string Ciudad {set; get;}
-        public int Docente {set; get;}
-        public bool InsAcreditada {set; get;}
+        public bool Ins_Acreditada {set; get;}
         public string Metodologia {set; get;}
-        public string PerfilEgresado {set; get;}
+        public string Perfil_Egresado {set; get;}
         public string Pais {set; get;}
 
+
+        // relaciones
+        // relacion con docente
+
+        public int Docente {set; get;}
+        public Docente? docenteRel {set; get;}
         
+
+        // relacion con estudio_ac, beca y ApoyoProfesoral
+        public Beca? beca {set; get;}
+        public ApoyoProfesoral? apoyoProfesoral {set; get;}
+        public EstudioAC? estudioAC {set; get;}
     }
 }
