@@ -85,7 +85,7 @@ CREATE TABLE knowledge_map_db.docente (
   perfil NVARCHAR(MAX) NOT NULL,
   cat_minciencia NVARCHAR(45) NULL,
   conv_minciencia NVARCHAR(45) NOT NULL,
-  nacionalidaad NVARCHAR(45) NOT NULL,
+  nacionalidad NVARCHAR(45) NOT NULL,
   linea_investigacion_principal INT NULL
   -- CONSTRAINT fk_docente_linea_investigacion FOREIGN KEY (linea_investigacion_principal)
   --   REFERENCES knowledge_map_db.linea_investigacion (id)
