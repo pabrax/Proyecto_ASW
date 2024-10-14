@@ -15,7 +15,7 @@ namespace ProyectoBackend.Models
         public DateTime Fecha_Fin { set; get; }
 
         // relaciones
-        public EstudiosRealizados EstudiosRealizados { set; get; }
+        public EstudiosRealizados? EstudiosRealizados { set; get; }
 
     }
 }

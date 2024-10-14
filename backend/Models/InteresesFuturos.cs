@@ -11,6 +11,6 @@ namespace ProyectoBackend.Models
         public string Termino_Clave { get; set; }
 
         //relationships
-        public Docente DocenteRel { get; set; }
+        public Docente? DocenteRel { get; set; }
     }
 }

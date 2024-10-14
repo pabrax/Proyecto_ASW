@@ -6,9 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoBackend.Models
 {
-    [Table("EstudiosRealizados", Schema = "knowledge_map_db")]
+    [Table("Docente", Schema = "knowledge_map_db")]
     public class Docente {
-        // cedular, nombres, apellidos, genero, cargo, fecha_nacimiento, correo, telefono, url_cvlac, fecha_actualizacion, escalafon, perfil, cat_minciencia, conv_minciencia, nacionalidad, linea_investigacion
         [Key]
         public int Cedula { get; set; }
         public string Nombres { get; set; }
@@ -28,13 +27,13 @@ namespace ProyectoBackend.Models
         
         
         // (Al ser una foranea de otro modulo se omite la relacion y se coloca como un valor cualquiera)
-        public string Linea_Investigacion { get; set; }
+        public int Linea_Investigacion_Principal { get; set; }
 
 
         // relaciones
-        public ICollection<EstudiosRealizados> EstudiosRealizados { get; set; }
+        public ICollection<EstudiosRealizados>? EstudiosRealizados { get; set; }
         
-        public ICollection<InteresesFuturos> InteresesFuturos { get; set; }
+        public ICollection<InteresesFuturos>? InteresesFuturos { get; set; }
 
     }
     

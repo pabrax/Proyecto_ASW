@@ -40,7 +40,7 @@ namespace ProyectoBackend.Controllers
             _context.Becas.Add(beca);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetBeca), new { id = beca.Estudios}, beca);
+            return CreatedAtAction(nameof(GetBeca), new { estudios = beca.Estudios}, beca);
         }
 
         [HttpPut("{id}")]

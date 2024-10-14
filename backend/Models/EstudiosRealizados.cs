@@ -24,6 +24,8 @@ namespace ProyectoBackend.Models
         // relacion con docente
 
         public int Docente {set; get;}
+        
+        [ForeignKey("Docente")]
         public Docente? docenteRel {set; get;}
         
 
