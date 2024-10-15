@@ -27,8 +27,7 @@ ul {
 }
 
 ul li {
-    padding: 1rem;
-    text-align: center;
+    padding: 5px;
     border-bottom: 1px solid #333;
 }
 a {
