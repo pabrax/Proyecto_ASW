@@ -1,1 +1,61 @@
-<p>estudios-realizados-page works!</p>
+<div class="view">
+
+    <app-aplication-navbar />
+    
+    <div class="main">
+      <app-aplication-header />
+      <div class="content">
+        <div class="titleZone">
+          <section class="title">
+            <h1>Estudios Realizados</h1>
+            <p>Aqui se manejan los estudios realizados por el docente</p>
+          </section>
+    
+          <!-- boton de redireccion a pagina para crear una red -->
+          <section class="createModelButton">
+            <button (click)="createEstudioRealizado()">Agregar Estudio</button>
+          </section>
+        </div>
+    
+        <div class="tableContainer">
+          <!-- Tabla para mostrar las redes -->
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Universidad</th>
+                <th>fecha</th>
+                <th>tipo</th>
+                <th>ciudad</th>
+                <th>docente_id</th>
+                <th>ins_acreditada</th>
+                <th>metodologia</th>
+                <th>perfil_egresado</th>
+                <th>pais</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Estudio of estudiosRealizados">
+                <td>{{ Estudio.id }}</td>
+                <td>{{ Estudio.titulo }}</td>
+                <td>{{ Estudio.universidad }}</td>
+                <td>{{ Estudio.fecha }}</td>
+                <td>{{ Estudio.tipo }}</td>
+                <td>{{ Estudio.docente_id }}</td>
+                <td>{{ Estudio.ins_acreditada }}</td>
+                <td>{{ Estudio.metodologia }}</td>
+                <td>{{ Estudio.perfil_egresado }}</td>
+                <td>{{ Estudio.pais }}</td>
+                <td>
+                  <button (click)="editEstudioRealizado(Estudio.id)" class="editButton">Editar</button>
+                  <button (click)="deleteEstudioRealizado(Estudio.id)" class="deleteButton">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

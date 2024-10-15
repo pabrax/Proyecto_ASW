@@ -1,1 +1,73 @@
-<p>docente-page works!</p>
+<div class="view">
+
+    <app-aplication-navbar />
+    
+    <div class="main">
+      <app-aplication-header />
+      <div class="content">
+        <div class="titleZone">
+          <section class="title">
+            <h1>Docente</h1>
+            <p>apartado para manejar y ver los docentes</p>
+          </section>
+    
+          <!-- boton de redireccion a pagina para crear una red -->
+          <section class="createModelButton">
+            <button (click)="createDocente()">Crear docente</button>
+          </section>
+        </div>
+    
+        <div class="tableContainer">
+          <!-- Tabla para mostrar las redes -->
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Cédula</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Género</th>
+                <th>Cargo</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>URL CvLAC</th>
+                <th>Fecha de Actualización</th>
+                <th>Escalafón</th>
+                <th>Perfil</th>
+                <th>Cat MinCiencia</th>
+                <th>Conv MinCiencia</th>
+                <th>Nacionalidad</th>
+                <th>Línea de Investigación Principal</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let docente of docentes">
+                <td>{{ docente.cedula }}</td>
+                <td>{{ docente.nombres }}</td>
+                <td>{{ docente.apellidos }}</td>
+                <td>{{ docente.genero }}</td>
+                <td>{{ docente.cargo }}</td>
+                <td>{{ docente.fecha_nacimiento }}</td>
+                <td>{{ docente.correo }}</td>
+                <td>{{ docente.telefono }}</td>
+                <td>{{ docente.url_cvlac }}</td>
+                <td>{{ docente.fecha_actualizacion }}</td>
+                <td>{{ docente.escalafon }}</td>
+                <td>{{ docente.perfil }}</td>
+                <td>{{ docente.cat_minciencia }}</td>
+                <td>{{ docente.conv_minciencia }}</td>
+                <td>{{ docente.nacionalidaad }}</td>
+                <td>{{ docente.linea_investigacion_principal }}</td>
+                <td>
+                  <button (click)="editDocente(docente.cedula)" class="editButton">Editar</button>
+                  <button (click)="deleteDocente(docente.cedula)" class="deleteButton">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

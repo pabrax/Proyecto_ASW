@@ -1,1 +1,51 @@
-<p>alianza-page works!</p>
+<div class="view">
+
+    <app-aplication-navbar />
+    
+    <div class="main">
+      <app-aplication-header />
+      <div class="content">
+        <div class="titleZone">
+          <section class="title">
+            <h1>Alianza</h1>
+            <p>apartado para manejar las alianzas</p>
+          </section>
+    
+          <!-- boton de redireccion a pagina para crear una red -->
+          <section class="createModelButton">
+            <button (click)="createAlianza()">Crear Alianza</button>
+          </section>
+        </div>
+    
+        <div class="tableContainer">
+          <!-- Tabla para mostrar las redes -->
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Aliado ID</th>
+                <th>Departamento</th>
+                <th>institucion</th>
+                <th>fecha inicio</th>
+                <th>fecha fin</th>
+                <th>Docente</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let alianza of alianzas">
+                <td>{{ alianza.aliado_id }}</td>
+                <td>{{ alianza.departamento }}</td>
+                <td>{{ alianza.fecha_inicio }}</td>
+                <td>{{ alianza.fecha_fin }}</td>
+                <td>{{ alianza.docente }}</td>
+                <td>
+                  <button (click)="editAlianza(alianza.aliado_id)" class="editButton">Editar</button>
+                  <button (click)="deleteAlianza(alianza.aliado_id)" class="deleteButton">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

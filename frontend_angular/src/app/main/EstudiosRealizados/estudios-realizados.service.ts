@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface EstudiosRealizados {
-  // id, titulo, universidad, fecha, tipo, ciudad, docente_id, ins_acreditada(bool), metodologia, perfil_egresado, pais
   id: number;
   titulo: string;
   universidad: string;

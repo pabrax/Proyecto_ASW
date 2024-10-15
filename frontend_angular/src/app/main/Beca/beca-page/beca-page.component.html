@@ -31,16 +31,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let aliado of becas">
-              <td>{{ aliado.id }}</td>
-              <td>{{ aliado.estudios }}</td>
-              <td>{{ aliado.tipo }}</td>
-              <td>{{ aliado.institucion }}</td>
-              <td>{{ aliado.fecha_inicio }}</td>
-              <td>{{ aliado.fecha_fin }}</td>
+            <tr *ngFor="let beca of becas">
+              <td>{{ beca.id }}</td>
+              <td>{{ beca.estudios }}</td>
+              <td>{{ beca.tipo }}</td>
+              <td>{{ beca.institucion }}</td>
+              <td>{{ beca.fecha_inicio }}</td>
+              <td>{{ beca.fecha_fin }}</td>
               <td>
-                <button (click)="editBeca(aliado.id)" class="editButton">Editar</button>
-                <button (click)="deleteBeca(aliado.id)" class="deleteButton">Eliminar</button>
+                <button (click)="editBeca(beca.id)" class="editButton">Editar</button>
+                <button (click)="deleteBeca(beca.id)" class="deleteButton">Eliminar</button>
               </td>
             </tr>
           </tbody>
