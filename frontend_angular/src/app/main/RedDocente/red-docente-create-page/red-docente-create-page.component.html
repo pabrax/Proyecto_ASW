@@ -1,1 +1,62 @@
-<p>red-docente-create-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        <div class="content">
+
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Red de Docentes</h1>
+                    <p>Apartado para manejar la red de docentes.</p>
+                </section>
+            </div>
+
+            <div class="form-container">
+                <h2>Crear Nuevo Docente</h2>
+
+                <form [formGroup]="redDocenteForm" (ngSubmit)="onSubmit()" class="formContent">
+
+                    <label for="docente_id">ID del Docente:</label>
+                    <input id="docente_id" formControlName="docente_id" type="number">
+                    <div *ngIf="redDocenteForm.get('docente_id')?.invalid && redDocenteForm.get('docente_id')?.touched">
+                        El ID del docente es requerido.
+                    </div>
+
+                    <label for="departamento_id">ID del Departamento:</label>
+                    <input id="departamento_id" formControlName="departamento_id" type="number">
+                    <div *ngIf="redDocenteForm.get('departamento_id')?.invalid && redDocenteForm.get('departamento_id')?.touched">
+                        El ID del departamento es requerido.
+                    </div>
+
+                    <label for="dedicacion">Dedicación:</label>
+                    <input id="dedicacion" formControlName="dedicacion" type="text">
+                    <div *ngIf="redDocenteForm.get('dedicacion')?.invalid && redDocenteForm.get('dedicacion')?.touched">
+                        La dedicación es requerida.
+                    </div>
+
+                    <label for="modalidad">Modalidad:</label>
+                    <input id="modalidad" formControlName="modalidad" type="text">
+                    <div *ngIf="redDocenteForm.get('modalidad')?.invalid && redDocenteForm.get('modalidad')?.touched">
+                        La modalidad es requerida.
+                    </div>
+
+                    <label for="fecha_ingreso">Fecha de Ingreso:</label>
+                    <input id="fecha_ingreso" formControlName="fecha_ingreso" type="date">
+                    <div *ngIf="redDocenteForm.get('fecha_ingreso')?.invalid && redDocenteForm.get('fecha_ingreso')?.touched">
+                        La fecha de ingreso es requerida.
+                    </div>
+
+                    <label for="fecha_salida">Fecha de Salida:</label>
+                    <input id="fecha_salida" formControlName="fecha_salida" type="date">
+                    <div *ngIf="redDocenteForm.get('fecha_salida')?.invalid && redDocenteForm.get('fecha_salida')?.touched">
+                        La fecha de salida es requerida.
+                    </div>
+
+                    <button type="submit" [disabled]="redDocenteForm.invalid">Crear Docente</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

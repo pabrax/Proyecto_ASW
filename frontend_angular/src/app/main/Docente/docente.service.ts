@@ -18,7 +18,7 @@ export interface Docente {
   perfil: string;
   cat_minciencia: string;
   conv_minciencia: string;
-  nacionalidaad: string;
+  nacionalidad: string;
   linea_investigacion_principal: number;
 }
 

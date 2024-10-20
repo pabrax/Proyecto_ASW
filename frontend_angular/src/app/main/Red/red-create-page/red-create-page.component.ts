@@ -37,6 +37,7 @@ export class RedCreatePageComponent {
     private formBuilder: FormBuilder
   ) {
     this.redForm = this.formBuilder.group({
+      idr: ['', Validators.required],
       nombre: ['', Validators.required],
       url: ['', Validators.required],
       pais: ['', Validators.required]

@@ -1,1 +1,120 @@
-<p>docente-edit-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        
+        <div class="content">
+            
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Editar Docente</h1>
+                    <p>Modifica los detalles del docente seleccionado.</p>
+                </section>
+            </div>
+  
+            <div class="form-container">
+                <form [formGroup]="docenteForm" (ngSubmit)="onSubmit()" class="formContent">
+                    <label for="cedula">Cédula:</label>
+                    <input id="cedula" formControlName="cedula" type="text">
+                    <div *ngIf="docenteForm.get('cedula')?.invalid && docenteForm.get('cedula')?.touched">
+                        La cédula es requerida.
+                    </div>
+
+                    <label for="nombres">Nombres:</label>
+                    <input id="nombres" formControlName="nombres" type="text">
+                    <div *ngIf="docenteForm.get('nombres')?.invalid && docenteForm.get('nombres')?.touched">
+                        Los nombres son requeridos.
+                    </div>
+  
+                    <label for="apellidos">Apellidos:</label>
+                    <input id="apellidos" formControlName="apellidos" type="text">
+                    <div *ngIf="docenteForm.get('apellidos')?.invalid && docenteForm.get('apellidos')?.touched">
+                        Los apellidos son requeridos.
+                    </div>
+  
+                    <label for="genero">Género:</label>
+                    <input id="genero" formControlName="genero" type="text">
+                    <div *ngIf="docenteForm.get('genero')?.invalid && docenteForm.get('genero')?.touched">
+                        El género es requerido.
+                    </div>
+
+                    <label for="cargo">Cargo:</label>
+                    <input id="cargo" formControlName="cargo" type="text">
+                    <div *ngIf="docenteForm.get('cargo')?.invalid && docenteForm.get('cargo')?.touched">
+                        El cargo es requerido.
+                    </div>
+  
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <input id="fecha_nacimiento" formControlName="fecha_nacimiento" type="date">
+                    <div *ngIf="docenteForm.get('fecha_nacimiento')?.invalid && docenteForm.get('fecha_nacimiento')?.touched">
+                        La fecha de nacimiento es requerida.
+                    </div>
+
+                    <label for="correo">Correo:</label>
+                    <input id="correo" formControlName="correo" type="email">
+                    <div *ngIf="docenteForm.get('correo')?.invalid && docenteForm.get('correo')?.touched">
+                        El correo es requerido.
+                    </div>
+  
+                    <label for="telefono">Teléfono:</label>
+                    <input id="telefono" formControlName="telefono" type="text">
+                    <div *ngIf="docenteForm.get('telefono')?.invalid && docenteForm.get('telefono')?.touched">
+                        El teléfono es requerido.
+                    </div>
+
+                    <label for="url_cvlac">URL CVLAC:</label>
+                    <input id="url_cvlac" formControlName="url_cvlac" type="text">
+                    <div *ngIf="docenteForm.get('url_cvlac')?.invalid && docenteForm.get('url_cvlac')?.touched">
+                        La URL CVLAC es requerida.
+                    </div>
+  
+                    <label for="fecha_actualizacion">Fecha de Actualización:</label>
+                    <input id="fecha_actualizacion" formControlName="fecha_actualizacion" type="date">
+                    <div *ngIf="docenteForm.get('fecha_actualizacion')?.invalid && docenteForm.get('fecha_actualizacion')?.touched">
+                        La fecha de actualización es requerida.
+                    </div>
+
+                    <label for="escalafon">Escalafón:</label>
+                    <input id="escalafon" formControlName="escalafon" type="text">
+                    <div *ngIf="docenteForm.get('escalafon')?.invalid && docenteForm.get('escalafon')?.touched">
+                        El escalafón es requerido.
+                    </div>
+  
+                    <label for="perfil">Perfil:</label>
+                    <input id="perfil" formControlName="perfil" type="text">
+                    <div *ngIf="docenteForm.get('perfil')?.invalid && docenteForm.get('perfil')?.touched">
+                        El perfil es requerido.
+                    </div>
+
+                    <label for="cat_minciencia">Categoría MINCIENCIA:</label>
+                    <input id="cat_minciencia" formControlName="cat_minciencia" type="text">
+                    <div *ngIf="docenteForm.get('cat_minciencia')?.invalid && docenteForm.get('cat_minciencia')?.touched">
+                        La categoría MINCIENCIA es requerida.
+                    </div>
+  
+                    <label for="conv_minciencia">Convocatoria MINCIENCIA:</label>
+                    <input id="conv_minciencia" formControlName="conv_minciencia" type="text">
+                    <div *ngIf="docenteForm.get('conv_minciencia')?.invalid && docenteForm.get('conv_minciencia')?.touched">
+                        La convocatoria MINCIENCIA es requerida.
+                    </div>
+
+                    <label for="nacionalidad">Nacionalidad:</label>
+                    <input id="nacionalidad" formControlName="nacionalidad" type="text">
+                    <div *ngIf="docenteForm.get('nacionalidad')?.invalid && docenteForm.get('nacionalidad')?.touched">
+                        La nacionalidad es requerida.
+                    </div>
+  
+                    <label for="linea_investigacion_principal">Línea de Investigación Principal:</label>
+                    <input id="linea_investigacion_principal" formControlName="linea_investigacion_principal" type="text">
+                    <div *ngIf="docenteForm.get('linea_investigacion_principal')?.invalid && docenteForm.get('linea_investigacion_principal')?.touched">
+                        La línea de investigación principal es requerida.
+                    </div>
+  
+                    <button type="submit" [disabled]="docenteForm.invalid">Guardar Cambios</button>
+                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,45 @@
-<p>estudio-ac-page works!</p>
+<div class="view">
+
+    <app-aplication-navbar />
+    
+    <div class="main">
+      <app-aplication-header />
+      <div class="content">
+        <div class="titleZone">
+          <section class="title">
+            <h1>Estudio - Area Conocimiento</h1>
+            <p>apartado para manejar y ver las relaciones entre estudios realizados y area de conocimiento</p>
+          </section>
+    
+          <!-- boton de redireccion a pagina para crear una red -->
+          <section class="createModelButton">
+            <button (click)="createEstudioAC()">Crear Estudio AC</button>
+          </section>
+        </div>
+    
+        <div class="tableContainer">
+          <!-- Tabla para mostrar las redes -->
+          <table class="custom-table">
+            <thead>
+              <tr>
+                  <th>estudio ID</th>
+                  <th>Area Conocimiento ID</th>
+                  <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let e_ac of estudiosAC">
+                <td>{{ e_ac.estudio_id }}</td>
+                <td>{{ e_ac.area_conocimiento_id }}</td>
+                <td>
+                  <button (click)="editEstudioAC(e_ac.estudio_id)" class="editButton">Editar</button>
+                  <button (click)="deleteEstudioAC(e_ac.estudio_id)" class="deleteButton">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
