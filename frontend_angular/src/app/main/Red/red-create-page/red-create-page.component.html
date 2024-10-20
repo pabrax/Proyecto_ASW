@@ -1,46 +1,49 @@
 <div class="view">
-    <app-aplication-navbar/>
+  <app-aplication-navbar/>
 
-    <div class="main">
-        <app-aplication-header/>
-        <div class="content">
-    
-            <div class="titleZone">
-                <section class="title">
-                    <h1>Redes</h1>
-                    <p>Apartado para manejar las redes a las que los docentes hacen parte</p>
-                </section>
-    
-            </div>                    
-            
-            <div class="form-container">
-                <h2>Crear Nueva Red</h2>
-              
-                <form [formGroup]="redForm" (ngSubmit)="onSubmit()" class="formContent">
-                  <label for="nombre">Nombre de la Red:</label>
-                  <input id="nombre" formControlName="nombre" type="text">
-                  <div *ngIf="redForm.get('nombre')?.invalid && redForm.get('nombre')?.touched">
-                    El nombre es requerido.
-                  </div>
-              
-                  <label for="url">URL de la Red:</label>
-                  <input id="url" formControlName="url" type="url">
-                  <div *ngIf="redForm.get('url')?.invalid && redForm.get('url')?.touched">
-                    Proporcione una URL válida.
-                  </div>
-              
-                  <label for="pais">País:</label>
-                  <input id="pais" formControlName="pais" type="text">
-                  <div *ngIf="redForm.get('pais')?.invalid && redForm.get('pais')?.touched">
-                    El país es requerido.
-                  </div>
-              
-                  <button type="submit" [disabled]="redForm.invalid">Crear Red</button>
-                </form>
-              </div>
-              
+  <div class="main">
+    <app-aplication-header/>
+    <div class="content">
+  
+      <div class="titleZone">
+        <section class="title">
+          <h1>Redes</h1>
+          <p>Apartado para manejar las redes a las que los docentes hacen parte</p>
+        </section>
+  
+      </div>                    
+      
+      <div class="form-container">
+        <h2>Crear Nueva Red</h2>
+        
+        <form [formGroup]="redForm" (ngSubmit)="onSubmit()" class="formContent">
+          <label for="idr">ID de la Red:</label>
+          <input id="idr" formControlName="idr" type="number">
+          <div *ngIf="redForm.get('idr')?.invalid && redForm.get('idr')?.touched">
+          El ID es requerido.
+          </div>
+        
+          <label for="nombre">Nombre de la Red:</label>
+          <input id="nombre" formControlName="nombre" type="text">
+          <div *ngIf="redForm.get('nombre')?.invalid && redForm.get('nombre')?.touched">
+          El nombre es requerido.
+          </div>
+        
+          <label for="url">URL de la Red:</label>
+          <input id="url" formControlName="url" type="url">
+          <div *ngIf="redForm.get('url')?.invalid && redForm.get('url')?.touched">
+          Proporcione una URL válida.
+          </div>
+        
+          <label for="pais">País:</label>
+          <input id="pais" formControlName="pais" type="text">
+          <div *ngIf="redForm.get('pais')?.invalid && redForm.get('pais')?.touched">
+          El país es requerido.
+          </div>
+        
+          <button type="submit" [disabled]="redForm.invalid">Crear Red</button>
+        </form>
         </div>
     </div>
-
+  </div>
 </div>
-

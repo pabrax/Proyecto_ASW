@@ -1,1 +1,38 @@
-<p>estudio-ac-create-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        <div class="content">
+
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Estudio AC</h1>
+                    <p>Apartado para manejar los estudios de áreas de conocimiento.</p>
+                </section>
+            </div>                    
+
+            <div class="form-container">
+                <h2>Crear Nuevo Estudio AC</h2>
+
+                <form [formGroup]="estudioAcForm" (ngSubmit)="onSubmit()" class="formContent">
+                    
+                    <label for="estudio_id">ID del Estudio:</label>
+                    <input id="estudio_id" formControlName="estudio_id" type="number">
+                    <div *ngIf="estudioAcForm.get('estudio_id')?.invalid && estudioAcForm.get('estudio_id')?.touched">
+                        El ID del estudio es requerido.
+                    </div>
+            
+                    <label for="area_conocimiento_id">ID del Área de Conocimiento:</label>
+                    <input id="area_conocimiento_id" formControlName="area_conocimiento_id" type="number">
+                    <div *ngIf="estudioAcForm.get('area_conocimiento_id')?.invalid && estudioAcForm.get('area_conocimiento_id')?.touched">
+                        El ID del área de conocimiento es requerido.
+                    </div>
+            
+                    <button type="submit" [disabled]="estudioAcForm.invalid">Crear Estudio AC</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>

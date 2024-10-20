@@ -1,1 +1,35 @@
-<p>intereses-futuros-edit-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Editar Intereses Futuros</h1>
+                    <p>Modifica los detalles de los intereses futuros seleccionados.</p>
+                </section>
+            </div>
+  
+            <div class="form-container">
+                <form [formGroup]="interesesFuturosForm" (ngSubmit)="onSubmit()" class="formContent">
+                    <label for="docente_id">ID del Docente:</label>
+                    <input id="docente_id" formControlName="docente_id" type="number">
+                    <div *ngIf="interesesFuturosForm.get('docente_id')?.invalid && interesesFuturosForm.get('docente_id')?.touched">
+                        El ID del docente es requerido.
+                    </div>
+
+                    <label for="termino_clave">Término Clave:</label>
+                    <input id="termino_clave" formControlName="termino_clave" type="text">
+                    <div *ngIf="interesesFuturosForm.get('termino_clave')?.invalid && interesesFuturosForm.get('termino_clave')?.touched">
+                        El término clave es requerido.
+                    </div>
+  
+                    <button type="submit" [disabled]="interesesFuturosForm.invalid">Guardar Cambios</button>
+                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

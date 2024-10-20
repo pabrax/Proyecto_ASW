@@ -1,1 +1,38 @@
-<p>intereses-futuros-create-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+      <app-aplication-header></app-aplication-header>
+      <div class="content">
+  
+        <div class="titleZone">
+          <section class="title">
+            <h1>Intereses Futuros</h1>
+            <p>Apartado para crear nuevos intereses futuros.</p>
+          </section>
+        </div>                    
+        
+        <div class="form-container">
+          <h2>Crear Nuevos Intereses Futuros</h2>
+        
+          <form [formGroup]="interesesFuturosForm" (ngSubmit)="onSubmit()" class="formContent">
+            
+            <label for="docente_id">ID del Docente:</label>
+            <input id="docente_id" formControlName="docente_id" type="number">
+            <div *ngIf="interesesFuturosForm.get('docente_id')?.invalid && interesesFuturosForm.get('docente_id')?.touched">
+              El ID del docente es requerido.
+            </div>
+        
+            <label for="termino_clave">Término Clave:</label>
+            <input id="termino_clave" formControlName="termino_clave" type="text">
+            <div *ngIf="interesesFuturosForm.get('termino_clave')?.invalid && interesesFuturosForm.get('termino_clave')?.touched">
+              El término clave es requerido.
+            </div>
+        
+            <button type="submit" [disabled]="interesesFuturosForm.invalid">Crear Intereses Futuros</button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
