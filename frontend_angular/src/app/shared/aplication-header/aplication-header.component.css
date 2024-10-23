@@ -43,3 +43,46 @@
     font-weight: bold;
     font-size: 14px;
 }
+
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navbar {
+        height: 3rem; /* Reduce la altura de la navbar en pantallas más pequeñas */
+        padding: 0 0.5rem; /* Espaciado lateral reducido */
+    }
+
+    .navbar-brand {
+        font-size: 14px; /* Tamaño de fuente reducido */
+    }
+
+    .user-initials {
+        width: 28px; /* Círculo más pequeño */
+        height: 28px; /* Círculo más pequeño */
+        font-size: 12px; /* Tamaño de fuente reducido */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column; /* Cambia a dirección de columna */
+        height: auto; /* Permite que la navbar se ajuste automáticamente */
+        padding: 0.5rem; /* Espaciado lateral aumentado */
+    }
+
+    .navbar-left, .navbar-right {
+        justify-content: center; /* Centra los elementos */
+        margin: 0; /* Sin márgenes */
+        width: 100%; /* Ocupa todo el ancho */
+    }
+
+    .navbar-brand {
+        font-size: 12px; /* Tamaño de fuente aún más reducido */
+    }
+
+    .user-initials {
+        width: 24px; /* Círculo aún más pequeño */
+        height: 24px; /* Círculo aún más pequeño */
+        font-size: 10px; /* Tamaño de fuente reducido */
+    }
+}

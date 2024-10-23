@@ -23,14 +23,70 @@ ul {
     display: flex;
     flex-direction: column;
     list-style-position: initial;
-    margin-top: 2rem
+    margin-top: 2rem;
+    overflow-y: auto; /* Hacer el ul scrolleable */
+    max-height: calc(100vh - 4rem); /* Ajustar la altura máxima para evitar superposición */
+    scrollbar-width: thin; /* Para navegadores basados en Firefox */
+    scrollbar-color: transparent transparent; /* Para navegadores basados en Firefox */
+}
+
+/* Para navegadores basados en WebKit (Chrome, Safari) */
+ul::-webkit-scrollbar {
+    width: 4px; /* Ajustar el ancho de la barra de desplazamiento */
+}
+
+ul::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hacer la barra de desplazamiento transparente */
 }
 
 ul li {
     padding: 5px;
+    margin-top: 0.3rem;
     border-bottom: 1px solid #333;
 }
 a {
     text-decoration: none;
-    color: white;
+    color: rgb(225, 225, 225);
+}
+
+a:hover {
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navigator {
+        width: 12rem; /* Reduce el ancho en pantallas más pequeñas */
+    }
+
+    h3 {
+        font-size: 1.3rem; /* Reduce el tamaño del encabezado */
+    }
+
+    ul li {
+        padding: 10px; /* Aumenta el padding para facilitar el clic */
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigator {
+        width: 100%; /* Ocupar todo el ancho en móviles */
+        height: 100vh; /* Ajusta la altura automáticamente */
+    }
+
+    h3 {
+        font-size: 1rem; /* Tamaño aún más pequeño para el encabezado */
+    }
+
+    ul {
+        margin-top: 0.5rem; /* Reduce el margen superior */
+    }
+
+    ul li {
+        padding: 15px; /* Aumenta el padding para mejorar la usabilidad */
+        text-align: center; /* Centra el texto en los elementos de la lista */
+        font-size: 0.7rem;
+    }
 }
