@@ -1,56 +1,71 @@
 <div class="view">
-    <app-aplication-navbar/>
-  
-    <div class="main">
-      <app-aplication-header/>
-      <div class="content">
-  
-        <div class="titleZone">
-          <section class="title">
-            <h1>Alianza</h1>
-            <p>Apartado para crear una nueva alianza.</p>
-          </section>
-        </div>                    
-        
-        <div class="form-container">
-          <h2>Crear Nueva Alianza</h2>
-        
-          <form [formGroup]="alianzaForm" (ngSubmit)="onSubmit()" class="formContent">
+  <app-aplication-navbar></app-aplication-navbar>
+
+  <div class="main">
+    <app-aplication-header></app-aplication-header>
+    <div class="content">
+
+      <div class="titleZone">
+        <section class="title">
+          <h1>Alianza</h1>
+          <p>Apartado para crear una nueva alianza.</p>
+        </section>
+      </div>                    
+
+      <div class="form-container">
+        <h2>Crear Nueva Alianza</h2>
+
+        <form [formGroup]="alianzaForm" (ngSubmit)="onSubmit()" class="formContent">
+
+          <div class="main-form-content">
             
-            <label for="aliado_id">ID del Aliado:</label>
-            <input id="aliado_id" formControlName="aliado_id" type="number">
-            <div *ngIf="alianzaForm.get('aliado_id')?.invalid && alianzaForm.get('aliado_id')?.touched">
-              El ID del aliado es requerido.
+            <div class="campo">
+              <label for="aliado_id">ID del Aliado:</label>
+              <input id="aliado_id" formControlName="aliado_id" type="number">
+              <div *ngIf="alianzaForm.get('aliado_id')?.invalid && alianzaForm.get('aliado_id')?.touched">
+                El ID del aliado es requerido.
+              </div>
             </div>
-        
-            <label for="departamento">Departamento:</label>
-            <input id="departamento" formControlName="departamento" type="number">
-            <div *ngIf="alianzaForm.get('departamento')?.invalid && alianzaForm.get('departamento')?.touched">
-              El departamento es requerido.
+            
+            <div class="campo">
+              <label for="departamento">Departamento:</label>
+              <input id="departamento" formControlName="departamento" type="number">
+              <div *ngIf="alianzaForm.get('departamento')?.invalid && alianzaForm.get('departamento')?.touched">
+                El departamento es requerido.
+              </div>
             </div>
-        
-            <label for="fecha_inicio">Fecha de Inicio:</label>
-            <input id="fecha_inicio" formControlName="fecha_inicio" type="date">
-            <div *ngIf="alianzaForm.get('fecha_inicio')?.invalid && alianzaForm.get('fecha_inicio')?.touched">
-              La fecha de inicio es requerida.
+            
+            <div class="campo">
+              <label for="fecha_inicio">Fecha de Inicio:</label>
+              <input id="fecha_inicio" formControlName="fecha_inicio" type="date">
+              <div *ngIf="alianzaForm.get('fecha_inicio')?.invalid && alianzaForm.get('fecha_inicio')?.touched">
+                La fecha de inicio es requerida.
+              </div>
             </div>
-  
-            <label for="fecha_fin">Fecha de Fin:</label>
-            <input id="fecha_fin" formControlName="fecha_fin" type="date">
-            <div *ngIf="alianzaForm.get('fecha_fin')?.invalid && alianzaForm.get('fecha_fin')?.touched">
-              La fecha de fin es requerida.
+            
+            <div class="campo">
+              <label for="fecha_fin">Fecha de Fin:</label>
+              <input id="fecha_fin" formControlName="fecha_fin" type="date">
+              <div *ngIf="alianzaForm.get('fecha_fin')?.invalid && alianzaForm.get('fecha_fin')?.touched">
+                La fecha de fin es requerida.
+              </div>
             </div>
-        
-            <label for="docente">ID del Docente:</label>
-            <input id="docente" formControlName="docente" type="number">
-            <div *ngIf="alianzaForm.get('docente')?.invalid && alianzaForm.get('docente')?.touched">
-              El ID del docente es requerido.
+            
+            <div class="campo">
+              <label for="docente">ID del Docente:</label>
+              <input id="docente" formControlName="docente" type="number">
+              <div *ngIf="alianzaForm.get('docente')?.invalid && alianzaForm.get('docente')?.touched">
+                El ID del docente es requerido.
+              </div>
             </div>
-        
+          </div>
+          
+          <div class="button-container">
             <button type="submit" [disabled]="alianzaForm.invalid">Crear Alianza</button>
-          </form>
-        </div>
-        
+          </div>
+        </form>
       </div>
+
     </div>
   </div>
+</div>
