@@ -17,67 +17,93 @@
 
                 <form [formGroup]="estudioRealizadoForm" (ngSubmit)="onSubmit()" class="formContent">
 
-                    <label for="titulo">Título:</label>
-                    <input id="titulo" formControlName="titulo" type="text">
-                    <div *ngIf="estudioRealizadoForm.get('titulo')?.invalid && estudioRealizadoForm.get('titulo')?.touched">
-                        El título es requerido.
+                    <div class="main-form-content">
+
+                        <div class="campo">
+                            <label for="titulo">Título:</label>
+                            <input id="titulo" formControlName="titulo" type="text">
+                            <div *ngIf="estudioRealizadoForm.get('titulo')?.invalid && estudioRealizadoForm.get('titulo')?.touched">
+                                El título es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="universidad">Universidad:</label>
+                            <input id="universidad" formControlName="universidad" type="text">
+                            <div *ngIf="estudioRealizadoForm.get('universidad')?.invalid && estudioRealizadoForm.get('universidad')?.touched">
+                                La universidad es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="fecha">Fecha:</label>
+                            <input id="fecha" formControlName="fecha" type="date">
+                            <div *ngIf="estudioRealizadoForm.get('fecha')?.invalid && estudioRealizadoForm.get('fecha')?.touched">
+                                La fecha es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="tipo">Tipo:</label>
+                            <input id="tipo" formControlName="tipo" type="text">
+                            <div *ngIf="estudioRealizadoForm.get('tipo')?.invalid && estudioRealizadoForm.get('tipo')?.touched">
+                                El tipo es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="ciudad">Ciudad:</label>
+                            <input id="ciudad" formControlName="ciudad" type="text">
+                            <div *ngIf="estudioRealizadoForm.get('ciudad')?.invalid && estudioRealizadoForm.get('ciudad')?.touched">
+                                La ciudad es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="docente_id">ID del Docente:</label>
+                            <input id="docente_id" formControlName="docente_id" type="number">
+                            <div *ngIf="estudioRealizadoForm.get('docente_id')?.invalid && estudioRealizadoForm.get('docente_id')?.touched">
+                                El ID del docente es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="ins_acreditada">Institución Acreditada:</label>
+                            <input id="ins_acreditada" formControlName="ins_acreditada" type="checkbox">
+                            <div *ngIf="estudioRealizadoForm.get('ins_acreditada')?.invalid && estudioRealizadoForm.get('ins_acreditada')?.touched">
+                                Seleccione si la institución está acreditada.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="metodologia">Metodología:</label>
+                            <input id="metodologia" formControlName="metodologia" type="text">
+                            <div *ngIf="estudioRealizadoForm.get('metodologia')?.invalid && estudioRealizadoForm.get('metodologia')?.touched">
+                                La metodología es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="perfil_egresado">Perfil de Egresado:</label>
+                            <input id="perfil_egresado" formControlName="perfil_egresado" type="text">
+                            <div *ngIf="estudioRealizadoForm.get('perfil_egresado')?.invalid && estudioRealizadoForm.get('perfil_egresado')?.touched">
+                                El perfil de egresado es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="pais">País:</label>
+                            <input id="pais" formControlName="pais" type="text">
+                            <div *ngIf="estudioRealizadoForm.get('pais')?.invalid && estudioRealizadoForm.get('pais')?.touched">
+                                El país es requerido.
+                            </div>
+                        </div>
+
                     </div>
 
-                    <label for="universidad">Universidad:</label>
-                    <input id="universidad" formControlName="universidad" type="text">
-                    <div *ngIf="estudioRealizadoForm.get('universidad')?.invalid && estudioRealizadoForm.get('universidad')?.touched">
-                        La universidad es requerida.
+                    <div class="button-container">
+                        <button type="submit" [disabled]="estudioRealizadoForm.invalid">Crear Estudio Realizado</button>
                     </div>
-
-                    <label for="fecha">Fecha:</label>
-                    <input id="fecha" formControlName="fecha" type="date">
-                    <div *ngIf="estudioRealizadoForm.get('fecha')?.invalid && estudioRealizadoForm.get('fecha')?.touched">
-                        La fecha es requerida.
-                    </div>
-
-                    <label for="tipo">Tipo:</label>
-                    <input id="tipo" formControlName="tipo" type="text">
-                    <div *ngIf="estudioRealizadoForm.get('tipo')?.invalid && estudioRealizadoForm.get('tipo')?.touched">
-                        El tipo es requerido.
-                    </div>
-
-                    <label for="ciudad">Ciudad:</label>
-                    <input id="ciudad" formControlName="ciudad" type="text">
-                    <div *ngIf="estudioRealizadoForm.get('ciudad')?.invalid && estudioRealizadoForm.get('ciudad')?.touched">
-                        La ciudad es requerida.
-                    </div>
-
-                    <label for="docente_id">ID del Docente:</label>
-                    <input id="docente_id" formControlName="docente_id" type="number">
-                    <div *ngIf="estudioRealizadoForm.get('docente_id')?.invalid && estudioRealizadoForm.get('docente_id')?.touched">
-                        El ID del docente es requerido.
-                    </div>
-
-                    <label for="ins_acreditada">Institución Acreditada:</label>
-                    <input id="ins_acreditada" formControlName="ins_acreditada" type="checkbox">
-                    <div *ngIf="estudioRealizadoForm.get('ins_acreditada')?.invalid && estudioRealizadoForm.get('ins_acreditada')?.touched">
-                        Seleccione si la institución está acreditada.
-                    </div>
-
-                    <label for="metodologia">Metodología:</label>
-                    <input id="metodologia" formControlName="metodologia" type="text">
-                    <div *ngIf="estudioRealizadoForm.get('metodologia')?.invalid && estudioRealizadoForm.get('metodologia')?.touched">
-                        La metodología es requerida.
-                    </div>
-
-                    <label for="perfil_egresado">Perfil de Egresado:</label>
-                    <input id="perfil_egresado" formControlName="perfil_egresado" type="text">
-                    <div *ngIf="estudioRealizadoForm.get('perfil_egresado')?.invalid && estudioRealizadoForm.get('perfil_egresado')?.touched">
-                        El perfil de egresado es requerido.
-                    </div>
-
-                    <label for="pais">País:</label>
-                    <input id="pais" formControlName="pais" type="text">
-                    <div *ngIf="estudioRealizadoForm.get('pais')?.invalid && estudioRealizadoForm.get('pais')?.touched">
-                        El país es requerido.
-                    </div>
-
-                    <button type="submit" [disabled]="estudioRealizadoForm.invalid">Crear Estudio Realizado</button>
                 </form>
             </div>
 

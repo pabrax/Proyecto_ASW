@@ -5,6 +5,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClientModule } from '@angular/common/http';
 
 
+// material
+import {  MatError, MatFormFieldModule } from '@angular/material/form-field';
+import { MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButton } from '@angular/material/button';
+
 // service
 
 import { Docente, DocenteService } from '../docente.service';
@@ -15,7 +25,22 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
 @Component({
   selector: 'app-docente-create-page',
   standalone: true,
-  imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    AplicationNavbarComponent,
+    AplicationHeaderComponent, 
+    CommonModule, 
+    HttpClientModule, 
+    ReactiveFormsModule, 
+    MatFormFieldModule, 
+    MatLabel,
+    MatInput,
+    MatSelect,
+    MatOption,
+    MatDatepicker,
+    MatNativeDateModule,
+    MatButton,
+    MatError
+  ],
   templateUrl: './docente-create-page.component.html',
   styleUrl: './docente-create-page.component.css',
   providers: [DocenteService]

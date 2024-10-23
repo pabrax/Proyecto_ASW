@@ -1,57 +1,71 @@
 <div class="view">
-    <app-aplication-navbar/>
+  <app-aplication-navbar></app-aplication-navbar>
 
-    <div class="main">
-        <app-aplication-header/>
-        <div class="content">
+  <div class="main">
+    <app-aplication-header></app-aplication-header>
+    <div class="content">
 
-            <div class="titleZone">
-                <section class="title">
-                    <h1>Becas</h1>
-                    <p>Apartado para manejar las becas asignadas a los docentes</p>
-                </section>
+      <div class="titleZone">
+        <section class="title">
+          <h1>Becas</h1>
+          <p>Apartado para manejar las becas asignadas a los docentes</p>
+        </section>
+      </div>                    
 
-            </div>                    
+      <div class="form-container">
+        <h2>Crear Nueva Beca</h2>
+
+        <form [formGroup]="becaForm" (ngSubmit)="onSubmit()" class="formContent">
+
+          <div class="main-form-content">
             
-            <div class="form-container">
-                <h2>Crear Nueva Beca</h2>
-              
-                <form [formGroup]="becaForm" (ngSubmit)="onSubmit()" class="formContent">
-                  <label for="estudios">Estudios (ID):</label>
-                  <input id="estudios" formControlName="estudios" type="number">
-                  <div *ngIf="becaForm.get('estudios')?.invalid && becaForm.get('estudios')?.touched">
-                    El ID de estudios es requerido.
-                  </div>
-              
-                  <label for="tipo">Tipo de Beca:</label>
-                  <input id="tipo" formControlName="tipo" type="text">
-                  <div *ngIf="becaForm.get('tipo')?.invalid && becaForm.get('tipo')?.touched">
-                    El tipo de beca es requerido.
-                  </div>
-              
-                  <label for="institucion">Institución:</label>
-                  <input id="institucion" formControlName="institucion" type="text">
-                  <div *ngIf="becaForm.get('institucion')?.invalid && becaForm.get('institucion')?.touched">
-                    La institución es requerida.
-                  </div>
-              
-                  <label for="fecha_inicio">Fecha de Inicio:</label>
-                  <input id="fecha_inicio" formControlName="fecha_inicio" type="date">
-                  <div *ngIf="becaForm.get('fecha_inicio')?.invalid && becaForm.get('fecha_inicio')?.touched">
-                    La fecha de inicio es requerida.
-                  </div>
-
-                  <label for="fecha_fin">Fecha de Fin:</label>
-                  <input id="fecha_fin" formControlName="fecha_fin" type="date">
-                  <div *ngIf="becaForm.get('fecha_fin')?.invalid && becaForm.get('fecha_fin')?.touched">
-                    La fecha de fin es requerida.
-                  </div>
-              
-                  <button type="submit" [disabled]="becaForm.invalid">Crear Beca</button>
-                </form>
+            <div class="campo">
+              <label for="estudios">Estudios (ID):</label>
+              <input id="estudios" formControlName="estudios" type="number">
+              <div *ngIf="becaForm.get('estudios')?.invalid && becaForm.get('estudios')?.touched">
+                El ID de estudios es requerido.
               </div>
-              
-        </div>
-    </div>
+            </div>
+            
+            <div class="campo">
+              <label for="tipo">Tipo de Beca:</label>
+              <input id="tipo" formControlName="tipo" type="text">
+              <div *ngIf="becaForm.get('tipo')?.invalid && becaForm.get('tipo')?.touched">
+                El tipo de beca es requerido.
+              </div>
+            </div>
+            
+            <div class="campo">
+              <label for="institucion">Institución:</label>
+              <input id="institucion" formControlName="institucion" type="text">
+              <div *ngIf="becaForm.get('institucion')?.invalid && becaForm.get('institucion')?.touched">
+                La institución es requerida.
+              </div>
+            </div>
+            
+            <div class="campo">
+              <label for="fecha_inicio">Fecha de Inicio:</label>
+              <input id="fecha_inicio" formControlName="fecha_inicio" type="date">
+              <div *ngIf="becaForm.get('fecha_inicio')?.invalid && becaForm.get('fecha_inicio')?.touched">
+                La fecha de inicio es requerida.
+              </div>
+            </div>
 
+            <div class="campo">
+              <label for="fecha_fin">Fecha de Fin:</label>
+              <input id="fecha_fin" formControlName="fecha_fin" type="date">
+              <div *ngIf="becaForm.get('fecha_fin')?.invalid && becaForm.get('fecha_fin')?.touched">
+                La fecha de fin es requerida.
+              </div>
+            </div>
+          </div>
+          
+          <div class="button-container">
+            <button type="submit" [disabled]="becaForm.invalid">Crear Beca</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
 </div>
