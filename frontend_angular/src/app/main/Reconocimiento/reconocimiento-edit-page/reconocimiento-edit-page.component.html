@@ -14,38 +14,57 @@
   
             <div class="form-container">
                 <form [formGroup]="reconocimientoForm" (ngSubmit)="onSubmit()" class="formContent">
-                    <label for="tipo">Tipo de Reconocimiento:</label>
-                    <input id="tipo" formControlName="tipo" type="text">
-                    <div *ngIf="reconocimientoForm.get('tipo')?.invalid && reconocimientoForm.get('tipo')?.touched">
-                        El tipo de reconocimiento es requerido.
+                    <div class="main-form-content">
+                        <div class="campo">
+                            <label for="id">ID:</label>
+                            <input id="id" formControlName="id" type="number" readonly>
+                        </div>
+
+                        <div class="campo">
+                            <label for="tipo">Tipo de Reconocimiento:</label>
+                            <input id="tipo" formControlName="tipo" type="text">
+                            <div *ngIf="reconocimientoForm.get('tipo')?.invalid && reconocimientoForm.get('tipo')?.touched">
+                                El tipo de reconocimiento es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="fecha">Fecha:</label>
+                            <input id="fecha" formControlName="fecha" type="date">
+                            <div *ngIf="reconocimientoForm.get('fecha')?.invalid && reconocimientoForm.get('fecha')?.touched">
+                                La fecha es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="institucion">Institución:</label>
+                            <input id="institucion" formControlName="institucion" type="text">
+                            <div *ngIf="reconocimientoForm.get('institucion')?.invalid && reconocimientoForm.get('institucion')?.touched">
+                                La institución es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="ambito">Ámbito:</label>
+                            <input id="ambito" formControlName="ambito" type="text">
+                            <div *ngIf="reconocimientoForm.get('ambito')?.invalid && reconocimientoForm.get('ambito')?.touched">
+                                El ámbito es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="docente">ID del Docente:</label>
+                            <input id="docente" formControlName="docente" type="number">
+                            <div *ngIf="reconocimientoForm.get('docente')?.invalid && reconocimientoForm.get('docente')?.touched">
+                                El ID del docente es requerido.
+                            </div>
+                        </div>
                     </div>
 
-                    <label for="fecha">Fecha:</label>
-                    <input id="fecha" formControlName="fecha" type="date">
-                    <div *ngIf="reconocimientoForm.get('fecha')?.invalid && reconocimientoForm.get('fecha')?.touched">
-                        La fecha es requerida.
+                    <div class="button-container">
+                        <button type="submit" [disabled]="reconocimientoForm.invalid" class="save-button">Guardar Cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                     </div>
-  
-                    <label for="institucion">Institución:</label>
-                    <input id="institucion" formControlName="institucion" type="text">
-                    <div *ngIf="reconocimientoForm.get('institucion')?.invalid && reconocimientoForm.get('institucion')?.touched">
-                        La institución es requerida.
-                    </div>
-
-                    <label for="ambito">Ámbito:</label>
-                    <input id="ambito" formControlName="ambito" type="text">
-                    <div *ngIf="reconocimientoForm.get('ambito')?.invalid && reconocimientoForm.get('ambito')?.touched">
-                        El ámbito es requerido.
-                    </div>
-  
-                    <label for="docente">ID del Docente:</label>
-                    <input id="docente" formControlName="docente" type="number">
-                    <div *ngIf="reconocimientoForm.get('docente')?.invalid && reconocimientoForm.get('docente')?.touched">
-                        El ID del docente es requerido.
-                    </div>
-  
-                    <button type="submit" [disabled]="reconocimientoForm.invalid">Guardar Cambios</button>
-                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                 </form>
             </div>
         </div>

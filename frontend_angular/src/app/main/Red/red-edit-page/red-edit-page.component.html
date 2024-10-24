@@ -1,42 +1,59 @@
 <div class="view">
-    <app-aplication-navbar></app-aplication-navbar>
-  
-    <div class="main">
-      <app-aplication-header></app-aplication-header>
-      
-      <div class="content">
-        <div class="titleZone">
-          <section class="title">
-            <h1>Editar Red</h1>
-            <p>Modifica los detalles de la red seleccionada.</p>
-          </section>
-        </div>
-  
-        <div class="form-container">
-          <form [formGroup]="redForm" (ngSubmit)="onSubmit()" class="formContent">
-            <label for="nombre">Nombre de la Red:</label>
-            <input id="nombre" formControlName="nombre" type="text">
-            <div *ngIf="redForm.get('nombre')?.invalid && redForm.get('nombre')?.touched">
-              El nombre es requerido.
+  <app-aplication-navbar></app-aplication-navbar>
+
+  <div class="main">
+    <app-aplication-header></app-aplication-header>
+    
+    <div class="content">
+      <div class="titleZone">
+        <section class="title">
+          <h1>Editar Red</h1>
+          <p>Modifica los detalles de la red seleccionada.</p>
+        </section>
+      </div>
+
+      <div class="form-container">
+        <form [formGroup]="redForm" (ngSubmit)="onSubmit()" class="formContent">
+          <div class="main-form-content">
+            <div class="campo">
+              <label for="idr">ID de la Red:</label>
+              <input id="idr" formControlName="idr" type="number" readonly>
+              <div *ngIf="redForm.get('idr')?.invalid && redForm.get('idr')?.touched">
+                El ID es requerido.
+              </div>
             </div>
-  
-            <label for="url">URL de la Red:</label>
-            <input id="url" formControlName="url" type="url">
-            <div *ngIf="redForm.get('url')?.invalid && redForm.get('url')?.touched">
-              Proporcione una URL válida.
+
+            <div class="campo">
+              <label for="nombre">Nombre de la Red:</label>
+              <input id="nombre" formControlName="nombre" type="text">
+              <div *ngIf="redForm.get('nombre')?.invalid && redForm.get('nombre')?.touched">
+                El nombre es requerido.
+              </div>
             </div>
-  
-            <label for="pais">País:</label>
-            <input id="pais" formControlName="pais" type="text">
-            <div *ngIf="redForm.get('pais')?.invalid && redForm.get('pais')?.touched">
-              El país es requerido.
+
+            <div class="campo">
+              <label for="url">URL de la Red:</label>
+              <input id="url" formControlName="url" type="url">
+              <div *ngIf="redForm.get('url')?.invalid && redForm.get('url')?.touched">
+                Proporcione una URL válida.
+              </div>
             </div>
-  
-            <button type="submit" [disabled]="redForm.invalid">Guardar Cambios</button>
+
+            <div class="campo">
+              <label for="pais">País:</label>
+              <input id="pais" formControlName="pais" type="text">
+              <div *ngIf="redForm.get('pais')?.invalid && redForm.get('pais')?.touched">
+                El país es requerido.
+              </div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button type="submit" [disabled]="redForm.invalid" class="save-button">Guardar Cambios</button>
             <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>

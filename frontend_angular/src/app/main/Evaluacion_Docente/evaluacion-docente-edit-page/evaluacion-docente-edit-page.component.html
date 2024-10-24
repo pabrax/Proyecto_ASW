@@ -14,26 +14,42 @@
   
             <div class="form-container">
                 <form [formGroup]="evaluacionDocenteForm" (ngSubmit)="onSubmit()" class="formContent">
-                    <label for="calificacion">Calificación:</label>
-                    <input id="calificacion" formControlName="calificacion" type="number">
-                    <div *ngIf="evaluacionDocenteForm.get('calificacion')?.invalid && evaluacionDocenteForm.get('calificacion')?.touched">
-                        La calificación es requerida.
+                    <div class="main-form-content">
+
+                        <div class="campo">
+                            <label for="id">ID:</label>
+                            <input id="id" formControlName="id" type="number" readonly>
+                        </div>
+
+                        <div class="campo">
+                            <label for="calificacion">Calificación:</label>
+                            <input id="calificacion" formControlName="calificacion" type="number">
+                            <div *ngIf="evaluacionDocenteForm.get('calificacion')?.invalid && evaluacionDocenteForm.get('calificacion')?.touched">
+                                La calificación es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="semestre">Semestre:</label>
+                            <input id="semestre" formControlName="semestre" type="text">
+                            <div *ngIf="evaluacionDocenteForm.get('semestre')?.invalid && evaluacionDocenteForm.get('semestre')?.touched">
+                                El semestre es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="docente">ID del Docente:</label>
+                            <input id="docente" formControlName="docente" type="number">
+                            <div *ngIf="evaluacionDocenteForm.get('docente')?.invalid && evaluacionDocenteForm.get('docente')?.touched">
+                                El ID del docente es requerido.
+                            </div>
+                        </div>
                     </div>
 
-                    <label for="semestre">Semestre:</label>
-                    <input id="semestre" formControlName="semestre" type="text">
-                    <div *ngIf="evaluacionDocenteForm.get('semestre')?.invalid && evaluacionDocenteForm.get('semestre')?.touched">
-                        El semestre es requerido.
+                    <div class="button-container">
+                        <button type="submit" [disabled]="evaluacionDocenteForm.invalid" class="save-button">Guardar Cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                     </div>
-  
-                    <label for="docente">ID del Docente:</label>
-                    <input id="docente" formControlName="docente" type="number">
-                    <div *ngIf="evaluacionDocenteForm.get('docente')?.invalid && evaluacionDocenteForm.get('docente')?.touched">
-                        El ID del docente es requerido.
-                    </div>
-  
-                    <button type="submit" [disabled]="evaluacionDocenteForm.invalid">Guardar Cambios</button>
-                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                 </form>
             </div>
         </div>

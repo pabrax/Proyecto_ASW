@@ -86,14 +86,38 @@ export class DocenteCreatePageComponent {
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.docenteForm.valid) {
-      this.docenteService.createDocente(this.docente).subscribe(
+      // Asignar los valores del formulario al objeto `docente`
+      const docente: Docente = {
+        cedula: this.docenteForm.value.cedula,
+        nombres: this.docenteForm.value.nombres,
+        apellidos: this.docenteForm.value.apellidos,
+        genero: this.docenteForm.value.genero,
+        cargo: this.docenteForm.value.cargo,
+        fecha_nacimiento: new Date(this.docenteForm.value.fecha_nacimiento),
+        correo: this.docenteForm.value.correo,
+        telefono: this.docenteForm.value.telefono,
+        url_cvlac: this.docenteForm.value.url_cvlac,
+        fecha_actualizacion: new Date(this.docenteForm.value.fecha_actualizacion),
+        escalafon: this.docenteForm.value.escalafon,
+        perfil: this.docenteForm.value.perfil,
+        cat_minciencia: this.docenteForm.value.cat_minciencia,
+        conv_minciencia: this.docenteForm.value.conv_minciencia,
+        nacionalidad: this.docenteForm.value.nacionalidad,
+        linea_investigacion_principal: this.docenteForm.value.linea_investigacion_principal
+      };
+
+      // Llamar al servicio para crear el docente
+      this.docenteService.createDocente(docente).subscribe(
         (data) => {
           console.log('Docente creado', data);
+          this.router.navigate(['/app/docente']);
         },
         (error) => {
           console.error('Error al crear el docente', error);
         }
       );
+    } else {
+      console.error('El formulario no es válido');
     }
   }
 }

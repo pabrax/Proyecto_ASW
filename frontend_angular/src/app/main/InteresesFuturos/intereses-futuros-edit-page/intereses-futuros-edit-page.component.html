@@ -14,20 +14,33 @@
   
             <div class="form-container">
                 <form [formGroup]="interesesFuturosForm" (ngSubmit)="onSubmit()" class="formContent">
-                    <label for="docente_id">ID del Docente:</label>
-                    <input id="docente_id" formControlName="docente_id" type="number">
-                    <div *ngIf="interesesFuturosForm.get('docente_id')?.invalid && interesesFuturosForm.get('docente_id')?.touched">
-                        El ID del docente es requerido.
+                    <div class="main-form-content">
+                        <div class="campo">
+                            <label for="id">ID:</label>
+                            <input id="id" formControlName="id" type="number" readonly>
+                        </div>
+
+                        <div class="campo">
+                            <label for="docente_id">ID del Docente:</label>
+                            <input id="docente_id" formControlName="docente_id" type="number">
+                            <div *ngIf="interesesFuturosForm.get('docente_id')?.invalid && interesesFuturosForm.get('docente_id')?.touched">
+                                El ID del docente es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="termino_clave">Término Clave:</label>
+                            <input id="termino_clave" formControlName="termino_clave" type="text">
+                            <div *ngIf="interesesFuturosForm.get('termino_clave')?.invalid && interesesFuturosForm.get('termino_clave')?.touched">
+                                El término clave es requerido.
+                            </div>
+                        </div>
                     </div>
 
-                    <label for="termino_clave">Término Clave:</label>
-                    <input id="termino_clave" formControlName="termino_clave" type="text">
-                    <div *ngIf="interesesFuturosForm.get('termino_clave')?.invalid && interesesFuturosForm.get('termino_clave')?.touched">
-                        El término clave es requerido.
+                    <div class="button-container">
+                        <button type="submit" [disabled]="interesesFuturosForm.invalid" class="save-button">Guardar Cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                     </div>
-  
-                    <button type="submit" [disabled]="interesesFuturosForm.invalid">Guardar Cambios</button>
-                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                 </form>
             </div>
         </div>
