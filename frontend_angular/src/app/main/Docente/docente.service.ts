@@ -44,6 +44,7 @@ export class DocenteService {
 
   //post
   createDocente(docente: Docente): Observable<Docente> {
+    console.log(docente);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Docente>(this.apiUrl, docente, { headers });
   }

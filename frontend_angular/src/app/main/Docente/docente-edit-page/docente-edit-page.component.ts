@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // service
-
 import { Docente, DocenteService } from '../docente.service';
 
 // shared components
@@ -23,7 +22,7 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
 export class DocenteEditPageComponent {
 
   docenteForm: FormGroup;
-  docenteId: number = 0;  // Para almacenar el ID del docente, inicializado a 0
+  cedula: number = 0;  // Para almacenar la cédula del docente, inicializado a 0
 
   constructor(
     private docenteService: DocenteService,
@@ -54,10 +53,11 @@ export class DocenteEditPageComponent {
 
   ngOnInit(): void {
     // Obtener el ID del docente desde los parámetros de la ruta
-    this.docenteId = Number(this.route.snapshot.paramMap.get('id'));
+    this.cedula = Number(this.route.snapshot.paramMap.get('id'));
+    // Obtener la cédula del docente desde los parámetros de la ruta
 
     // Cargar los datos del docente usando el ID
-    this.docenteService.getDocenteById(this.docenteId).subscribe(
+    this.docenteService.getDocenteById(this.cedula).subscribe(
       (docente: Docente) => {
         // Rellenar el formulario con los datos del docente existente
         this.docenteForm.patchValue({
@@ -89,19 +89,19 @@ export class DocenteEditPageComponent {
   onSubmit(): void {
     if (this.docenteForm.valid) {
       const docenteActualizado: Docente = {
-        cedula: this.docenteId,
-        ...this.docenteForm.value
+        ...this.docenteForm.value,
+        cedula: this.docenteForm.value.cedula // Ensure cedula is taken from the form
       };
 
-      this.docenteService.updateDocente(this.docenteId, docenteActualizado).subscribe(
-        (docente: Docente) => {
+      this.docenteService.updateDocente(this.cedula, docenteActualizado).subscribe({
+        next: (docente: Docente) => {
           console.log('Docente actualizado', docente);
-          this.router.navigate(['/docente']);
+          this.router.navigate(['/app/docente']);
         },
-        (error) => {
+        error: (error) => {
           console.error('Error al actualizar el docente', error);
         }
-      );
+      });
     }
   }
   

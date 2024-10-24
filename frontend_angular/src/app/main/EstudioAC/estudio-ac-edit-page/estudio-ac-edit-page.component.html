@@ -14,20 +14,28 @@
   
             <div class="form-container">
                 <form [formGroup]="estudioAcForm" (ngSubmit)="onSubmit()" class="formContent">
-                    <label for="estudio_id">ID del Estudio:</label>
-                    <input id="estudio_id" formControlName="estudio_id" type="number">
-                    <div *ngIf="estudioAcForm.get('estudio_id')?.invalid && estudioAcForm.get('estudio_id')?.touched">
-                        El ID del estudio es requerido.
+                    <div class="main-form-content">
+                        <div class="campo">
+                            <label for="estudio_id">ID del Estudio:</label>
+                            <input id="estudio_id" formControlName="estudio_id" type="number">
+                            <div *ngIf="estudioAcForm.get('estudio_id')?.invalid && estudioAcForm.get('estudio_id')?.touched">
+                                El ID del estudio es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="area_conocimiento_id">ID del Área de Conocimiento:</label>
+                            <input id="area_conocimiento_id" formControlName="area_conocimiento_id" type="number">
+                            <div *ngIf="estudioAcForm.get('area_conocimiento_id')?.invalid && estudioAcForm.get('area_conocimiento_id')?.touched">
+                                El ID del área de conocimiento es requerido.
+                            </div>
+                        </div>
                     </div>
 
-                    <label for="area_conocimiento_id">ID del Área de Conocimiento:</label>
-                    <input id="area_conocimiento_id" formControlName="area_conocimiento_id" type="number">
-                    <div *ngIf="estudioAcForm.get('area_conocimiento_id')?.invalid && estudioAcForm.get('area_conocimiento_id')?.touched">
-                        El ID del área de conocimiento es requerido.
+                    <div class="button-container">
+                        <button type="submit" [disabled]="estudioAcForm.invalid" class="save-button">Guardar Cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                     </div>
-  
-                    <button type="submit" [disabled]="estudioAcForm.invalid">Guardar Cambios</button>
-                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                 </form>
             </div>
         </div>

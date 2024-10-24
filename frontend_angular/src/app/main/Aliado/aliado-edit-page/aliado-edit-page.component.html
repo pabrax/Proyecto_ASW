@@ -14,32 +14,65 @@
   
             <div class="form-container">
                 <form [formGroup]="aliadoForm" (ngSubmit)="onSubmit()" class="formContent">
-                    <label for="nombre_contacto">Nombre de Contacto:</label>
-                    <input id="nombre_contacto" formControlName="nombre_contacto" type="text">
-                    <div *ngIf="aliadoForm.get('nombre_contacto')?.invalid && aliadoForm.get('nombre_contacto')?.touched">
-                        El nombre de contacto es requerido.
-                    </div>
+                    <div class="main-form-content">
+                        <div class="campo">
+                            <label for="id">ID:</label>
+                            <input id="id" formControlName="id" type="number" readonly>
+                        </div>
 
-                    <label for="correo">Correo:</label>
-                    <input id="correo" formControlName="correo" type="email">
-                    <div *ngIf="aliadoForm.get('correo')?.invalid && aliadoForm.get('correo')?.touched">
-                        Proporcione un correo válido.
+                        <div class="campo">
+                            <label for="nit">NIT:</label>
+                            <input id="nit" formControlName="nit" type="number">
+                            <div *ngIf="aliadoForm.get('nit')?.invalid && aliadoForm.get('nit')?.touched">
+                                El NIT es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="razon_social">Razón Social:</label>
+                            <input id="razon_social" formControlName="razon_social" type="text">
+                            <div *ngIf="aliadoForm.get('razon_social')?.invalid && aliadoForm.get('razon_social')?.touched">
+                                La razón social es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="nombre_contacto">Nombre de Contacto:</label>
+                            <input id="nombre_contacto" formControlName="nombre_contacto" type="text">
+                            <div *ngIf="aliadoForm.get('nombre_contacto')?.invalid && aliadoForm.get('nombre_contacto')?.touched">
+                                El nombre de contacto es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="correo">Correo:</label>
+                            <input id="correo" formControlName="correo" type="email">
+                            <div *ngIf="aliadoForm.get('correo')?.invalid && aliadoForm.get('correo')?.touched">
+                                Proporcione un correo válido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="telefono">Teléfono:</label>
+                            <input id="telefono" formControlName="telefono" type="tel">
+                            <div *ngIf="aliadoForm.get('telefono')?.invalid && aliadoForm.get('telefono')?.touched">
+                                El teléfono es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="ciudad">Ciudad:</label>
+                            <input id="ciudad" formControlName="ciudad" type="text">
+                            <div *ngIf="aliadoForm.get('ciudad')?.invalid && aliadoForm.get('ciudad')?.touched">
+                                La ciudad es requerida.
+                            </div>
+                        </div>
                     </div>
-  
-                    <label for="telefono">Teléfono:</label>
-                    <input id="telefono" formControlName="telefono" type="tel">
-                    <div *ngIf="aliadoForm.get('telefono')?.invalid && aliadoForm.get('telefono')?.touched">
-                        El teléfono es requerido.
+                    
+                    <div class="button-container">
+                        <button type="submit" [disabled]="aliadoForm.invalid" class="save-button">Guardar Cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                     </div>
-  
-                    <label for="ciudad">Ciudad:</label>
-                    <input id="ciudad" formControlName="ciudad" type="text">
-                    <div *ngIf="aliadoForm.get('ciudad')?.invalid && aliadoForm.get('ciudad')?.touched">
-                        La ciudad es requerida.
-                    </div>
-  
-                    <button type="submit" [disabled]="aliadoForm.invalid">Guardar Cambios</button>
-                    <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
                 </form>
             </div>
         </div>
