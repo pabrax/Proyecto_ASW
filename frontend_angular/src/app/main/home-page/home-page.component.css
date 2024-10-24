@@ -1,10 +1,15 @@
+app-nav-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
 .view {
     width: 100%;
     display: flex;
     flex-direction: row;
     color: black;
 }
-
 /*  */
 .main {
     display: flex;
@@ -33,8 +38,6 @@
     
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100%;
 }
