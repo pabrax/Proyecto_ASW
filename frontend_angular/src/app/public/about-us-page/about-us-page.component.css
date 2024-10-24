@@ -1,3 +1,41 @@
-p {
-    background: #0000;
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    margin-bottom: 3rem;
+}
+
+.section-content {
+    margin: 1rem;
+    text-align: center;
+    width: 90%;
+} 
+
+.section-content > h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.section-content > h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.section-content > ul {
+
+    list-style-type: none;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        margin: 2rem;
+    }
+
+    .section-content {
+        margin: 2rem;
+    }
 }
