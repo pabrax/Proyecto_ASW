@@ -1,5 +1,3 @@
-#nullable enable
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +11,9 @@ namespace ProyectoBackend.Models
         public string Nombre { set; get; }
         public string Url { set; get; }
         public string Pais { set; get; }
-    
-    }
 
+        //Relacion
+         public ICollection<RedDocente>? RedDocentes { get; set; }
+
+    }
 }

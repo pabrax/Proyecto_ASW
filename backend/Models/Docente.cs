@@ -35,6 +35,14 @@ namespace ProyectoBackend.Models
         
         public ICollection<InteresesFuturos>? InteresesFuturos { get; set; }
 
+        public ICollection<EvaluacionDocente>? EvaluacionDocentes { get; set; }
+
+        public ICollection<DocenteDepartamento>? DocenteDepartamentos { get; set; }
+
+        public ICollection<Alianza>? alianzas { get; set; }
+        
+        public LineaInvestigacion? LineaInvestigaciones { get; set; }
+
     }
     
 }
