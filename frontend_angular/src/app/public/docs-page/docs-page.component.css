@@ -1,39 +1,231 @@
 html {
     scroll-behavior: smooth;
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
+app-nav-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
 .container {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 100%;
 }
 
 .navigation-bar {
-    color: black;
-    height: 100vh;
-    background: #666666;
-
+    color: white;
+    background: #333;
     display: flex;
-    align-items: center;
+    padding: 0.8rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll; /* Permite hacer scroll */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    width: 250px;
+}
+
+.navigation-bar::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 
 .navigation-bar ul {
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    height: 100%;
+    padding: 0;
+    margin: 0;
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.navigation-bar li {
+    margin: 1rem 0;
+    text-align: center;
+
 }
 
 .navigation-bar a {
-    color: black;
+    color: white;
     text-decoration: none;
     outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.navigation-bar a:hover {
+    background: #555;
+    color: #fff;
 }
 
 .docs-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: calc(100% - 3rem); /* Adjust height to fit within the container */
     width: 100%;
-    margin: 0 45px 0 45px;
+    margin-top: 3rem;
+    padding: 0 3rem;
+    overflow-y: scroll;
+}
+
+.doc-item {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.doc-item h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.doc-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.http-table, .key-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.http-table th, .http-table td, .key-table th, .key-table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.http-table th, .key-table th {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.http-table tr:nth-child(even), .key-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.http-table tr:hover, .key-table tr:hover {
+    background: #f1f1f1;
+}
+
+/* Media Queries for lower resolutions */
+@media (max-width: 1366px) {
+    .navigation-bar ul {
+        width: 150px;
+    }
+
+    .docs-container {
+        padding: 0 2rem;
+    }
+
+    .doc-item {
+        padding: 0.75rem;
+    }
+
+    .http-table th, .http-table td, .key-table th, .key-table td {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .navigation-bar {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .navigation-bar ul {
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .navigation-bar li {
+        margin: 0 0.5rem;
+    }
+
+    .docs-container {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation-bar a {
+        padding: 0.5rem;
+    }
+
+    .docs-container {
+        padding: 0 0.5rem;
+    }
+
+    .doc-item {
+        padding: 0.5rem;
+    }
+
+    .http-table th, .http-table td, .key-table th, .key-table td {
+        padding: 0.5rem;
+    }
+}
+
+/* Media Queries for lower resolutions */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .navigation-bar {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .navigation-bar ul {
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .navigation-bar li {
+        margin: 0 0.5rem;
+    }
+
+    .docs-container {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation-bar a {
+        padding: 0.5rem;
+    }
+
+    .docs-container {
+        padding: 0 0.5rem;
+    }
+
+    .doc-item {
+        padding: 0.5rem;
+    }
+
+    .http-table th, .http-table td, .key-table th, .key-table td {
+        padding: 0.5rem;
+    }
 }

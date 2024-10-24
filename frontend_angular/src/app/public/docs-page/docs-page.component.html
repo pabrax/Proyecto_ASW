@@ -21,6 +21,7 @@
     </div>
 
 
+    
     <div class="docs-container">
         <h1>Documentacion</h1>
         <p>En esta seccion se encuentra la documentacion de la aplicacion</p>
@@ -33,9 +34,82 @@
         </div>
 
         <div class="doc-item" id="red">
-            <h2>Documentacion al estilo Markdown</h2>
-            <p>En esta seccion se encuentra la documentacion al estilo Markdown que explica las consultas a los diferentes endpoints de la API.</p>
-            <table>
+            <h2>Documentación de Red</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Red. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Red.</p>
+
+            <h3>Endpoints</h3>
+            <table class="http-table">
+            <thead>
+                <tr>
+                <th>Endpoint</th>
+                <th>Descripción</th>
+                <th>Método</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>/api/red</td>
+                <td>Obtiene todos los datos de Red</td>
+                <td>GET</td>
+                </tr>
+                <tr>
+                <td>/api/red</td>
+                <td>Crea un nuevo item en Red</td>
+                <td>POST</td>
+                </tr>
+                <tr>
+                <td>/api/red/{{ '{' }}id{{ '}' }}</td>
+                <td>Actualiza un item existente en Red</td>
+                <td>PUT</td>
+                </tr>
+                <tr>
+                <td>/api/red/{{ '{' }}id{{ '}' }}</td>
+                <td>Elimina un item existente en Red</td>
+                <td>DELETE</td>
+                </tr>
+            </tbody>
+            </table>
+
+            <h3>Keys</h3>
+            <table class="key-table">
+            <thead>
+                <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>idr</td>
+                <td>number</td>
+                <td>Identificador único de la Red</td>
+                </tr>
+                <tr>
+                <td>nombre</td>
+                <td>string</td>
+                <td>Nombre de la Red</td>
+                </tr>
+                <tr>
+                <td>url</td>
+                <td>string</td>
+                <td>URL de la Red</td>
+                </tr>
+                <tr>
+                <td>pais</td>
+                <td>string</td>
+                <td>País de origen de la Red</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="alianza">
+            <h2>Documentación de Alianza</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Alianza. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Alianza.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
                 <thead>
                     <tr>
                         <th>Endpoint</th>
@@ -45,17 +119,1062 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>/api/red</td>
-                        <td>Obtiene todos los datos de red</td>
+                        <td>/api/alianza</td>
+                        <td>Obtiene todos los datos de alianza</td>
                         <td>GET</td>
                     </tr>
                     <tr>
-                        <td>/api/red</td>
-                        <td>crea un nuevo item en red</td>
+                        <td>/api/alianza</td>
+                        <td>Crea un nuevo item en alianza</td>
                         <td>POST</td>
                     </tr>
-                    <!-- Agrega más filas para cada endpoint -->
+                    <tr>
+                        <td>/api/alianza/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en alianza</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/alianza/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en alianza</td>
+                        <td>DELETE</td>
+                    </tr>
                 </tbody>
+            </table>
+
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>aliado_id</td>
+                        <td>number</td>
+                        <td>Identificador único del aliado</td>
+                    </tr>
+                    <tr>
+                        <td>departamento</td>
+                        <td>number</td>
+                        <td>Identificador del departamento</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_inicio</td>
+                        <td>string</td>
+                        <td>Fecha de inicio de la alianza</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_fin</td>
+                        <td>string</td>
+                        <td>Fecha de fin de la alianza</td>
+                    </tr>
+                    <tr>
+                        <td>docente</td>
+                        <td>number</td>
+                        <td>Identificador del docente</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="aliado">
+            <h2>Documentación de Aliado</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Aliado. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Aliado.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/aliado</td>
+                        <td>Obtiene todos los datos de aliado</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/aliado</td>
+                        <td>Crea un nuevo item en aliado</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>/api/aliado/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en aliado</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/aliado/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en aliado</td>
+                        <td>DELETE</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>number</td>
+                        <td>Identificador único del aliado</td>
+                    </tr>
+                    <tr>
+                        <td>nit</td>
+                        <td>number</td>
+                        <td>NIT del aliado</td>
+                    </tr>
+                    <tr>
+                        <td>razon_social</td>
+                        <td>string</td>
+                        <td>Razón social del aliado</td>
+                    </tr>
+                    <tr>
+                        <td>nombre_contacto</td>
+                        <td>string</td>
+                        <td>Nombre del contacto del aliado</td>
+                    </tr>
+                    <tr>
+                        <td>correo</td>
+                        <td>string</td>
+                        <td>Correo electrónico del aliado</td>
+                    </tr>
+                    <tr>
+                        <td>telefono</td>
+                        <td>string</td>
+                        <td>Teléfono del aliado</td>
+                    </tr>
+                    <tr>
+                        <td>ciudad</td>
+                        <td>string</td>
+                        <td>Ciudad del aliado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="beca">
+            <h2>Documentación de Beca</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Beca. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Beca.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/beca</td>
+                        <td>Obtiene todos los datos de beca</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/beca</td>
+                        <td>Crea un nuevo item en beca</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>/api/beca/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en beca</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/beca/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en beca</td>
+                        <td>DELETE</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>number</td>
+                        <td>Identificador único de la beca</td>
+                    </tr>
+                    <tr>
+                        <td>estudios</td>
+                        <td>number</td>
+                        <td>Identificador de los estudios</td>
+                    </tr>
+                    <tr>
+                        <td>tipo</td>
+                        <td>string</td>
+                        <td>Tipo de beca</td>
+                    </tr>
+                    <tr>
+                        <td>institucion</td>
+                        <td>string</td>
+                        <td>Institución que otorga la beca</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_inicio</td>
+                        <td>Date</td>
+                        <td>Fecha de inicio de la beca</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_fin</td>
+                        <td>Date</td>
+                        <td>Fecha de fin de la beca</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="estudio_ac">
+            <h2>Documentación de Estudio AC</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Estudio AC. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Estudio AC.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+            <thead>
+                <tr>
+                <th>Endpoint</th>
+                <th>Descripción</th>
+                <th>Método</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>/api/estudioac</td>
+                <td>Obtiene todos los datos de Estudio AC</td>
+                <td>GET</td>
+                </tr>
+                <tr>
+                <td>/api/estudioac</td>
+                <td>Crea un nuevo item en Estudio AC</td>
+                <td>POST</td>
+                </tr>
+                <tr>
+                <td>/api/estudioac/{{ '{' }}id{{ '}' }}</td>
+                <td>Actualiza un item existente en Estudio AC</td>
+                <td>PUT</td>
+                </tr>
+                <tr>
+                <td>/api/estudioac/{{ '{' }}id{{ '}' }}</td>
+                <td>Elimina un item existente en Estudio AC</td>
+                <td>DELETE</td>
+                </tr>
+            </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+            <thead>
+                <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>estudio_id</td>
+                <td>number</td>
+                <td>Identificador único del estudio</td>
+                </tr>
+                <tr>
+                <td>area_conocimiento_id</td>
+                <td>number</td>
+                <td>Identificador del área de conocimiento</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="docente">
+            <h2>Documentación de Docente</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Docente. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Docente.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/docente</td>
+                        <td>Obtiene todos los datos de docente</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/docente</td>
+                        <td>Crea un nuevo item en docente</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>/api/docente/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en docente</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/docente/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en docente</td>
+                        <td>DELETE</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>cedula</td>
+                        <td>number</td>
+                        <td>Cédula del docente</td>
+                    </tr>
+                    <tr>
+                        <td>nombres</td>
+                        <td>string</td>
+                        <td>Nombres del docente</td>
+                    </tr>
+                    <tr>
+                        <td>apellidos</td>
+                        <td>string</td>
+                        <td>Apellidos del docente</td>
+                    </tr>
+                    <tr>
+                        <td>genero</td>
+                        <td>string</td>
+                        <td>Género del docente</td>
+                    </tr>
+                    <tr>
+                        <td>cargo</td>
+                        <td>string</td>
+                        <td>Cargo del docente</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_nacimiento</td>
+                        <td>Date</td>
+                        <td>Fecha de nacimiento del docente</td>
+                    </tr>
+                    <tr>
+                        <td>correo</td>
+                        <td>string</td>
+                        <td>Correo del docente</td>
+                    </tr>
+                    <tr>
+                        <td>telefono</td>
+                        <td>string</td>
+                        <td>Teléfono del docente</td>
+                    </tr>
+                    <tr>
+                        <td>url_cvlac</td>
+                        <td>string</td>
+                        <td>URL del CVLAC del docente</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_actualizacion</td>
+                        <td>Date</td>
+                        <td>Fecha de actualización del docente</td>
+                    </tr>
+                    <tr>
+                        <td>escalafon</td>
+                        <td>string</td>
+                        <td>Escalafón del docente</td>
+                    </tr>
+                    <tr>
+                        <td>perfil</td>
+                        <td>string</td>
+                        <td>Perfil del docente</td>
+                    </tr>
+                    <tr>
+                        <td>cat_minciencia</td>
+                        <td>string</td>
+                        <td>Categoria Minciencia del docente</td>
+                    </tr>
+                    <tr>
+                        <td>conv_minciencia</td>
+                        <td>string</td>
+                        <td>Convocatoria Minciencia del docente</td>
+                    </tr>
+                    <tr>
+                        <td>nacionalidad</td>
+                        <td>string</td>
+                        <td>Nacionalidad del docente</td>
+                    </tr>
+                    <tr>
+                        <td>linea_investigacion_principal</td>
+                        <td>number</td>
+                        <td>Línea de investigación principal del docente</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="red_docente">
+            <h2>Documentación de Red Docente</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Red Docente. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Red Docente.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/reddocente</td>
+                        <td>Obtiene todos los datos de red docente</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/reddocente</td>
+                        <td>Crea un nuevo item en red docente</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>/api/reddocente/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en red docente</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/reddocente/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en red docente</td>
+                        <td>DELETE</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>docente_id</td>
+                        <td>number</td>
+                        <td>Identificador del docente</td>
+                    </tr>
+                    <tr>
+                        <td>departamento_id</td>
+                        <td>number</td>
+                        <td>Identificador del departamento</td>
+                    </tr>
+                    <tr>
+                        <td>dedicacion</td>
+                        <td>string</td>
+                        <td>Dedicación del docente</td>
+                    </tr>
+                    <tr>
+                        <td>modalidad</td>
+                        <td>string</td>
+                        <td>Modalidad del docente</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_ingreso</td>
+                        <td>Date</td>
+                        <td>Fecha de ingreso del docente</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_salida</td>
+                        <td>Date</td>
+                        <td>Fecha de salida del docente</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="intereses_futuros">
+            <h2>Documentación de Intereses Futuros</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Intereses Futuros. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Intereses Futuros.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/interesesFuturos</td>
+                        <td>Obtiene todos los datos de intereses futuros</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/interesesFuturos</td>
+                        <td>Crea un nuevo item en intereses futuros</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>/api/interesesFuturos/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en intereses futuros</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/interesesFuturos/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en intereses futuros</td>
+                        <td>DELETE</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>docente_id</td>
+                        <td>number</td>
+                        <td>Identificador del docente</td>
+                    </tr>
+                    <tr>
+                        <td>termino_clave</td>
+                        <td>string</td>
+                        <td>Término clave de interés futuro</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="doc-item" id="apoyo_profesoral">
+            <h2>Documentación de Apoyo Profesoral</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Apoyo Profesoral. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Apoyo Profesoral.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/apoyo_profesoral</td>
+                        <td>Obtiene todos los datos de apoyo profesoral</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/apoyo_profesoral</td>
+                        <td>Crea un nuevo item en apoyo profesoral</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>/api/apoyo_profesoral/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en apoyo profesoral</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/apoyo_profesoral/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en apoyo profesoral</td>
+                        <td>DELETE</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>number</td>
+                        <td>Identificador único del apoyo profesoral</td>
+                    </tr>
+                    <tr>
+                        <td>estudios</td>
+                        <td>number</td>
+                        <td>Identificador de los estudios</td>
+                    </tr>
+                    <tr>
+                        <td>con_apoyo</td>
+                        <td>boolean</td>
+                        <td>Indica si cuenta con apoyo</td>
+                    </tr>
+                    <tr>
+                        <td>institucion</td>
+                        <td>string</td>
+                        <td>Institución que otorga el apoyo</td>
+                    </tr>
+                    <tr>
+                        <td>tipo</td>
+                        <td>string</td>
+                        <td>Tipo de apoyo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="docente_departamento">
+            <h2>Documentación de Docente Departamento</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Docente Departamento. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Docente Departamento.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Descripción</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>/api/docente_departamento</td>
+                        <td>Obtiene todos los datos de Docente Departamento</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>/api/docente_departamento</td>
+                        <td>Crea un nuevo item en Docente Departamento</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>/api/docente_departamento/{{ '{' }}id{{ '}' }}</td>
+                        <td>Actualiza un item existente en Docente Departamento</td>
+                        <td>PUT</td>
+                    </tr>
+                    <tr>
+                        <td>/api/docente_departamento/{{ '{' }}id{{ '}' }}</td>
+                        <td>Elimina un item existente en Docente Departamento</td>
+                        <td>DELETE</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Type</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>docente_id</td>
+                        <td>number</td>
+                        <td>Identificador del docente</td>
+                    </tr>
+                    <tr>
+                        <td>departamento_id</td>
+                        <td>number</td>
+                        <td>Identificador del departamento</td>
+                    </tr>
+                    <tr>
+                        <td>dedicacion</td>
+                        <td>string</td>
+                        <td>Dedicación del docente</td>
+                    </tr>
+                    <tr>
+                        <td>modalidad</td>
+                        <td>string</td>
+                        <td>Modalidad del docente</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_ingreso</td>
+                        <td>Date</td>
+                        <td>Fecha de ingreso del docente</td>
+                    </tr>
+                    <tr>
+                        <td>fecha_salida</td>
+                        <td>Date</td>
+                        <td>Fecha de salida del docente</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="reconocimiento">
+            <h2>Documentación de Reconocimiento</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Reconocimiento. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Reconocimiento.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+            <thead>
+                <tr>
+                <th>Endpoint</th>
+                <th>Descripción</th>
+                <th>Método</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>/api/reconocimiento</td>
+                <td>Obtiene todos los datos de reconocimiento</td>
+                <td>GET</td>
+                </tr>
+                <tr>
+                <td>/api/reconocimiento</td>
+                <td>Crea un nuevo item en reconocimiento</td>
+                <td>POST</td>
+                </tr>
+                <tr>
+                <td>/api/reconocimiento/{{ '{' }}id{{ '}' }}</td>
+                <td>Actualiza un item existente en reconocimiento</td>
+                <td>PUT</td>
+                </tr>
+                <tr>
+                <td>/api/reconocimiento/{{ '{' }}id{{ '}' }}</td>
+                <td>Elimina un item existente en reconocimiento</td>
+                <td>DELETE</td>
+                </tr>
+            </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+            <thead>
+                <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>id</td>
+                <td>number</td>
+                <td>Identificador único del reconocimiento</td>
+                </tr>
+                <tr>
+                <td>tipo</td>
+                <td>string</td>
+                <td>Tipo de reconocimiento</td>
+                </tr>
+                <tr>
+                <td>fecha</td>
+                <td>Date</td>
+                <td>Fecha del reconocimiento</td>
+                </tr>
+                <tr>
+                <td>institucion</td>
+                <td>string</td>
+                <td>Institución que otorga el reconocimiento</td>
+                </tr>
+                <tr>
+                <td>ambito</td>
+                <td>string</td>
+                <td>Ámbito del reconocimiento</td>
+                </tr>
+                <tr>
+                <td>docente</td>
+                <td>number</td>
+                <td>Identificador del docente</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="estudios_realizados">
+            <h2>Documentación de Estudios Realizados</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Estudios Realizados. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Estudios Realizados.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+            <thead>
+                <tr>
+                <th>Endpoint</th>
+                <th>Descripción</th>
+                <th>Método</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>/api/estudiosrealizados</td>
+                <td>Obtiene todos los datos de estudios realizados</td>
+                <td>GET</td>
+                </tr>
+                <tr>
+                <td>/api/estudiosrealizados</td>
+                <td>Crea un nuevo item en estudios realizados</td>
+                <td>POST</td>
+                </tr>
+                <tr>
+                <td>/api/estudiosrealizados/{{ '{' }}id{{ '}' }}</td>
+                <td>Actualiza un item existente en estudios realizados</td>
+                <td>PUT</td>
+                </tr>
+                <tr>
+                <td>/api/estudiosrealizados/{{ '{' }}id{{ '}' }}</td>
+                <td>Elimina un item existente en estudios realizados</td>
+                <td>DELETE</td>
+                </tr>
+            </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+            <thead>
+                <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>id</td>
+                <td>number</td>
+                <td>Identificador único del estudio realizado</td>
+                </tr>
+                <tr>
+                <td>titulo</td>
+                <td>string</td>
+                <td>Título del estudio</td>
+                </tr>
+                <tr>
+                <td>universidad</td>
+                <td>string</td>
+                <td>Universidad donde se realizó el estudio</td>
+                </tr>
+                <tr>
+                <td>fecha</td>
+                <td>string</td>
+                <td>Fecha de realización del estudio</td>
+                </tr>
+                <tr>
+                <td>tipo</td>
+                <td>string</td>
+                <td>Tipo de estudio</td>
+                </tr>
+                <tr>
+                <td>ciudad</td>
+                <td>string</td>
+                <td>Ciudad donde se realizó el estudio</td>
+                </tr>
+                <tr>
+                <td>docente_id</td>
+                <td>number</td>
+                <td>Identificador del docente</td>
+                </tr>
+                <tr>
+                <td>ins_acreditada</td>
+                <td>boolean</td>
+                <td>Indica si la institución está acreditada</td>
+                </tr>
+                <tr>
+                <td>metodologia</td>
+                <td>string</td>
+                <td>Metodología del estudio</td>
+                </tr>
+                <tr>
+                <td>perfil_egresado</td>
+                <td>string</td>
+                <td>Perfil del egresado</td>
+                </tr>
+                <tr>
+                <td>pais</td>
+                <td>string</td>
+                <td>País donde se realizó el estudio</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="experiencia">
+            <h2>Documentación de Experiencia</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Experiencia. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Experiencia.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+            <thead>
+                <tr>
+                <th>Endpoint</th>
+                <th>Descripción</th>
+                <th>Método</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>/api/experiencia</td>
+                <td>Obtiene todos los datos de experiencia</td>
+                <td>GET</td>
+                </tr>
+                <tr>
+                <td>/api/experiencia</td>
+                <td>Crea un nuevo item en experiencia</td>
+                <td>POST</td>
+                </tr>
+                <tr>
+                <td>/api/experiencia/{{ '{' }}id{{ '}' }}</td>
+                <td>Actualiza un item existente en experiencia</td>
+                <td>PUT</td>
+                </tr>
+                <tr>
+                <td>/api/experiencia/{{ '{' }}id{{ '}' }}</td>
+                <td>Elimina un item existente en experiencia</td>
+                <td>DELETE</td>
+                </tr>
+            </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+            <thead>
+                <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>id</td>
+                <td>number</td>
+                <td>Identificador único de la experiencia</td>
+                </tr>
+                <tr>
+                <td>nombre_cargo</td>
+                <td>string</td>
+                <td>Nombre del cargo</td>
+                </tr>
+                <tr>
+                <td>institucion</td>
+                <td>string</td>
+                <td>Institución donde se realizó la experiencia</td>
+                </tr>
+                <tr>
+                <td>fecha_inicio</td>
+                <td>Date</td>
+                <td>Fecha de inicio de la experiencia</td>
+                </tr>
+                <tr>
+                <td>fecha_fin</td>
+                <td>Date</td>
+                <td>Fecha de fin de la experiencia</td>
+                </tr>
+                <tr>
+                <td>docente</td>
+                <td>number</td>
+                <td>Identificador del docente</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+        <div class="doc-item" id="evaluacion_docente">
+            <h2>Documentación de Evaluación Docente</h2>
+            <p>En esta sección se encuentra la documentación detallada sobre los diferentes endpoints de la API relacionados con la entidad Evaluación Docente. Aquí se explican las operaciones que se pueden realizar, como obtener, crear, actualizar y eliminar datos de Evaluación Docente.</p>
+            
+            <h3>Endpoints</h3>
+            <table class="http-table">
+            <thead>
+                <tr>
+                <th>Endpoint</th>
+                <th>Descripción</th>
+                <th>Método</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>/api/evaluacion_docente</td>
+                <td>Obtiene todos los datos de evaluación docente</td>
+                <td>GET</td>
+                </tr>
+                <tr>
+                <td>/api/evaluacion_docente</td>
+                <td>Crea un nuevo item en evaluación docente</td>
+                <td>POST</td>
+                </tr>
+                <tr>
+                <td>/api/evaluacion_docente/{{ '{' }}id{{ '}' }}</td>
+                <td>Actualiza un item existente en evaluación docente</td>
+                <td>PUT</td>
+                </tr>
+                <tr>
+                <td>/api/evaluacion_docente/{{ '{' }}id{{ '}' }}</td>
+                <td>Elimina un item existente en evaluación docente</td>
+                <td>DELETE</td>
+                </tr>
+            </tbody>
+            </table>
+            
+            <h3>Keys</h3>
+            <table class="key-table">
+            <thead>
+                <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>id</td>
+                <td>number</td>
+                <td>Identificador único de la evaluación</td>
+                </tr>
+                <tr>
+                <td>calificacion</td>
+                <td>number</td>
+                <td>Calificación obtenida</td>
+                </tr>
+                <tr>
+                <td>semestre</td>
+                <td>string</td>
+                <td>Semestre en el que se realizó la evaluación</td>
+                </tr>
+                <tr>
+                <td>docente</td>
+                <td>number</td>
+                <td>Identificador del docente</td>
+                </tr>
+            </tbody>
             </table>
         </div>
     </div>

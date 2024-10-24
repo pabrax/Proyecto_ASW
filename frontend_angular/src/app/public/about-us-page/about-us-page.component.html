@@ -1,21 +1,29 @@
-<app-nav-bar/>
+<app-nav-bar></app-nav-bar>
 
 <div class="container">
-    <h1>Acerca de nosotros</h1>
-    <p>somos un grupo de desarrollo de software pensado en el desarrollo de aplicaciones orientadas al sector academico, creamos APIs que puedan ser utilizadas y adaptadas por el usuario final</p>
+    <section class="section-content">
+        <h1>Acerca de Nosotros</h1>
+        <p>Somos un equipo dedicado al desarrollo de software, especializado en la creación de aplicaciones orientadas al sector académico. Nuestro objetivo es diseñar APIs que sean fácilmente utilizables y adaptables por los usuarios finales. Contamos con años de experiencia en el sector y un profundo conocimiento de las necesidades educativas.</p>
+    </section>
 
-    <h2>Integrantes</h2>
-    <ul>
-        <li>Brayan Pabon</li>
-        <li>Andres Pabon</li>
-    </ul>
+    <section class="section-content">
+        <h2>Integrantes</h2>
+        <ul>
+            <li>Brayan Pabon - Desarrollador Full Stack con experiencia en tecnologías como Angular, Node.js y MongoDB.</li>
+            <li>Andres Pabon - Ingeniero de Software especializado en el desarrollo de APIs y bases de datos relacionales.</li>
+        </ul>
+    </section>
 
+    <section class="section-content">
+        <h2>Objetivo</h2>
+        <p>Nuestra meta es facilitar la gestión de la información académica en instituciones educativas, permitiendo a los usuarios realizar consultas eficientes a la base de datos almacenada. Buscamos mejorar la accesibilidad y la eficiencia en el manejo de datos académicos, proporcionando herramientas que simplifiquen estos procesos.</p>
+    </section>
 
-    <h2>Objetivo</h2>
-    <p>El objetivo de la aplicacion es facilitar la gestion de la informacion academica de una institucion educativa, permitiendo a los usuarios finales realizar consultas a la informacion almacenada en la base de datos</p>
-
-    <h2>Documentacion</h2>
-    <p>En la seccion de documentacion se encuentra la informacion necesaria para poder realizar consultas a la API</p>
-    <a [routerLink]="'/docs'">Ver documentacion</a>
-
+    <section class="section-content">
+        <h2>Documentación</h2>
+        <p>En la sección de documentación, encontrarás toda la información necesaria para realizar consultas a nuestra API. Proveemos ejemplos detallados y guías paso a paso para ayudarte a integrar nuestras soluciones en tus sistemas existentes.</p>
+        <a [routerLink]="'/docs'">Ver Documentación</a>
+    </section>
 </div>
+
+<app-footer></app-footer>

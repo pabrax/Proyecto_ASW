@@ -1,17 +1,13 @@
-
 .navbar {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     padding: 0;
     margin: 0;
-    
     font-size: 15px;
     background: #454449;
     color: white;
-
 }
 
 a {
@@ -24,6 +20,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 10px;
 }
 
 .img_logo {
@@ -45,8 +42,17 @@ ul {
     flex-direction: row;
     padding: 1;
 }
+
 ul li {
     padding: 0px 1vh;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+ul li:hover {
+    background-color: #58575e;
+    color: white;
+    border-radius: 5px;
 }
 
 .login-section {
@@ -68,4 +74,55 @@ ul li {
 
 .login-section a:hover {
     background-color: #0056b3;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .navbar_logo {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .routing-pages {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    ul {
+        flex-direction: row;
+        padding: 0;
+    }
+
+    ul li {
+        padding: 10px 0;
+    }
+
+    .login-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .login-section a {
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        font-size: 12px;
+    }
+
+    .img_logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .login-section a {
+        padding: 3px 5px;
+    }
 }
