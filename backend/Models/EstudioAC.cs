@@ -15,7 +15,7 @@ namespace ProyectoBackend.Models
 
 
         //relationships
-        public EstudiosRealizados EstudiosRealizados { set; get; }
+        public EstudiosRealizados? EstudiosRealizados { set; get; }
 
     }
 }

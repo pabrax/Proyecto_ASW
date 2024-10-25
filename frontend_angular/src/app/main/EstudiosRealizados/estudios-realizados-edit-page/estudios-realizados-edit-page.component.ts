@@ -55,7 +55,7 @@ export class EstudiosRealizadosEditPageComponent {
           fecha: estudioRealizado.fecha,
           tipo: estudioRealizado.tipo,
           ciudad: estudioRealizado.ciudad,
-          docente_id: estudioRealizado.docente_id,
+          docente: estudioRealizado.docente,
           ins_acreditada: estudioRealizado.ins_acreditada,
           metodologia: estudioRealizado.metodologia,
           perfil_egresado: estudioRealizado.perfil_egresado,

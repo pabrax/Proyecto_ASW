@@ -65,9 +65,9 @@
                         </div>
 
                         <div class="campo">
-                            <label for="docente_id">ID del Docente:</label>
-                            <input id="docente_id" formControlName="docente_id" type="number">
-                            <div *ngIf="estudiosRealizadosForm.get('docente_id')?.invalid && estudiosRealizadosForm.get('docente_id')?.touched">
+                            <label for="docente">ID del Docente:</label>
+                            <input id="docente" formControlName="docente" type="number">
+                            <div *ngIf="estudiosRealizadosForm.get('docente')?.invalid && estudiosRealizadosForm.get('docente')?.touched">
                                 El ID del docente es requerido.
                             </div>
                         </div>

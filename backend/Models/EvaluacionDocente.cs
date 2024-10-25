@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoBackend.Models 
 {
-    [Table("EvaluacionDocente", Schema = "knowledge_map_db")]
+    [Table("Evaluacion_Docente", Schema = "knowledge_map_db")]
     public class EvaluacionDocente
     {
         [Key]
@@ -11,6 +11,7 @@ namespace ProyectoBackend.Models
         public float Calificacion { get; set; }
         public string Semestre { get; set; }
 
+        public int Docente { get; set; }
         public Docente? DocenteRel { get; set; }
 
     }

@@ -29,7 +29,7 @@ export class EstudiosRealizadosCreatePageComponent {
     fecha: '',
     tipo: '',
     ciudad: '',
-    docente_id: 0,
+    docente: 0,
     ins_acreditada: false,
     metodologia: '',
     perfil_egresado: '',
@@ -42,12 +42,13 @@ export class EstudiosRealizadosCreatePageComponent {
     private formBuilder: FormBuilder
   ) {
     this.estudioRealizadoForm = this.formBuilder.group({
+      id: ['', Validators.required],
       titulo: ['', Validators.required],
       universidad: ['', Validators.required],
       fecha: ['', Validators.required],
       tipo: ['', Validators.required],
       ciudad: ['', Validators.required],
-      docente_id: ['', Validators.required],
+      docente: ['', Validators.required],
       ins_acreditada: ['', Validators.required],
       metodologia: ['', Validators.required],
       perfil_egresado: ['', Validators.required],
@@ -68,6 +69,8 @@ export class EstudiosRealizadosCreatePageComponent {
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
+    console.log(this.estudioRealizadoForm.value);
+    console.log(this.estudioRealizadoForm.valid);
     if (this.estudioRealizadoForm.valid) {
       this.estudioRealizadoService.createEstudioRealizado(this.estudioRealizado).subscribe(
         (data) => {

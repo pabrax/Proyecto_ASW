@@ -109,10 +109,12 @@ export class DocenteCreatePageComponent {
       // Llamar al servicio para crear el docente
       this.docenteService.createDocente(docente).subscribe(
         (data) => {
+          
           console.log('Docente creado', data);
           this.router.navigate(['/app/docente']);
         },
         (error) => {
+          console.log("fallo en submit");
           console.error('Error al crear el docente', error);
         }
       );

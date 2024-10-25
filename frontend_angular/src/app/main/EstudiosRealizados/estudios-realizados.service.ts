@@ -9,7 +9,7 @@ export interface EstudiosRealizados {
   fecha: string;
   tipo: string;
   ciudad: string;
-  docente_id: number;
+  docente: number;
   ins_acreditada: boolean;
   metodologia: string;
   perfil_egresado: string;

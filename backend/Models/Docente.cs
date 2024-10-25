@@ -39,9 +39,8 @@ namespace ProyectoBackend.Models
 
         public ICollection<DocenteDepartamento>? DocenteDepartamentos { get; set; }
 
-        public ICollection<Alianza>? alianzas { get; set; }
-        
-        public LineaInvestigacion? LineaInvestigaciones { get; set; }
+
+        public ICollection<Alianza>? Alianzas { get; set; }  
 
     }
     

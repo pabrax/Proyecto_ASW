@@ -19,6 +19,16 @@
 
                     <div class="main-form-content">
 
+
+
+                        <div class="campo">
+                            <label for="id">ID:</label>
+                            <input id="id" formControlName="id" type="number">
+                            <div *ngIf="estudioRealizadoForm.get('id')?.invalid && estudioRealizadoForm.get('id')?.touched">
+                                El ID es requerido.
+                            </div>
+                        </div>
+
                         <div class="campo">
                             <label for="titulo">Título:</label>
                             <input id="titulo" formControlName="titulo" type="text">
@@ -60,9 +70,9 @@
                         </div>
 
                         <div class="campo">
-                            <label for="docente_id">ID del Docente:</label>
-                            <input id="docente_id" formControlName="docente_id" type="number">
-                            <div *ngIf="estudioRealizadoForm.get('docente_id')?.invalid && estudioRealizadoForm.get('docente_id')?.touched">
+                            <label for="docente">ID del Docente:</label>
+                            <input id="docente" formControlName="docente" type="number">
+                            <div *ngIf="estudioRealizadoForm.get('docente')?.invalid && estudioRealizadoForm.get('docente')?.touched">
                                 El ID del docente es requerido.
                             </div>
                         </div>

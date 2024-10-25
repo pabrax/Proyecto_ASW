@@ -29,8 +29,6 @@ namespace ProyectoBackend.Data
         public DbSet<EvaluacionDocente> EvaluacionDocentes { get; set; }
         public DbSet<DocenteDepartamento> DocenteDepartamentos { get; set; }
         public DbSet<Alianza> Alianzas { get; set; }
-        public DbSet<LineaInvestigacion> LineaInvestigaciones { get; set; }
-        // public DbSet<Entidad> Entidades { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -84,29 +82,24 @@ namespace ProyectoBackend.Data
             modelBuilder.Entity<Docente>()
             .HasMany(d => d.EvaluacionDocentes)
             .WithOne(ed => ed.DocenteRel)
-            .HasForeignKey(ed => ed.DocenteRel)
+            .HasForeignKey(ed => ed.Docente)
             .OnDelete(DeleteBehavior.Cascade);
 
             //Relacion uno a muchos Docente - DocenteDepartamento
             modelBuilder.Entity<Docente>()
             .HasMany(d => d.DocenteDepartamentos)
             .WithOne(dd => dd.Docentes)
-            .HasForeignKey(dd => dd.Docentes)
+            .HasForeignKey(dd => dd.Docente)
             .OnDelete(DeleteBehavior.Cascade);
 
-            //Relacion uno a muchos Docente - Alianza
+            // Relacion uno a muchos docente alianza
             modelBuilder.Entity<Alianza>()
-            .HasMany(a => a.Docentes)
+            .HasOne(a => a.DocenteRel)
             .WithMany(d => d.Alianzas)
-            .HasForeignKey(d => d.Alianzas)
+            .HasForeignKey(a => a.Docente)
             .OnDelete(DeleteBehavior.Cascade);
 
-            //Relacion uno a muchos LineaInvestigacion - Docente
-            modelBuilder.Entity<LineaInvestigacion>()
-            .HasMany(l => l.Docentes)
-            .WithMany(d => d.LineaInvestigaciones)
-            .HasForeignKey(d => d.LineaInvestigaciones)
-            .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

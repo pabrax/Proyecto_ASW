@@ -16,6 +16,6 @@ namespace ProyectoBackend.Models
         public DateTime Fecha_Fin { get; set; }
         public int Docente { get; set; }
 
-        public Docente? Docentes { get; set; }     
+        public Docente? DocenteRel { get; set; }     
     }
 }
