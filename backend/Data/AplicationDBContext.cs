@@ -77,6 +77,12 @@ namespace ProyectoBackend.Data
             .HasForeignKey(rd => rd.Red) // Usa la propiedad RedId como clave foránea
             .OnDelete(DeleteBehavior.Cascade);
 
+            // Relacion uno a muchos doce - RedDocente
+            modelBuilder.Entity<Docente>()
+            .HasMany(d => d.RedDocentes)
+            .WithOne(rd => rd.DocenteRel)
+            .HasForeignKey(rd => rd.Docente)
+            .OnDelete(DeleteBehavior.Cascade);
 
             //Relacion uno a muchos Docente - Evaluacion Docente
             modelBuilder.Entity<Docente>()
@@ -99,6 +105,19 @@ namespace ProyectoBackend.Data
             .HasForeignKey(a => a.Docente)
             .OnDelete(DeleteBehavior.Cascade);
 
+            // Relacion uno a muchos docente experiencia
+            modelBuilder.Entity<Experiencia>()
+            .HasOne(e => e.DocenteRel)
+            .WithMany(d => d.Experiencias)
+            .HasForeignKey(e => e.Docente)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            // Relacion uno a muchos docente reconocimiento
+            modelBuilder.Entity<Reconocimiento>()
+            .HasOne(r => r.DocenteRel)
+            .WithMany(d => d.Reconocimientos)
+            .HasForeignKey(r => r.Docente)
+            .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

@@ -13,11 +13,12 @@ namespace ProyectoBackend.Models
         public int Red { set; get; }
         public int Docente { set; get; }
         public DateTime Fecha_Inicio { set; get; }
-        public DateTime Fecha_Fin { set; get; }
+        public string Fecha_Fin { set; get; }
         public string Act_Destacadas { set; get; }
 
         // Relacion
-         public Red? RedRel { get; set; }
+        public Red? RedRel { get; set; }
+        public Docente? DocenteRel { get; set; }
         
     }
 }

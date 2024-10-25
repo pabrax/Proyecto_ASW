@@ -6,7 +6,7 @@ using Microsoft.Identity.Client;
 
 namespace ProyectoBackend.Models
 {
-    [Table("Aliaza", Schema = "knowledge_map_db")]
+    [Table("Alianza", Schema = "knowledge_map_db")]
     public class Alianza
     {
         [Key]

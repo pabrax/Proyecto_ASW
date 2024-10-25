@@ -12,7 +12,10 @@ namespace ProyectoBackend.Models
         public string Tipo { set; get; }
         public DateTime Fecha_Inicio { set; get; }
         public DateTime Fecha_Fin { set; get; }
-        // public int DocenteId { set; get; }
+        
+        public int Docente { set; get; }
+
+        public Docente? DocenteRel { set; get; }
 
     }
 }

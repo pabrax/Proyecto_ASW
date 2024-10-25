@@ -10,6 +10,7 @@ namespace ProyectoBackend.Controllers
     public class DocenteDepartamentoController : ControllerBase
     {
         private readonly AplicationDBContext _context;
+
         public DocenteDepartamentoController(AplicationDBContext context)
         {
             _context = context;
@@ -21,10 +22,12 @@ namespace ProyectoBackend.Controllers
             return await _context.DocenteDepartamentos.ToListAsync();
         }
 
-        [HttpGet("{Docente}")]
-        public async Task<ActionResult<DocenteDepartamento>> GetDocenteDepartamento(int id)
+        [HttpGet("{docenteId}")]
+        public async Task<ActionResult<DocenteDepartamento>> GetDocenteDepartamento(int docenteId)
         {
-            var docenteDepartamento = await _context.DocenteDepartamentos.FindAsync(id);
+            var docenteDepartamento = await _context.DocenteDepartamentos
+                .Include(dd => dd.Docentes)
+                .FirstOrDefaultAsync(dd => dd.Docente == docenteId);
 
             if (docenteDepartamento == null)
             {
@@ -32,7 +35,7 @@ namespace ProyectoBackend.Controllers
             }
 
             return docenteDepartamento;
-        }   
+        }
 
         [HttpPost]
         public async Task<ActionResult<DocenteDepartamento>> PostDocenteDepartamento(DocenteDepartamento docenteDepartamento)
@@ -40,13 +43,13 @@ namespace ProyectoBackend.Controllers
             _context.DocenteDepartamentos.Add(docenteDepartamento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetDocenteDepartamento), new { id = docenteDepartamento.Docente }, docenteDepartamento);
+            return CreatedAtAction(nameof(GetDocenteDepartamento), new { docenteId = docenteDepartamento.Docente }, docenteDepartamento);
         }
 
-        [HttpPut("{Docente}")]
-        public async Task<IActionResult> PutDocenteDepartamento(int id, DocenteDepartamento docenteDepartamento)
+        [HttpPut("{docenteId}")]
+        public async Task<IActionResult> PutDocenteDepartamento(int docenteId, DocenteDepartamento docenteDepartamento)
         {
-            if (id != docenteDepartamento.Docente)
+            if (docenteId != docenteDepartamento.Docente)
             {
                 return BadRequest();
             }
@@ -57,10 +60,10 @@ namespace ProyectoBackend.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{Docente}")]
-        public async Task<IActionResult> DeleteDocenteDepartamento(int id)
+        [HttpDelete("{docenteId}")]
+        public async Task<IActionResult> DeleteDocenteDepartamento(int docenteId)
         {
-            var docenteDepartamento = await _context.DocenteDepartamentos.FindAsync(id);
+            var docenteDepartamento = await _context.DocenteDepartamentos.FindAsync(docenteId);
             if (docenteDepartamento == null)
             {
                 return NotFound();
