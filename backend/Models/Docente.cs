@@ -42,6 +42,13 @@ namespace ProyectoBackend.Models
 
         public ICollection<Alianza>? Alianzas { get; set; }  
 
+        public ICollection<RedDocente>? RedDocentes { get; set;}
+
+        public ICollection<Experiencia>? Experiencias { get; set;}
+
+        // reconocimiento
+        public ICollection<Reconocimiento>? Reconocimientos { get; set;}
+
     }
     
 }

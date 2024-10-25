@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProyectoBackend.Models;
 using ProyectoBackend.Data;
+using ProyectoBackend.Models;
 
 namespace ProyectoBackend.Controllers
 {
@@ -10,6 +10,7 @@ namespace ProyectoBackend.Controllers
     public class AlianzaController : ControllerBase
     {
         private readonly AplicationDBContext _context;
+
         public AlianzaController(AplicationDBContext context)
         {
             _context = context;
@@ -21,10 +22,10 @@ namespace ProyectoBackend.Controllers
             return await _context.Alianzas.ToListAsync();
         }
 
-        [HttpGet("{Aliado}")]
-        public async Task<ActionResult<Alianza>> GetAlianza(int id)
+        [HttpGet("{aliado}")]
+        public async Task<ActionResult<Alianza>> GetAlianza(int aliado)
         {
-            var alianza = await _context.Alianzas.FindAsync(id);
+            var alianza = await _context.Alianzas.FindAsync(aliado);
 
             if (alianza == null)
             {
@@ -36,31 +37,29 @@ namespace ProyectoBackend.Controllers
 
         [HttpPost]
         public async Task<ActionResult<Alianza>> PostAlianza(Alianza alianza)
-        {   
+        {
             _context.Alianzas.Add(alianza);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetAlianza), new { id = alianza.Aliado }, alianza);
+            return CreatedAtAction(nameof(GetAlianza), new { aliado = alianza.Aliado }, alianza);
         }
 
-        [HttpPut("{Aliado}")]
-        public async Task<IActionResult> PutAlianza(int id, Alianza alianza)
+        [HttpPut("{aliado}")]
+        public async Task<IActionResult> PutAlianza(int aliado, Alianza alianza)
         {
-            if (id != alianza.Aliado)
+            if (aliado != alianza.Aliado)
             {
                 return BadRequest();
             }
 
             _context.Entry(alianza).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
-        [HttpDelete("{Alianza}")]
-        public async Task<IActionResult> DeleteAlianza(int id)
+        [HttpDelete("{aliado}")]
+        public async Task<IActionResult> DeleteAlianza(int aliado)
         {
-            var alianza = await _context.Alianzas.FindAsync(id);
+            var alianza = await _context.Alianzas.FindAsync(aliado);
             if (alianza == null)
             {
                 return NotFound();
@@ -68,15 +67,7 @@ namespace ProyectoBackend.Controllers
 
             _context.Alianzas.Remove(alianza);
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
-
-
-
-
-
-
-
     }
 }

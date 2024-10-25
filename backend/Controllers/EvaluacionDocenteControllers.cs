@@ -7,10 +7,10 @@ namespace ProyectoBackend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EvaluacionDocenteControllers : ControllerBase
+    public class EvaluacionDocenteController : ControllerBase
     {
         private readonly AplicationDBContext _context;
-        public EvaluacionDocenteControllers(AplicationDBContext context)
+        public EvaluacionDocenteController(AplicationDBContext context)
         {
             _context = context;
         }

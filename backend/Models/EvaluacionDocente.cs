@@ -8,7 +8,7 @@ namespace ProyectoBackend.Models
     {
         [Key]
         public int Id { get; set; }
-        public float Calificacion { get; set; }
+        public double Calificacion { get; set; }
         public string Semestre { get; set; }
 
         public int Docente { get; set; }
