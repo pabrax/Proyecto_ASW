@@ -13,7 +13,29 @@
 }
 
 .app-content {
-    background-image: url('/src/assets/landing_bg.jpg');
+    background-image: url('/assets/landing_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    width: 100%;
+    height: 400px;
+}
+
+.app-content h1 {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 100px;
+}
+
+.app-content p {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 25px;
 }
 
 section {
