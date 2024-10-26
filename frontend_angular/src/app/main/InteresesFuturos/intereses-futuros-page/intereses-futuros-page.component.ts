@@ -43,7 +43,7 @@ export class InteresesFuturosPageComponent {
   deleteInteresesFuturos(id: number): void {
     this.interesesFuturosService.deleteInteresesFuturos(id).subscribe(
       () => {
-        this.interesesFuturos = this.interesesFuturos.filter(interesesFuturos => interesesFuturos.docente_id !== id);
+        this.interesesFuturos = this.interesesFuturos.filter(interesesFuturos => interesesFuturos.docente !== id);
       },
       (error) => {
         console.error('Error al eliminar el interes futuro', error);
@@ -58,6 +58,6 @@ export class InteresesFuturosPageComponent {
 
   // Método para navegar al formulario de edición de un interes futuro
   editInteresesFuturos(id: number): void {
-    this.router.navigate(['app/intereses-futuros/create', id]);
+    this.router.navigate(['app/intereses-futuros/edit', id]);
   }
 }

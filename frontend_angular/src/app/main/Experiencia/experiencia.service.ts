@@ -6,6 +6,7 @@ export interface Experiencia {
   id: number;
   nombre_cargo: string;
   institucion: string;
+  tipo: string;
   fecha_inicio: Date;
   fecha_fin: Date;
   docente: number;

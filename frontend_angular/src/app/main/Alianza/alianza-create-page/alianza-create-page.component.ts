@@ -23,10 +23,10 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
 export class AlianzaCreatePageComponent {
   alianzaForm: FormGroup;
   alianza: Alianza = {
-    aliado_id: 0,
+    aliado: 0,
     departamento: 0,
-    fecha_inicio: '',
-    fecha_fin: '',
+    fecha_inicio: new Date(),
+    fecha_fin: new Date(),
     docente: 0
   };
 
@@ -36,7 +36,7 @@ export class AlianzaCreatePageComponent {
     private formBuilder: FormBuilder
   ) {
     this.alianzaForm = this.formBuilder.group({
-      aliado_id: ['', Validators.required],
+      aliado: ['', Validators.required],
       departamento: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
@@ -45,27 +45,26 @@ export class AlianzaCreatePageComponent {
   }
 
   createAlianza(): void {
-    this.alianzaService.createAlianza(this.alianza).subscribe(
-      (data) => {
+    this.alianzaService.createAlianza(this.alianza).subscribe({
+      next: (data) => {
         console.log('Alianza creada', data);
+        this.router.navigate(['/app/alianza']);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al crear la alianza', error);
       }
-    );
+    });
   }
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.alianzaForm.valid) {
-      this.alianzaService.createAlianza(this.alianza).subscribe(
-        (data) => {
-          console.log('Alianza creada', data);
-        },
-        (error) => {
-          console.error('Error al crear la alianza', error);
-        }
-      );
+      this.alianza.aliado = this.alianzaForm.value.aliado;
+      this.alianza.departamento = this.alianzaForm.value.departamento;
+      this.alianza.fecha_inicio = new Date(this.alianzaForm.value.fecha_inicio);
+      this.alianza.fecha_fin = new Date(this.alianzaForm.value.fecha_fin);
+      this.alianza.docente = this.alianzaForm.value.docente;
+      this.createAlianza();
     }
   }
 }

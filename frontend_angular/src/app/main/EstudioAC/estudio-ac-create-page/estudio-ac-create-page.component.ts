@@ -25,7 +25,7 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
 export class EstudioAcCreatePageComponent {
   estudioAcForm: FormGroup;
   estudioAc: EstudioAc = {
-    estudio_id: 0,
+    estudio: 0,
     area_conocimiento_id: 0
   };
 
@@ -39,29 +39,24 @@ export class EstudioAcCreatePageComponent {
       area_conocimiento_id: ['', Validators.required]
     });
   }
-
   createEstudioAc(): void {
-    this.estudioAcService.createEstudio(this.estudioAc).subscribe(
-      (data) => {
+    this.estudioAcService.createEstudio(this.estudioAc).subscribe({
+      next: (data) => {
         console.log('Estudio creado', data);
+        this.router.navigate(['/app/estudio-ac']);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al crear el estudio', error);
       }
-    );
+    });
   }
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.estudioAcForm.valid) {
-      this.estudioAcService.createEstudio(this.estudioAc).subscribe(
-        (data) => {
-          console.log('Estudio creado', data);
-        },
-        (error) => {
-          console.error('Error al crear el estudio', error);
-        }
-      );
+      this.estudioAc.estudio = this.estudioAcForm.value.estudio;
+      this.estudioAc.area_conocimiento_id = this.estudioAcForm.value.area_conocimiento_id;
+      this.createEstudioAc();
     }
   }
 }

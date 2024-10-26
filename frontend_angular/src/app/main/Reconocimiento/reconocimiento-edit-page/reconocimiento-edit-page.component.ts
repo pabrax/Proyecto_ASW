@@ -21,14 +21,6 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
   providers: [ReconocimientoService]
 })
 export class ReconocimientoEditPageComponent {
-  // export interface Reconocimiento {
-  //   id: number;
-  //   tipo: string;
-  //   fecha: Date;
-  //   institucion: string;
-  //   ambito: string;
-  //   docente: number;
-  // }
 
   reconocimientoForm: FormGroup;
   reconocimientoId: number = 0;  // Para almacenar el ID del reconocimiento, inicializado a 0
@@ -44,6 +36,7 @@ export class ReconocimientoEditPageComponent {
       tipo: ['', Validators.required],
       fecha: ['', Validators.required],
       institucion: ['', Validators.required],
+      nombre: ['', Validators.required],
       ambito: ['', Validators.required],
       docente: ['', Validators.required]
     });
@@ -61,6 +54,7 @@ export class ReconocimientoEditPageComponent {
           tipo: reconocimiento.tipo,
           fecha: reconocimiento.fecha,
           institucion: reconocimiento.institucion,
+          nombre: reconocimiento.nombre,
           ambito: reconocimiento.ambito,
           docente: reconocimiento.docente
         });
@@ -82,7 +76,7 @@ export class ReconocimientoEditPageComponent {
 
       this.reconocimientoService.updateReconocimiento(this.reconocimientoId, reconocimientoActualizado).subscribe(
         (reconocimiento: Reconocimiento) => {
-          this.router.navigate(['/reconocimiento']);
+          this.router.navigate(['/app/reconocimiento']);
         },
         (error) => {
           console.error('Error al actualizar el reconocimiento', error);

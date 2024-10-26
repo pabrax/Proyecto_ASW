@@ -37,7 +37,21 @@ namespace ProyectoBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<EstudioAC>> PostEstudioAC(EstudioAC estudioAC)
         {
-            // aqui
+            
+           // Asegúrate de que la entidad principal (EstudiosRealizados) esté siendo rastreada
+            var estudiosRealizados = await _context.EstudiosRealizados.FindAsync(estudioAC.Estudio);
+            if (estudiosRealizados == null)
+            {
+                return BadRequest("EstudiosRealizados no encontrado.");
+            }
+
+            // Verifica si ya existe un registro con la misma clave primaria
+            var existingEstudioAC = await _context.EstudioACs.FindAsync(estudioAC.Estudio);
+            if (existingEstudioAC != null)
+            {
+                return Conflict("Ya existe un registro con la misma clave primaria.");
+            }
+
             _context.EstudioACs.Add(estudioAC);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetEstudioAC), new { id = estudioAC.Estudio }, estudioAC);

@@ -9,11 +9,11 @@ export interface Docente {
   apellidos: string;
   genero: string;
   cargo: string;
-  fecha_nacimiento: Date;
+  fecha_nacimiento: string;
   correo: string;
   telefono: string;
   url_cvlac: string;
-  fecha_actualizacion: Date;
+  fecha_actualizacion: string;
   escalafon: string;
   perfil: string;
   cat_minciencia: string;

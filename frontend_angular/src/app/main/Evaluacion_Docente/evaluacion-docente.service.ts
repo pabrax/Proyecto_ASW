@@ -14,7 +14,7 @@ export interface EvaluacionDocente {
 })
 export class EvaluacionDocenteService {
 
-  private apiUrl = "http://localhost:5254/api/evaluacion_docente"
+  private apiUrl = "http://localhost:5254/api/EvaluacionDocente"
   constructor(private http: HttpClient) { }
 
   // get all

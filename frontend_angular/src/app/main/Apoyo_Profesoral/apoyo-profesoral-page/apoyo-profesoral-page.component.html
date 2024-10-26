@@ -22,7 +22,6 @@
                 <table class="custom-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Estudios</th>
                             <th>Con Apoyo</th>
                             <th>institucion</th>
@@ -33,13 +32,13 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let ap of apoyoProfesoral">
-                            <td>{{ ap.id }}</td>
+                            <td>{{ ap.estudios }}</td>
                             <td>{{ ap.con_apoyo }}</td>
                             <td>{{ ap.institucion }}</td>
                             <td>{{ ap.tipo }}</td>
                             <td>
-                                <button (click)="editApoyoProfesoral(ap.id)" class="editButton">Editar</button>
-                                <button (click)="deleteApoyoProfesoral(ap.id)" class="deleteButton">Eliminar</button>
+                                <button (click)="editApoyoProfesoral(ap.estudios)" class="editButton">Editar</button>
+                                <button (click)="deleteApoyoProfesoral(ap.estudios)" class="deleteButton">Eliminar</button>
                             </td>
                         </tr>
                     </tbody>

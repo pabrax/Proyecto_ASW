@@ -16,13 +16,6 @@
                 <form [formGroup]="apoyoProfesoralForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
 
-                        <div class="campo">
-                            <label for="id">ID:</label>
-                            <input id="id" formControlName="id" type="number" readonly>
-                            <div *ngIf="apoyoProfesoralForm.get('id')?.invalid && apoyoProfesoralForm.get('id')?.touched">
-                                El ID es requerido.
-                            </div>
-                        </div>
 
                         <div class="campo">
                             <label for="estudios">Número de Estudios:</label>
@@ -35,12 +28,9 @@
 
                         <div class="campo">
                             <label for="con_apoyo">¿Con Apoyo?</label>
-                            <select id="con_apoyo" formControlName="con_apoyo">
-                                <option [value]="true">Sí</option>
-                                <option [value]="false">No</option>
-                            </select>
+                            <input id="con_apoyo" formControlName="con_apoyo" type="checkbox">
                             <div *ngIf="apoyoProfesoralForm.get('con_apoyo')?.invalid && apoyoProfesoralForm.get('con_apoyo')?.touched">
-                                Debe seleccionar si tiene apoyo.
+                                Seleccione si tiene apoyo.
                             </div>
                         </div>
 

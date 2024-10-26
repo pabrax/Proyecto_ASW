@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface EstudioAc {
-  estudio_id: number;
+  estudio: number;
   area_conocimiento_id: number;
 }
 

@@ -72,7 +72,7 @@ export class EvaluacionDocenteEditPageComponent {
       this.evaluacionDocenteService.updateEvaluacionDocente(this.evaluacionDocenteId, evaluacionDocenteActualizada).subscribe(
         (evaluacionDocente: EvaluacionDocente) => {
           console.log('EvaluacionDocente actualizada', evaluacionDocente);
-          this.router.navigate(['/evaluacion-docente']);
+          this.router.navigate(['/app/evaluacion-docentes']);
         },
         (error) => {
           console.error('Error al actualizar la evaluacionDocente', error);
@@ -82,6 +82,6 @@ export class EvaluacionDocenteEditPageComponent {
   }
 
   onCancel(): void {
-    this.router.navigate(['/app/evaluacion-docente']);
+    this.router.navigate(['/app/evaluacion-docentes']);
   }
 }

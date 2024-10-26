@@ -31,7 +31,7 @@ export class InteresesFuturosEditPageComponent {
     private formBuilder: FormBuilder
   ) {
     this.interesesFuturosForm = this.formBuilder.group({
-      docente_id: ['', Validators.required],
+      docente: ['', Validators.required],
       termino_clave: ['', Validators.required]
     });
   }
@@ -42,7 +42,7 @@ export class InteresesFuturosEditPageComponent {
     this.interesesFuturosService.getInteresesFuturosById(this.interesesFuturosId).subscribe(
       (interesesFuturos: InteresesFuturos) => {
         this.interesesFuturosForm.patchValue({
-          docente_id: interesesFuturos.docente_id,
+          docente_id: interesesFuturos.docente,
           termino_clave: interesesFuturos.termino_clave
         });
       },
@@ -62,7 +62,7 @@ export class InteresesFuturosEditPageComponent {
       this.interesesFuturosService.updateInteresesFuturos(this.interesesFuturosId, interesesFuturosActualizados).subscribe(
         (interesesFuturos: InteresesFuturos) => {
           console.log('Intereses futuros actualizados', interesesFuturos);
-          this.router.navigate(['/intereses-futuros']);
+          this.router.navigate(['/app/intereses-futuros']);
         },
         (error) => {
           console.error('Error al actualizar los intereses futuros', error);

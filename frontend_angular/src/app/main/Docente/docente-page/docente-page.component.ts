@@ -32,6 +32,7 @@ export class DocentePageComponent {
   ngOnInit(): void {
     this.docenteService.getDocentes().subscribe(
       (data) => {
+        
         this.docentes = data;
       },
       (error) => {

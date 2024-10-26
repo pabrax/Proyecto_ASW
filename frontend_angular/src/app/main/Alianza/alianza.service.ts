@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Alianza {
-  aliado_id: number;
+  aliado: number;
   departamento: number;
-  fecha_inicio: string;
-  fecha_fin: string;
+  fecha_inicio: Date;
+  fecha_fin: Date;
   docente: number;
 }
 

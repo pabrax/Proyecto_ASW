@@ -34,7 +34,7 @@ export class AlianzaEditPageComponent {
   ) {
     // Inicializar el formulario vacío
     this.alianzaForm = this.formBuilder.group({
-      aliado_id: ['', Validators.required],
+      aliado: ['', Validators.required],
       departamento: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
@@ -51,7 +51,7 @@ export class AlianzaEditPageComponent {
       (alianza: Alianza) => {
         // Rellenar el formulario con los datos de la alianza existente
         this.alianzaForm.patchValue({
-          aliado_id: alianza.aliado_id,
+          aliado_id: alianza.aliado,
           departamento: alianza.departamento,
           fecha_inicio: alianza.fecha_inicio,
           fecha_fin: alianza.fecha_fin,

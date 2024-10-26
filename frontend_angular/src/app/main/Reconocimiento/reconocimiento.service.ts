@@ -7,6 +7,7 @@ export interface Reconocimiento {
   tipo: string;
   fecha: Date;
   institucion: string;
+  nombre: string;
   ambito: string;
   docente: number;
 }

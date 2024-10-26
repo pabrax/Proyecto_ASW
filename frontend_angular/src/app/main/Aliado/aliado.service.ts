@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Aliado {
-  id: number;
   nit: number;
   razon_social: string;
   nombre_contacto: string;
@@ -26,9 +25,9 @@ export class AliadoService {
     return this.http.get<Aliado[]>(this.apiUrl);
   }
 
-  // get by id
-  getAliadoById(id: number): Observable<Aliado> {
-    const url = `${this.apiUrl}/${id}`;
+  // get by nit
+  getAliadoByNit(nit: number): Observable<Aliado> {
+    const url = `${this.apiUrl}/${nit}`;
     return this.http.get<Aliado>(url);
   }
 

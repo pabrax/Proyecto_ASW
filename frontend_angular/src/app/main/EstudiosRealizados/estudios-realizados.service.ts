@@ -6,7 +6,7 @@ export interface EstudiosRealizados {
   id: number;
   titulo: string;
   universidad: string;
-  fecha: string;
+  fecha: Date;
   tipo: string;
   ciudad: string;
   docente: number;

@@ -74,7 +74,7 @@ export class BecaEditPageComponent {
       this.becaService.updateBeca(this.becaId, becaActualizada).subscribe(
         (beca: Beca) => {
           console.log('Beca actualizada', beca);
-          this.router.navigate(['/beca']);
+          this.router.navigate(['/app/beca']);
         },
         (error) => {
           console.error('Error al actualizar la beca', error);

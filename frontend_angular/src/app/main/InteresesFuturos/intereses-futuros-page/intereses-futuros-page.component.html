@@ -23,7 +23,6 @@
           <table class="custom-table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Docente ID</th>
                     <th>Término Clave</th>
                     <th>Acciones</th>
@@ -31,11 +30,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let interes of interesesFuturos">
-                    <td>{{ interes.docente_id }}</td>
+                    <td>{{ interes.docente }}</td>
                     <td>{{ interes.termino_clave }}</td>
                     <td>
-                        <button (click)="editInteresesFuturos(interes.docente_id)" class="editButton">Editar</button>
-                        <button (click)="deleteInteresesFuturos(interes.docente_id)" class="deleteButton">Eliminar</button>
+                        <button (click)="editInteresesFuturos(interes.docente)" class="editButton">Editar</button>
+                        <button (click)="deleteInteresesFuturos(interes.docente)" class="deleteButton">Eliminar</button>
                     </td>
                 </tr>
             </tbody>

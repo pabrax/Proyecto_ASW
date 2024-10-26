@@ -22,7 +22,6 @@
         <table class="custom-table">
           <thead>
             <tr>
-              <th>ID</th>
               <th>estudios</th>
               <th>tipo</th>
               <th>institucion</th>
@@ -34,15 +33,14 @@
           </thead>
           <tbody>
             <tr *ngFor="let beca of becas">
-              <td>{{ beca.id }}</td>
               <td>{{ beca.estudios }}</td>
               <td>{{ beca.tipo }}</td>
               <td>{{ beca.institucion }}</td>
               <td>{{ beca.fecha_inicio }}</td>
               <td>{{ beca.fecha_fin }}</td>
               <td>
-                <button (click)="editBeca(beca.id)" class="editButton">Editar</button>
-                <button (click)="deleteBeca(beca.id)" class="deleteButton">Eliminar</button>
+                <button (click)="editBeca(beca.estudios)" class="editButton">Editar</button>
+                <button (click)="deleteBeca(beca.estudios)" class="deleteButton">Eliminar</button>
               </td>
             </tr>
           </tbody>
