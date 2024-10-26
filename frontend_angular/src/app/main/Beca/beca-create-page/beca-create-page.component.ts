@@ -46,27 +46,26 @@ export class BecaCreatePageComponent {
   }
 
   createBeca(): void {
-    this.becaService.createBeca(this.beca).subscribe(
-      (data) => {
+    this.becaService.createBeca(this.beca).subscribe({
+      next: (data) => {
         console.log('Beca creada', data);
+        this.router.navigate(['/app/beca']);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al crear la beca', error);
       }
-    );
+    });
   }
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.becaForm.valid) {
-      this.becaService.createBeca(this.beca).subscribe(
-        (data) => {
-          console.log('Beca creada', data);
-        },
-        (error) => {
-          console.error('Error al crear la beca', error);
-        }
-      );
+      this.beca.estudios = this.becaForm.value.estudios;
+      this.beca.tipo = this.becaForm.value.tipo;
+      this.beca.institucion = this.becaForm.value.institucion;
+      this.beca.fecha_inicio = this.becaForm.value.fecha_inicio;
+      this.beca.fecha_fin = this.becaForm.value.fecha_fin;
+      this.createBeca();
     }
   }
 }
