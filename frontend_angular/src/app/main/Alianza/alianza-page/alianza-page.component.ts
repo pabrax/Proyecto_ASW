@@ -42,7 +42,7 @@ export class AlianzaPageComponent {
   deleteAlianza(aliado_id: number): void {
     this.alianzaService.deleteAlianza(aliado_id).subscribe(
       () => {
-        this.alianzas = this.alianzas.filter(alianza => alianza.aliado_id !== aliado_id);
+        this.alianzas = this.alianzas.filter(alianza => alianza.aliado !== aliado_id);
       },
       (error) => {
         console.error('Error al eliminar la alianza', error);

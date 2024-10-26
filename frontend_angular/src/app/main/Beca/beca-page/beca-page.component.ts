@@ -42,7 +42,7 @@ export class BecaPageComponent {
   deleteBeca(id: number): void {
     this.becaService.deleteBeca(id).subscribe(
       () => {
-        this.becas = this.becas.filter(beca => beca.id !== id);
+        this.becas = this.becas.filter(beca => beca.estudios !== id);
       },
       (error) => {
         console.error('Error al eliminar la beca', error);
@@ -57,6 +57,6 @@ export class BecaPageComponent {
 
   // Método para navegar al formulario de edición de una beca
   editBeca(id: number): void {
-    this.router.navigate(['app/beca/create', id]);
+    this.router.navigate(['app/beca/edit', id]);
   }
 }

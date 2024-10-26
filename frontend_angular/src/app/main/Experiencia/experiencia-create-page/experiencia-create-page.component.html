@@ -42,6 +42,19 @@
                 La institución es requerida.
               </div>
             </div>
+
+            <div class="campo">
+              <label for="tipo">Tipo:</label>
+              <select id="tipo" formControlName="tipo">
+                <option value="">Seleccione un tipo</option>
+                <option value="docencia">Docencia</option>
+                <option value="investigacion">Investigación</option>
+                <option value="administracion">Administración</option>
+              </select>
+              <div *ngIf="experienciaForm.get('tipo')?.invalid && experienciaForm.get('tipo')?.touched">
+                El tipo es requerido.
+              </div>
+            </div>
             
             <div class="campo">
               <label for="fecha_inicio">Fecha de Inicio:</label>

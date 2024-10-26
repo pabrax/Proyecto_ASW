@@ -32,6 +32,6 @@ namespace ProyectoBackend.Models
         // relacion con estudio_ac, beca y ApoyoProfesoral
         public Beca? beca {set; get;}
         public ApoyoProfesoral? apoyoProfesoral {set; get;}
-        public EstudioAC? estudioAC {set; get;}
+        public ICollection<EstudioAC>? estudioACs {set; get;}
     }
 }

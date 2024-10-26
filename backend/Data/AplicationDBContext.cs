@@ -42,11 +42,11 @@ namespace ProyectoBackend.Data
             .HasForeignKey(e => e.Docente)
             .OnDelete(DeleteBehavior.Cascade);
 
-            // relacion uno a uno: EstudiosRealizados - EstudioAC
+            // relacion uno a muchos: EstudiosRealizados - EstudioAC
             modelBuilder.Entity<EstudiosRealizados>()
-            .HasOne(e => e.estudioAC)
+            .HasMany(e => e.estudioACs)
             .WithOne(eac => eac.EstudiosRealizados)
-            .HasForeignKey<EstudioAC>(eac => eac.Estudio)
+            .HasForeignKey(eac => eac.Estudio)
             .OnDelete(DeleteBehavior.Cascade);
 
             // relacion uno a uno: EstudiosRealizados - Beca

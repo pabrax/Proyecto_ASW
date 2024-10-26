@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ApoyoProfesoral {
-  id: number;
   estudios: number;
   con_apoyo: boolean;
   institucion: string;
@@ -15,7 +14,7 @@ export interface ApoyoProfesoral {
 })
 export class ApoyoProfesoralService {
 
-  private apiUrl = "http://localhost:5254/api/apoyo_profesoral"
+  private apiUrl = "http://localhost:5254/api/apoyoProfesoral"
   constructor(private http: HttpClient) { }
 
   // get all

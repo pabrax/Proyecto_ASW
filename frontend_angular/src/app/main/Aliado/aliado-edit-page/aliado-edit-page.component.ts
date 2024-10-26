@@ -47,7 +47,7 @@ export class AliadoEditPageComponent {
     this.aliadoId = Number(this.route.snapshot.paramMap.get('id'));
 
     // Cargar los datos del aliado usando el ID
-    this.aliadoService.getAliadoById(this.aliadoId).subscribe(
+    this.aliadoService.getAliadoByNit(this.aliadoId).subscribe(
       (aliado: Aliado) => {
         // Rellenar el formulario con los datos del aliado existente
         this.aliadoForm.patchValue({

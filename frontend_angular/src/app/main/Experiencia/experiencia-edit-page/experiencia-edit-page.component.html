@@ -15,10 +15,6 @@
             <div class="form-container">
                 <form [formGroup]="experienciaForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
-                        <div class="campo">
-                            <label for="id">ID:</label>
-                            <input id="id" formControlName="id" type="number" readonly>
-                        </div>
 
                         <div class="campo">
                             <label for="nombre_cargo">Nombre del Cargo:</label>
@@ -33,6 +29,18 @@
                             <input id="institucion" formControlName="institucion" type="text">
                             <div *ngIf="experienciaForm.get('institucion')?.invalid && experienciaForm.get('institucion')?.touched">
                                 La institución es requerida.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="tipo">Tipo:</label>
+                            <select id="tipo" formControlName="tipo">
+                                <option value="full-time">Tiempo Completo</option>
+                                <option value="part-time">Medio Tiempo</option>
+                                <option value="internship">Pasantía</option>
+                            </select>
+                            <div *ngIf="experienciaForm.get('tipo')?.invalid && experienciaForm.get('tipo')?.touched">
+                                El tipo es requerido.
                             </div>
                         </div>
 

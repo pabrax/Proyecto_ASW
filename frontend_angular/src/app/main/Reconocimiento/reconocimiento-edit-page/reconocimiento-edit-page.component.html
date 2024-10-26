@@ -45,6 +45,14 @@
                         </div>
 
                         <div class="campo">
+                            <label for="nombre">Nombre:</label>
+                            <input id="nombre" formControlName="nombre" type="text">
+                            <div *ngIf="reconocimientoForm.get('nombre')?.invalid && reconocimientoForm.get('nombre')?.touched">
+                                El nombre es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
                             <label for="ambito">Ámbito:</label>
                             <input id="ambito" formControlName="ambito" type="text">
                             <div *ngIf="reconocimientoForm.get('ambito')?.invalid && reconocimientoForm.get('ambito')?.touched">

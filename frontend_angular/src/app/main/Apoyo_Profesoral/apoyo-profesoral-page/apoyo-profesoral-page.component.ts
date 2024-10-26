@@ -42,7 +42,7 @@ export class ApoyoProfesoralPageComponent {
   deleteApoyoProfesoral(id: number): void {
     this.apoyoProfesoralService.deleteApoyoProfesoral(id).subscribe(
       () => {
-        this.apoyoProfesoral = this.apoyoProfesoral.filter(apoyoProfesoral => apoyoProfesoral.id !== id);
+        this.apoyoProfesoral = this.apoyoProfesoral.filter(apoyoProfesoral => apoyoProfesoral.estudios !== id);
       },
       (error) => {
         console.error('Error al eliminar el apoyoProfesoral', error);

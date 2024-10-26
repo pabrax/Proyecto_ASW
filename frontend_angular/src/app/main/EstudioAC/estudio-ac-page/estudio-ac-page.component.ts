@@ -43,7 +43,7 @@ export class EstudioAcPageComponent {
   deleteEstudioAC(id: number): void {
     this.estudioAcService.deleteEstudio(id).subscribe(
       () => {
-        this.estudiosAC = this.estudiosAC.filter(estudio => estudio.estudio_id !== id);
+        this.estudiosAC = this.estudiosAC.filter(estudio => estudio.estudio !== id);
       },
       (error) => {
         console.error('Error al eliminar el estudio', error);
@@ -58,6 +58,6 @@ export class EstudioAcPageComponent {
 
   // Método para navegar al formulario de edición de un estudio
   editEstudioAC(id: number): void {
-    this.router.navigate(['app/estudio-ac/create', id]);
+    this.router.navigate(['app/estudio-ac/edit', id]);
   }
 }

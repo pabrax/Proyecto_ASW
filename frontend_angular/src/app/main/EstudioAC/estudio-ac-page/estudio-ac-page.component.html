@@ -29,11 +29,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let e_ac of estudiosAC">
-                <td>{{ e_ac.estudio_id }}</td>
+                <td>{{ e_ac.estudio }}</td>
                 <td>{{ e_ac.area_conocimiento_id }}</td>
                 <td>
-                  <button (click)="editEstudioAC(e_ac.estudio_id)" class="editButton">Editar</button>
-                  <button (click)="deleteEstudioAC(e_ac.estudio_id)" class="deleteButton">Eliminar</button>
+                  <button (click)="editEstudioAC(e_ac.estudio)" class="editButton">Editar</button>
+                  <button (click)="deleteEstudioAC(e_ac.estudio)" class="deleteButton">Eliminar</button>
                 </td>
               </tr>
             </tbody>

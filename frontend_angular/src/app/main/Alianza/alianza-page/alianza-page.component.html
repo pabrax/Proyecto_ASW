@@ -24,7 +24,6 @@
               <tr>
                 <th>Aliado ID</th>
                 <th>Departamento</th>
-                <th>institucion</th>
                 <th>fecha inicio</th>
                 <th>fecha fin</th>
                 <th>Docente</th>
@@ -33,14 +32,14 @@
             </thead>
             <tbody>
               <tr *ngFor="let alianza of alianzas">
-                <td>{{ alianza.aliado_id }}</td>
+                <td>{{ alianza.aliado }}</td>
                 <td>{{ alianza.departamento }}</td>
                 <td>{{ alianza.fecha_inicio }}</td>
                 <td>{{ alianza.fecha_fin }}</td>
                 <td>{{ alianza.docente }}</td>
                 <td>
-                  <button (click)="editAlianza(alianza.aliado_id)" class="editButton">Editar</button>
-                  <button (click)="deleteAlianza(alianza.aliado_id)" class="deleteButton">Eliminar</button>
+                  <button (click)="editAlianza(alianza.aliado)" class="editButton">Editar</button>
+                  <button (click)="deleteAlianza(alianza.aliado)" class="deleteButton">Eliminar</button>
                 </td>
               </tr>
             </tbody>

@@ -36,7 +36,7 @@ export class EstudiosRealizadosEditPageComponent {
       fecha: ['', Validators.required],
       tipo: ['', Validators.required],
       ciudad: ['', Validators.required],
-      docente_id: ['', Validators.required],
+      docente: ['', Validators.required],
       ins_acreditada: ['', Validators.required],
       metodologia: ['', Validators.required],
       perfil_egresado: ['', Validators.required],
@@ -78,7 +78,7 @@ export class EstudiosRealizadosEditPageComponent {
       this.estudiosRealizadosService.updateEstudioRealizado(this.estudiosRealizadosId, estudioRealizadoActualizado).subscribe(
         (estudioRealizado: EstudiosRealizados) => {
           console.log('Estudio realizado actualizado', estudioRealizado);
-          this.router.navigate(['/estudios-realizados']);
+          this.router.navigate(['/app/estudios-realizados']);
         },
         (error) => {
           console.error('Error al actualizar el estudio realizado', error);

@@ -27,6 +27,7 @@ export class ExperienciaCreatePageComponent {
     id: 0,
     nombre_cargo: '',
     institucion: '',
+    tipo: '',
     fecha_inicio: new Date(),
     fecha_fin: new Date(),
     docente: 0
@@ -40,6 +41,7 @@ export class ExperienciaCreatePageComponent {
     this.experienciaForm = this.formBuilder.group({
       nombre_cargo: ['', Validators.required],
       institucion: ['', Validators.required],
+      tipo: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required],
       docente: ['', Validators.required]
@@ -47,27 +49,30 @@ export class ExperienciaCreatePageComponent {
   }
 
   createExperiencia(): void {
-    this.experienciaService.createExperiencia(this.experiencia).subscribe(
-      (data) => {
+    this.experienciaService.createExperiencia(this.experiencia).subscribe({
+      next: (data) => {
         console.log('Experiencia creada', data);
+        this.router.navigate(['/app/experiencia']);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al crear la experiencia', error);
       }
-    );
+    });
   }
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
+    console.log(this.experienciaForm.value);
+    
     if (this.experienciaForm.valid) {
-      this.experienciaService.createExperiencia(this.experiencia).subscribe(
-        (data) => {
-          console.log('Experiencia creada', data);
-        },
-        (error) => {
-          console.error('Error al crear la experiencia', error);
-        }
-      );
+      this.experiencia.id = this.experienciaForm.value.id;
+      this.experiencia.nombre_cargo = this.experienciaForm.value.nombre_cargo;
+      this.experiencia.institucion = this.experienciaForm.value.institucion;
+      this.experiencia.tipo = this.experienciaForm.value.tipo;
+      this.experiencia.fecha_inicio = this.experienciaForm.value.fecha_inicio;
+      this.experiencia.fecha_fin = this.experienciaForm.value.fecha_fin;
+      this.experiencia.docente = this.experienciaForm.value.docente;
+      this.createExperiencia();
     }
   }
 }

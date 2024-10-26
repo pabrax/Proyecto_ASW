@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface InteresesFuturos {
-  docente_id: number;
+  docente: number;
   termino_clave: string;
 }
 @Injectable({

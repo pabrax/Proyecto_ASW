@@ -42,7 +42,7 @@ export class EstudioAcEditPageComponent {
     this.estudioAcService.getEstudioById(this.estudioAcId).subscribe(
       (estudioAc: EstudioAc) => {
         this.estudioAcForm.patchValue({
-          estudio_id: estudioAc.estudio_id,
+          estudio_id: estudioAc.estudio,
           area_conocimiento_id: estudioAc.area_conocimiento_id
         });
       },

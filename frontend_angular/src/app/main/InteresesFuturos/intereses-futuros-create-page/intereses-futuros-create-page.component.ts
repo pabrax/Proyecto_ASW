@@ -23,7 +23,7 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
 export class InteresesFuturosCreatePageComponent {
   interesesFuturosForm: FormGroup;
   interesesFuturos: InteresesFuturos = {
-    docente_id: 0,
+    docente: 0,
     termino_clave: ''
   };
 
@@ -33,33 +33,29 @@ export class InteresesFuturosCreatePageComponent {
     private formBuilder: FormBuilder
   ) {
     this.interesesFuturosForm = this.formBuilder.group({
-      docente_id: ['', Validators.required],
+      docente: ['', Validators.required],
       termino_clave: ['', Validators.required]
     });
   }
 
   createInteresesFuturos(): void {
-    this.interesesFuturosService.createInteresesFuturos(this.interesesFuturos).subscribe(
-      (data) => {
+    this.interesesFuturosService.createInteresesFuturos(this.interesesFuturos).subscribe({
+      next: (data) => {
         console.log('Intereses Futuros creado', data);
+        this.router.navigate(['/app/intereses-futuros']);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al crear los Intereses Futuros', error);
       }
-    );
+    });
   }
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.interesesFuturosForm.valid) {
-      this.interesesFuturosService.createInteresesFuturos(this.interesesFuturos).subscribe(
-        (data) => {
-          console.log('Intereses Futuros creado', data);
-        },
-        (error) => {
-          console.error('Error al crear los Intereses Futuros', error);
-        }
-      );
+      this.interesesFuturos.docente = this.interesesFuturosForm.value.docente;
+      this.interesesFuturos.termino_clave = this.interesesFuturosForm.value.termino_clave;
+      this.createInteresesFuturos();
     }
   }
 }

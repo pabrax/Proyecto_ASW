@@ -23,15 +23,6 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
 })
 export class ReconocimientoCreatePageComponent {
 
-  // export interface Reconocimiento {
-  //   id: number;
-  //   tipo: string;
-  //   fecha: Date;
-  //   institucion: string;
-  //   ambito: string;
-  //   docente: number;
-  // }
-
   reconocimientoForm: FormGroup;
 
   reconocimiento: Reconocimiento = {
@@ -39,6 +30,7 @@ export class ReconocimientoCreatePageComponent {
     tipo: '',
     fecha: new Date(),
     institucion: '',
+    nombre: '',
     ambito: '',
     docente: 0
   };
@@ -52,6 +44,7 @@ export class ReconocimientoCreatePageComponent {
       tipo: ['', Validators.required],
       fecha: ['', Validators.required],
       institucion: ['', Validators.required],
+      nombre: ['', Validators.required],
       ambito: ['', Validators.required],
       docente: ['', Validators.required]
     });
@@ -61,6 +54,7 @@ export class ReconocimientoCreatePageComponent {
     this.reconocimientoService.createReconocimiento(this.reconocimiento).subscribe(
       (data) => {
         console.log('Reconocimiento creado', data);
+        this.router.navigate(['/app/reconocimiento']);
       },
       (error) => {
         console.error('Error al crear el reconocimiento', error);
@@ -71,14 +65,15 @@ export class ReconocimientoCreatePageComponent {
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.reconocimientoForm.valid) {
-      this.reconocimientoService.createReconocimiento(this.reconocimiento).subscribe(
-        (data) => {
-          console.log('Reconocimiento creado', data);
-        },
-        (error) => {
-          console.error('Error al crear el reconocimiento', error);
-        }
-      );
+      // Asigna los valores del formulario al objeto reconocimiento
+      this.reconocimiento.tipo = this.reconocimientoForm.value.tipo;
+      this.reconocimiento.fecha = this.reconocimientoForm.value.fecha;
+      this.reconocimiento.institucion = this.reconocimientoForm.value.institucion;
+      this.reconocimiento.nombre = this.reconocimientoForm.value.nombre;
+      this.reconocimiento.ambito = this.reconocimientoForm.value.ambito;
+      this.reconocimiento.docente = this.reconocimientoForm.value.docente;
+
+      this.createReconocimiento();
     }
   }
 }

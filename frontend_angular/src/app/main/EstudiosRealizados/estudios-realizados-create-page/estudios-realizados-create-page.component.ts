@@ -26,7 +26,7 @@ export class EstudiosRealizadosCreatePageComponent {
     id: 0,
     titulo: '',
     universidad: '',
-    fecha: '',
+    fecha: new Date(),
     tipo: '',
     ciudad: '',
     docente: 0,
@@ -60,6 +60,7 @@ export class EstudiosRealizadosCreatePageComponent {
     this.estudioRealizadoService.createEstudioRealizado(this.estudioRealizado).subscribe(
       (data) => {
         console.log('Estudio realizado creado', data);
+        this.router.navigate(['/app/estudios-realizados']);
       },
       (error) => {
         console.error('Error al crear el estudio realizado', error);
@@ -69,17 +70,19 @@ export class EstudiosRealizadosCreatePageComponent {
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
-    console.log(this.estudioRealizadoForm.value);
-    console.log(this.estudioRealizadoForm.valid);
     if (this.estudioRealizadoForm.valid) {
-      this.estudioRealizadoService.createEstudioRealizado(this.estudioRealizado).subscribe(
-        (data) => {
-          console.log('Estudio realizado creado', data);
-        },
-        (error) => {
-          console.error('Error al crear el estudio realizado', error);
-        }
-      );
+      this.estudioRealizado.id = this.estudioRealizadoForm.value.id;
+      this.estudioRealizado.titulo = this.estudioRealizadoForm.value.titulo;
+      this.estudioRealizado.universidad = this.estudioRealizadoForm.value.universidad;
+      this.estudioRealizado.fecha = this.estudioRealizadoForm.value.fecha;
+      this.estudioRealizado.tipo = this.estudioRealizadoForm.value.tipo;
+      this.estudioRealizado.ciudad = this.estudioRealizadoForm.value.ciudad;
+      this.estudioRealizado.docente = this.estudioRealizadoForm.value.docente;
+      this.estudioRealizado.ins_acreditada = this.estudioRealizadoForm.value.ins_acreditada;
+      this.estudioRealizado.metodologia = this.estudioRealizadoForm.value.metodologia;
+      this.estudioRealizado.perfil_egresado = this.estudioRealizadoForm.value.perfil_egresado;
+      this.estudioRealizado.pais = this.estudioRealizadoForm.value.pais;
+      this.createEstudioRealizado();
     }
   }
 

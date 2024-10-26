@@ -29,13 +29,9 @@
             
             <div class="campo">
               <label for="con_apoyo">¿Con Apoyo?</label>
-              <select id="con_apoyo" formControlName="con_apoyo">
-                <option value="">Seleccione...</option>
-                <option [value]="true">Sí</option>
-                <option [value]="false">No</option>
-              </select>
+              <input id="con_apoyo" formControlName="con_apoyo" type="checkbox">
               <div *ngIf="apoyoProfesoralForm.get('con_apoyo')?.invalid && apoyoProfesoralForm.get('con_apoyo')?.touched">
-                Seleccione si tiene apoyo.
+              Seleccione si tiene apoyo.
               </div>
             </div>
             

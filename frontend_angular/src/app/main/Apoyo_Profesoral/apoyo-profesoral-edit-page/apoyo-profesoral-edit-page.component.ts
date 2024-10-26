@@ -20,13 +20,6 @@ import { AplicationHeaderComponent } from '../../../shared/aplication-header/apl
   providers: [ApoyoProfesoralService]
 })
 export class ApoyoProfesoralEditPageComponent {
-  // export interface ApoyoProfesoral {
-  //   id: number;
-  //   estudios: number;
-  //   con_apoyo: boolean;
-  //   institucion: string;
-  //   tipo: string;
-  // }
   
   apoyoProfesoralForm: FormGroup;
   apoyoProfesoralId: number = 0;  // Para almacenar el ID del apoyoProfesoral, inicializado a 0
@@ -79,7 +72,7 @@ export class ApoyoProfesoralEditPageComponent {
       this.apoyoProfesoralService.updateApoyoProfesoral(this.apoyoProfesoralId, apoyoProfesoralActualizado).subscribe(
         (apoyoProfesoral) => {
           console.log('ApoyoProfesoral actualizado', apoyoProfesoral);
-          this.router.navigate(['/apoyo-profesoral']);
+          this.router.navigate(['/app/apoyo-profesoral']);
         },
         (error) => {
           console.error('Error al actualizar el apoyoProfesoral', error);

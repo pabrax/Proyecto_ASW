@@ -20,9 +20,9 @@
           <div class="main-form-content">
             
             <div class="campo">
-              <label for="aliado_id">ID del Aliado:</label>
-              <input id="aliado_id" formControlName="aliado_id" type="number">
-              <div *ngIf="alianzaForm.get('aliado_id')?.invalid && alianzaForm.get('aliado_id')?.touched">
+              <label for="aliado">ID del Aliado:</label>
+              <input id="aliado" formControlName="aliado" type="number">
+              <div *ngIf="alianzaForm.get('aliado')?.invalid && alianzaForm.get('aliado')?.touched">
                 El ID del aliado es requerido.
               </div>
             </div>

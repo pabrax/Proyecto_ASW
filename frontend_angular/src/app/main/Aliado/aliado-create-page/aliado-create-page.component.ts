@@ -24,7 +24,6 @@ export class AliadoCreatePageComponent {
 
   aliadoForm: FormGroup;
   aliado: Aliado = {
-    id: 0,
     nit: 0,
     razon_social: '',
     nombre_contacto: '',
@@ -49,27 +48,28 @@ export class AliadoCreatePageComponent {
   }
 
   createAliado(): void {
-    this.aliadoService.createAliado(this.aliado).subscribe(
-      (data) => {
+    this.aliadoService.createAliado(this.aliado).subscribe({
+      next: (data) => {
         console.log('Aliado creado', data);
+        this.router.navigate(['/app/aliado']);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al crear el aliado', error);
       }
-    );
+    });
   }
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
+
     if (this.aliadoForm.valid) {
-      this.aliadoService.createAliado(this.aliado).subscribe(
-        (data) => {
-          console.log('Aliado creado', data);
-        },
-        (error) => {
-          console.error('Error al crear el aliado', error);
-        }
-      );
+      this.aliado.nit = this.aliadoForm.value.nit;
+      this.aliado.razon_social = this.aliadoForm.value.razon_social;
+      this.aliado.nombre_contacto = this.aliadoForm.value.nombre_contacto;
+      this.aliado.correo = this.aliadoForm.value.correo;
+      this.aliado.telefono = this.aliadoForm.value.telefono;
+      this.aliado.ciudad = this.aliadoForm.value.ciudad;
+      this.createAliado();
     }
   }
 }

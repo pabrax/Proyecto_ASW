@@ -44,11 +44,13 @@ export class EvaluacionDocenteCreatePageComponent {
     }
   
     createEvaluacionDocente(): void {
+      
       this.evaluacionDocenteService.createEvaluacionDocente(this.evaluacionDocente).subscribe(
         (data) => {
           console.log('EvaluacionDocente creada', data);
         },
         (error) => {
+          
           console.error('Error al crear la evaluacionDocente', error);
         }
       );
@@ -56,10 +58,18 @@ export class EvaluacionDocenteCreatePageComponent {
 
     // Método para enviar los datos del formulario
     onSubmit(): void {
+      console.log(this.evaluacionDocenteForm.value);
+
       if (this.evaluacionDocenteForm.valid) {
+
+        this.evaluacionDocente.calificacion = this.evaluacionDocenteForm.value.calificacion;
+        this.evaluacionDocente.semestre = this.evaluacionDocenteForm.value.semestre
+        this.evaluacionDocente.docente = this.evaluacionDocenteForm.value.docente;
+
         this.evaluacionDocenteService.createEvaluacionDocente(this.evaluacionDocente).subscribe(
           (data) => {
             console.log('EvaluacionDocente creada', data);
+            this.router.navigate(['/app/evaluacion-docentes']);
           },
           (error) => {
             console.error('Error al crear la evaluacionDocente', error);

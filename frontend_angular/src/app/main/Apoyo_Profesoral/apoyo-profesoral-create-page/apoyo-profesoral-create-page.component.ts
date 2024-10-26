@@ -26,7 +26,6 @@ export class ApoyoProfesoralCreatePageComponent {
   apoyoProfesoralForm: FormGroup;
 
   apoyoProfesoral: ApoyoProfesoral = {
-    id: 0,
     estudios: 0,
     con_apoyo: false,
     institucion: '',
@@ -50,6 +49,7 @@ export class ApoyoProfesoralCreatePageComponent {
     this.apoyoProfesoralService.createApoyoProfesoral(this.apoyoProfesoral).subscribe(
       (data) => {
         console.log('Apoyo Profesoral creado', data);
+        this.router.navigate(['/app/apoyo-profesoral']);
       },
       (error) => {
         console.error('Error al crear el apoyo profesoral', error);
@@ -59,15 +59,13 @@ export class ApoyoProfesoralCreatePageComponent {
 
   // Método para enviar los datos del formulario
   onSubmit(): void {
+    console.log(this.apoyoProfesoralForm.value);
     if (this.apoyoProfesoralForm.valid) {
-      this.apoyoProfesoralService.createApoyoProfesoral(this.apoyoProfesoral).subscribe(
-        (data) => {
-          console.log('Apoyo Profesoral creado', data);
-        },
-        (error) => {
-          console.error('Error al crear el apoyo profesoral', error);
-        }
-      );
+      this.apoyoProfesoral.estudios = this.apoyoProfesoralForm.value.estudios;
+      this.apoyoProfesoral.con_apoyo = this.apoyoProfesoralForm.value.con_apoyo;
+      this.apoyoProfesoral.institucion = this.apoyoProfesoralForm.value.institucion;
+      this.apoyoProfesoral.tipo = this.apoyoProfesoralForm.value.tipo;
+      this.createApoyoProfesoral();
     }
   }
 }

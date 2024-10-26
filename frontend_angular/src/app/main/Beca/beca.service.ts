@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Beca {
-  id: number;
   estudios: number;
   tipo: string;
   institucion: string;

@@ -24,7 +24,6 @@ export class BecaCreatePageComponent {
 
   becaForm: FormGroup;
   beca: Beca = {
-    id: 0,
     estudios: 0,
     tipo: '',
     institucion: '',
