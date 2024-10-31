@@ -1,17 +1,21 @@
-using ProyectoBackend.Data;
+using ProyectoBackend.Services;
 using Microsoft.EntityFrameworkCore;
 
+// Se instancia el constructor de la aplicacion
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AplicationDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddControllers();
+
+// Add services to the container.
+builder.Services.AddSingleton<ControlConexion>();
+builder.Services.AddSingleton<TokenService>();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// cors
 builder.Services.AddCors( options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
@@ -20,6 +24,18 @@ builder.Services.AddCors( options =>
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
+});
+
+
+// add cache provider
+builder.Services.AddDistributedMemoryCache();
+
+// configure session services
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -33,12 +49,18 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowAngularApp");
 app.UseHttpsRedirection();
 
+
+
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 app.UseRouting();
 app.MapControllers();
+
+// control de session
+app.UseSession();
+app.UseAuthorization();
 
 app.MapGet("/weatherforecast", () =>
 {
