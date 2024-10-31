@@ -15,7 +15,7 @@ export interface Beca {
 })
 export class BecaService {
 
-  private apiUrl = "http://localhost:5254/api/beca"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/beca"
   constructor(private http: HttpClient) { }
 
 

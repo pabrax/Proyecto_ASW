@@ -16,7 +16,7 @@ export interface RedDocente {
 })
 export class RedDocenteService {
 
-  private apiUrl = "http://localhost:5254/api/reddocente"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/red_docente"
   constructor(private http: HttpClient) { }
 
 

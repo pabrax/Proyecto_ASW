@@ -17,7 +17,7 @@ export interface Aliado {
 
 export class AliadoService {
 
-  private apiUrl = "http://localhost:5254/api/aliado"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/aliado"
   constructor(private http: HttpClient) { }
 
   // get all

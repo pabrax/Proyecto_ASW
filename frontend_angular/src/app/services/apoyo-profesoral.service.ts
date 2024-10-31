@@ -14,7 +14,7 @@ export interface ApoyoProfesoral {
 })
 export class ApoyoProfesoralService {
 
-  private apiUrl = "http://localhost:5254/api/apoyoProfesoral"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/apoyo_profesoral"
   constructor(private http: HttpClient) { }
 
   // get all

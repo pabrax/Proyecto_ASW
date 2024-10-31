@@ -11,7 +11,7 @@ export interface InteresesFuturos {
 })
 export class InteresesFuturosService {
 
-  private apiUrl = "http://localhost:5254/api/interesesFuturos"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/intereses_futuros"
   constructor(private http: HttpClient) { }
 
 

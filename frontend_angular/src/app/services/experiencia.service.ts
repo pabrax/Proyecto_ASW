@@ -17,7 +17,7 @@ export interface Experiencia {
 })
 export class ExperienciaService {
 
-  private apiUrl = "http://localhost:5254/api/experiencia"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/experiencia"
   constructor(private http: HttpClient) { }
 
   // get all

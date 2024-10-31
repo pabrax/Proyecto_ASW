@@ -16,7 +16,7 @@ export interface Red {
 })
 export class RedService {
 
-  private apiUrl = "http://localhost:5254/api/red"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/red"
   constructor(private http: HttpClient) { }
 
   // get all

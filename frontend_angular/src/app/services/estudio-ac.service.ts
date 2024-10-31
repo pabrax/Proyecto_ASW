@@ -12,7 +12,7 @@ export interface EstudioAc {
 })
 export class EstudioAcService {
 
-  private apiUrl = "http://localhost:5254/api/estudioac"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/estudio_ac"
   constructor (private http: HttpClient) { }
 
   // get all

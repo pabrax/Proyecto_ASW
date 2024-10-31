@@ -16,7 +16,7 @@ export interface DocenteDepartamento {
 })
 export class DocenteDepartamentoService {
 
-  private apiUrl = "http://localhost:5254/api/beca"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/docente_departamento"
   constructor(private http: HttpClient) { }
 
 

@@ -17,7 +17,7 @@ export interface Reconocimiento {
 })
 export class ReconocimientoService {
 
-  private apiUrl = "http://localhost:5254/api/reconocimiento"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/reconocimiento"
 
   constructor(private http: HttpClient) { }
 

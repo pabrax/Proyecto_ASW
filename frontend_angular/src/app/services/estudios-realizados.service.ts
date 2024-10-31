@@ -23,7 +23,7 @@ export interface EstudiosRealizados {
 
 export class EstudiosRealizadosService {
 
-  private apiUrl = "http://localhost:5254/api/estudiosrealizados"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/estudios_realizados"
   constructor(private http: HttpClient) { }
 
   // get all

@@ -16,7 +16,7 @@ export interface Alianza {
 
 export class AlianzaService {
 
-  private apiUrl = "http://localhost:5254/api/alianza"
+  private apiUrl = "http://localhost:5254/api/ProyectoBackend/alianza"
   constructor(private http: HttpClient) { }
 
   // get all
