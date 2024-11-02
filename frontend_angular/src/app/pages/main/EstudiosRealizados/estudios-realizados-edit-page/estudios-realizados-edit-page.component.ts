@@ -4,6 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+// 
+
+import { Formater } from '../../../../classes/formater';
+
 // service
 
 import { EstudiosRealizados, EstudiosRealizadosService } from '../../../../services/estudios-realizados.service';
@@ -31,6 +35,7 @@ export class EstudiosRealizadosEditPageComponent {
     private formBuilder: FormBuilder
   ) {
     this.estudiosRealizadosForm = this.formBuilder.group({
+      id: [{ value: null, disabled: true }],
       titulo: ['', Validators.required],
       universidad: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -49,7 +54,11 @@ export class EstudiosRealizadosEditPageComponent {
 
     this.estudiosRealizadosService.getEstudioRealizadoById(this.estudiosRealizadosId).subscribe(
       (estudioRealizado: EstudiosRealizados) => {
+
+        estudioRealizado.fecha = Formater.formatDate(estudioRealizado.fecha);
+
         this.estudiosRealizadosForm.patchValue({
+          id: estudioRealizado.id,
           titulo: estudioRealizado.titulo,
           universidad: estudioRealizado.universidad,
           fecha: estudioRealizado.fecha,

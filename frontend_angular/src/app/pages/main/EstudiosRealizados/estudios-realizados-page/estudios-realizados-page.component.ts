@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+// clases
+
+import { Formater } from '../../../../classes/formater';
+
 // service
 
 import { EstudiosRealizadosService, EstudiosRealizados } from '../../../../services/estudios-realizados.service';
@@ -32,6 +36,9 @@ export class EstudiosRealizadosPageComponent {
     this.estudiosRealizadosService.getEstudiosRealizados().subscribe(
       (data) => {
         this.estudiosRealizados = data;
+        this.estudiosRealizados.forEach(estudioRealizado => {
+          estudioRealizado.fecha = Formater.formatDate(estudioRealizado.fecha);
+        });
       },
       (error) => {
         console.error("error al obtener los estudios realizados", error);

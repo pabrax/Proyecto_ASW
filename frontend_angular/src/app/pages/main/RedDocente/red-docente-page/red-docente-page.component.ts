@@ -10,6 +10,7 @@ import { RedDocente, RedDocenteService } from '../../../../services/red-docente.
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
 import { AplicationHeaderComponent } from '../../../../components/aplication-header/aplication-header.component';
+import { Formater } from '../../../../classes/formater';
 
 @Component({
   selector: 'app-red-docente-page',
@@ -31,6 +32,11 @@ export class RedDocentePageComponent {
     this.redDocenteService.getRedDocentes().subscribe(
       (data) => {
         this.redDocentes = data;
+        this.redDocentes.forEach(redDocente => {
+          redDocente.fecha_inicio = Formater.formatDate(redDocente.fecha_inicio);
+          redDocente.fecha_fin = Formater.formatDate(redDocente.fecha_fin);
+        }
+        );
       },
       (error) => {
         console.error("error al obtener las becas", error);
@@ -42,7 +48,7 @@ export class RedDocentePageComponent {
   deleteRedDocente(id: number): void {
     this.redDocenteService.deleteRedDocente(id).subscribe(
       () => {
-        this.redDocentes = this.redDocentes.filter(redDocente => redDocente.docente_id !== id);
+        this.redDocentes = this.redDocentes.filter(redDocente => redDocente.red !== id);
       },
       (error) => {
         console.error('Error al eliminar la beca', error);

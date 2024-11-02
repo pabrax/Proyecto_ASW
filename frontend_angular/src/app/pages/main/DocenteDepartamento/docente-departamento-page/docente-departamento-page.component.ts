@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+// clases
+import { Formater } from '../../../../classes/formater';
+
 // service
 
 import { DocenteDepartamentoService, DocenteDepartamento } from '../../../../services/docente-departamento.service';
@@ -31,6 +34,12 @@ export class DocenteDepartamentoPageComponent {
     this.docenteDepartamentoService.getDocenteDepartamentos().subscribe(
       (data) => {
         this.docenteDepartamentos = data;
+        this.docenteDepartamentos.forEach(docenteDepartamento => {
+          docenteDepartamento.fecha_ingreso = Formater.formatDate(docenteDepartamento.fecha_ingreso);
+          docenteDepartamento.fecha_salida = Formater.formatDate(docenteDepartamento.fecha_salida);
+        }
+        );
+        
       },
       (error) => {
         console.error("error al obtener los docenteDepartamentos", error);

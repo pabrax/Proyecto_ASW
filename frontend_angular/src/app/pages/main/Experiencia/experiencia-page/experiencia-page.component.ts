@@ -10,6 +10,7 @@ import { Experiencia, ExperienciaService } from '../../../../services/experienci
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
 import { AplicationHeaderComponent } from '../../../../components/aplication-header/aplication-header.component';
+import { Formater } from '../../../../classes/formater';
 
 
 @Component({
@@ -32,6 +33,11 @@ export class ExperienciaPageComponent {
     this.experienciaService.getExperiencias().subscribe(
       (data) => {
         this.experiencias = data;
+        this.experiencias.forEach(experiencia => {
+          experiencia.fecha_inicio = Formater.formatDate(experiencia.fecha_inicio);
+          experiencia.fecha_fin = Formater.formatDate(experiencia.fecha_fin);
+        }
+        );
       },
       (error) => {
         console.error("error al obtener las experiencias", error);

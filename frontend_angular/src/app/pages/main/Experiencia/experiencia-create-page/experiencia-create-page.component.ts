@@ -28,8 +28,8 @@ export class ExperienciaCreatePageComponent {
     nombre_cargo: '',
     institucion: '',
     tipo: '',
-    fecha_inicio: new Date(),
-    fecha_fin: new Date(),
+    fecha_inicio: '',
+    fecha_fin: '',
     docente: 0
   };
 

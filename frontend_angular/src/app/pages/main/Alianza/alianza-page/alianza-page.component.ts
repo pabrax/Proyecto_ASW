@@ -31,6 +31,11 @@ export class AlianzaPageComponent {
     this.alianzaService.getAlianza().subscribe(
       (data) => {
         this.alianzas = data;
+        this.alianzas.forEach(alianza => {
+          alianza.fecha_inicio = new Date(alianza.fecha_inicio).toLocaleDateString();
+          alianza.fecha_fin = new Date(alianza.fecha_fin).toLocaleDateString();
+        }
+        );
       },
       (error) => {
         console.error("error al obtener las alianzas", error);

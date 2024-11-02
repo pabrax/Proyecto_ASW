@@ -4,6 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+// clases
+import { Formater } from '../../../../classes/formater';
+
+
 // service
 
 import { DocenteDepartamento, DocenteDepartamentoService } from '../../../../services/docente-departamento.service';
@@ -44,7 +48,12 @@ export class DocenteDepartamentoEditPageComponent {
     this.docenteDepartamentoId = Number(this.route.snapshot.paramMap.get('id'));
 
     this.docenteDepartamentoService.getDocenteDepartamentoById(this.docenteDepartamentoId).subscribe(
+
       (docenteDepartamento: DocenteDepartamento) => {
+
+        docenteDepartamento.fecha_ingreso = Formater.formatDate(docenteDepartamento.fecha_ingreso);
+        docenteDepartamento.fecha_salida = Formater.formatDate(docenteDepartamento.fecha_salida);
+
         this.docenteDepartamentoForm.patchValue({
           docente_id: docenteDepartamento.docente_id,
           departamento_id: docenteDepartamento.departamento_id,

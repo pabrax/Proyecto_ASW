@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+// clases
+import { Formater } from '../../../../classes/formater';
+
 // service
 
 import { Reconocimiento, ReconocimientoService} from '../../../../services/reconocimiento.service';
@@ -31,6 +34,10 @@ export class ReconocimientoPageComponent {
     this.reconocimientoService.getReconocimientos().subscribe(
       (data) => {
         this.reconocimientos = data;
+        this.reconocimientos.forEach(reconocimiento => {
+          reconocimiento.fecha = Formater.formatDate(reconocimiento.fecha);
+        }
+        );
       },
       (error) => {
         console.error("error al obtener los reconocimientos", error);

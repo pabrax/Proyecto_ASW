@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+// clases
+
+import { Formater } from '../../../../classes/formater';
+
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
 import { AplicationHeaderComponent } from '../../../../components/aplication-header/aplication-header.component';
@@ -32,8 +36,11 @@ export class DocentePageComponent {
   ngOnInit(): void {
     this.docenteService.getDocentes().subscribe(
       (data) => {
-        
         this.docentes = data;
+        this.docentes.forEach(docente => {
+          docente.fecha_nacimiento = Formater.formatDate(docente.fecha_nacimiento);
+          docente.fecha_actualizacion = Formater.formatDate(docente.fecha_actualizacion);
+        });
       },
       (error) => {
         console.error("error al obtener los docentes", error);

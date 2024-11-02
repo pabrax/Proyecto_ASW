@@ -27,8 +27,8 @@ export class BecaCreatePageComponent {
     estudios: 0,
     tipo: '',
     institucion: '',
-    fecha_inicio: new Date(),
-    fecha_fin: new Date()
+    fecha_inicio: '',
+    fecha_fin: ''
   };
 
   constructor(

@@ -25,8 +25,8 @@ export class AlianzaCreatePageComponent {
   alianza: Alianza = {
     aliado: 0,
     departamento: 0,
-    fecha_inicio: new Date(),
-    fecha_fin: new Date(),
+    fecha_inicio: '',
+    fecha_fin: '',
     docente: 0
   };
 
@@ -61,8 +61,8 @@ export class AlianzaCreatePageComponent {
     if (this.alianzaForm.valid) {
       this.alianza.aliado = this.alianzaForm.value.aliado;
       this.alianza.departamento = this.alianzaForm.value.departamento;
-      this.alianza.fecha_inicio = new Date(this.alianzaForm.value.fecha_inicio);
-      this.alianza.fecha_fin = new Date(this.alianzaForm.value.fecha_fin);
+      this.alianza.fecha_inicio = this.alianzaForm.value.fecha_inicio;
+      this.alianza.fecha_fin = this.alianzaForm.value.fecha_fin;
       this.alianza.docente = this.alianzaForm.value.docente;
       this.createAlianza();
     }

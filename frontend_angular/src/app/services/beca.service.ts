@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'; // Add this line
+
 
 export interface Beca {
   estudios: number;
   tipo: string;
   institucion: string;
-  fecha_inicio: Date;
-  fecha_fin: Date;
+  fecha_inicio: string;
+  fecha_fin: string;
 }
 
 @Injectable({
@@ -27,25 +29,27 @@ export class BecaService {
   // get by id
   getBecaById(id: number): Observable<Beca> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Beca>(url);
+    return this.http.get<Beca[]>(url).pipe(
+      map(results => results[0])
+      );
   }
 
   // post
   createBeca(beca: Beca): Observable<Beca> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Beca>(this.apiUrl, beca, { headers });
+    return this.http.post<Beca>(this.apiUrl, beca, { headers, responseType: 'text' as 'json' });
   }
 
   // put by id
   updateBeca(id: number, beca: Beca): Observable<Beca> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/estudios/${id}`;
     const headers = new HttpHeaders({'Content-Type': 'application/json'})
-    return this.http.put<Beca>(url, beca, {headers});
+    return this.http.put<Beca>(url, beca, {headers, responseType: 'text' as 'json'});
   }
 
   //delete
   deleteBeca(id: number): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
+    const url = `${this.apiUrl}/estudios/${id}`;
+    return this.http.delete<void>(url, {responseType: 'text' as 'json'});
   }
 }

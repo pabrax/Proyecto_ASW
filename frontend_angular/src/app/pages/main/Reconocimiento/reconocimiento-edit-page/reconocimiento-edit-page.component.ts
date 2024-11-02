@@ -10,6 +10,7 @@ import { ReconocimientoService, Reconocimiento } from '../../../../services/reco
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
 import { AplicationHeaderComponent } from '../../../../components/aplication-header/aplication-header.component';
+import { Formater } from '../../../../classes/formater';
 
 
 @Component({
@@ -49,6 +50,7 @@ export class ReconocimientoEditPageComponent {
     // Cargar los datos del reconocimiento usando el ID
     this.reconocimientoService.getReconocimientoById(this.reconocimientoId).subscribe(
       (reconocimiento: Reconocimiento) => {
+        reconocimiento.fecha = Formater.formatDate(reconocimiento.fecha);
         // Rellenar el formulario con los datos del reconocimiento existente
         this.reconocimientoForm.patchValue({
           tipo: reconocimiento.tipo,

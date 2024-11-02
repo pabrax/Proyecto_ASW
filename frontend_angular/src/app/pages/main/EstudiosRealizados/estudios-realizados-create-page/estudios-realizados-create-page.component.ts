@@ -26,7 +26,7 @@ export class EstudiosRealizadosCreatePageComponent {
     id: 0,
     titulo: '',
     universidad: '',
-    fecha: new Date(),
+    fecha: '',
     tipo: '',
     ciudad: '',
     docente: 0,

@@ -803,3 +803,26 @@ CREATE TABLE intereses_futuros (
 );
 GO
 
+
+-- tablas necesarias para la autenticacion (falta adaptarse a la clase)
+
+create table usuario(
+  email nvarchar(50) not null primary key,
+  contrasena nvarchar(50) not null,
+);
+
+create table RutaRol(
+  id int identity(1,1) primary key,
+  ruta nvarchar(100) not null,
+  rol nvarchar(50) not null
+);
+
+
+create table rol_usuario (
+  email nvarchar(50) not null,
+  rol nvarchar(50) not null,
+  primary key (email, rol),
+  foreign key (email) references usuario(email),
+  foreign key (rol) references RutaRol(rol)
+)
+

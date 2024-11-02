@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+// clases 
+import { Formater } from '../../../../classes/formater';
+
 // service
 import { ExperienciaService, Experiencia } from '../../../../services/experiencia.service';
 
@@ -49,6 +52,8 @@ export class ExperienciaEditPageComponent implements OnInit {
     // Cargar los datos de la experiencia usando el ID
     this.experienciaService.getExperienciaById(this.id).subscribe(
       (experiencia: Experiencia) => {
+        experiencia.fecha_inicio = Formater.formatDate(experiencia.fecha_inicio);
+        experiencia.fecha_fin = Formater.formatDate(experiencia.fecha_fin);
         // Rellenar el formulario con los datos de la experiencia existente
         this.experienciaForm.patchValue({
           nombre_cargo: experiencia.nombre_cargo,

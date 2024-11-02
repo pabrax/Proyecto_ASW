@@ -22,12 +22,11 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
 export class RedDocenteCreatePageComponent {
   redDocenteForm: FormGroup;
   redDocente: RedDocente = {
-    docente_id: 0,
-    departamento_id: 0,
-    dedicacion: '',
-    modalidad: '',
-    fecha_ingreso: new Date(),
-    fecha_salida: new Date()
+    red: 0,
+    docente: 0,
+    fecha_inicio: '',
+    fecha_fin: '',
+    act_destacadas: ''
   };
 
   constructor(
@@ -36,12 +35,11 @@ export class RedDocenteCreatePageComponent {
     private formBuilder: FormBuilder
   ) {
     this.redDocenteForm = this.formBuilder.group({
-      docente_id: ['', Validators.required],
-      departamento_id: ['', Validators.required],
-      dedicacion: ['', Validators.required],
-      modalidad: ['', Validators.required],
-      fecha_ingreso: ['', Validators.required],
-      fecha_salida: ['', Validators.required]
+      red: ['', Validators.required],
+      docente: ['', Validators.required],
+      fecha_inicio: ['', Validators.required],
+      fecha_fin: ['', Validators.required],
+      act_destacadas: ['', Validators.required]
     });
   }
 

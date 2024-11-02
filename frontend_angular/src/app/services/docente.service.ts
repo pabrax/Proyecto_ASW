@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'; // Add this line
 
 
 export interface Docente {
@@ -38,28 +39,30 @@ export class DocenteService {
 
   //get by id
   getDocenteById(id: number): Observable<Docente> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Docente>(url);
+    const url = `${this.apiUrl}/cedula/${id}`;
+    return this.http.get<Docente[]>(url).pipe(
+      map(docentes => docentes[0])
+    );
   }
 
   //post
   createDocente(docente: Docente): Observable<Docente> {
     console.log(docente);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Docente>(this.apiUrl, docente, { headers });
+    return this.http.post<Docente>(this.apiUrl, docente, { headers, responseType: 'text' as 'json' });
   }
 
   //put by id
   updateDocente(id: number, docente: Docente): Observable<Docente> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/cedula/${id}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' })
-    return this.http.put<Docente>(url, docente, { headers });
+    return this.http.put<Docente>(url, docente, { headers, responseType: 'text' as 'json' });
   }
 
   //delete
   deleteDocente(id: number): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
+    const url = `${this.apiUrl}/cedula/${id}`;
+    return this.http.delete<void>(url, { responseType: 'text' as 'json' });
   }
 
 }

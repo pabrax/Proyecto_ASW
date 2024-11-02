@@ -22,26 +22,24 @@
           <table class="custom-table">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Departamento ID</th>
-                <th>Dedicacion</th>
-                <th>Modalidad</th>
-                <th>Fecha Ingreso</th>
-                <th>Fecha Salida</th>
+                <th>red</th>
+                <th>docente</th>
+                <th>Fecha inicio</th>
+                <th>Fecha fin</th>
+                <th>act destacadas</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let redDocente of redDocentes">
-                <td>{{ redDocente.docente_id }}</td>
-                <td>{{ redDocente.departamento_id }}</td>
-                <td>{{ redDocente.dedicacion }}</td>
-                <td>{{ redDocente.modalidad }}</td>
-                <td>{{ redDocente.fecha_ingreso }}</td>
-                <td>{{ redDocente.fecha_salida }}</td>
+                <td>{{ redDocente.red }}</td>
+                <td>{{ redDocente.docente }}</td>
+                <td>{{ redDocente.fecha_inicio }}</td>
+                <td>{{ redDocente.fecha_fin }}</td>
+                <td>{{ redDocente.act_destacadas }}</td>
                 <td>
-                  <button (click)="editRedDocente(redDocente.docente_id)" class="editButton">Editar</button>
-                  <button (click)="deleteRedDocente(redDocente.docente_id)" class="deleteButton">Eliminar</button>
+                  <button (click)="editRedDocente(redDocente.red)" class="editButton">Editar</button>
+                  <button (click)="deleteRedDocente(redDocente.red)" class="deleteButton">Eliminar</button>
                 </td>
               </tr>
             </tbody>

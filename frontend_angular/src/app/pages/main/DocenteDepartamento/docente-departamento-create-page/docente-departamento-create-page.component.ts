@@ -28,8 +28,8 @@ export class DocenteDepartamentoCreatePageComponent {
     departamento_id: 0,
     dedicacion: '',
     modalidad: '',
-    fecha_ingreso: new Date(),
-    fecha_salida: new Date()
+    fecha_ingreso: '',
+    fecha_salida: ''
   };
 
   constructor(

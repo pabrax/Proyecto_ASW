@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { Formater } from '../../../../classes/formater';
+
 
 // service
 import { Docente, DocenteService } from '../../../../services/docente.service';
@@ -56,9 +59,13 @@ export class DocenteEditPageComponent {
     this.cedula = Number(this.route.snapshot.paramMap.get('id'));
     // Obtener la cédula del docente desde los parámetros de la ruta
 
+
+    
     // Cargar los datos del docente usando el ID
     this.docenteService.getDocenteById(this.cedula).subscribe(
       (docente: Docente) => {
+        const formattedFechaNacimiento = Formater.formatDate(docente.fecha_nacimiento);
+        const formattedFechaActualizacion = Formater.formatDate(docente.fecha_actualizacion);
         // Rellenar el formulario con los datos del docente existente
         this.docenteForm.patchValue({
           cedula: docente.cedula,
@@ -66,11 +73,11 @@ export class DocenteEditPageComponent {
           apellidos: docente.apellidos,
           genero: docente.genero,
           cargo: docente.cargo,
-          fecha_nacimiento: docente.fecha_nacimiento,
+          fecha_nacimiento: formattedFechaNacimiento,
           correo: docente.correo,
           telefono: docente.telefono,
           url_cvlac: docente.url_cvlac,
-          fecha_actualizacion: docente.fecha_actualizacion,
+          fecha_actualizacion: formattedFechaActualizacion,
           escalafon: docente.escalafon,
           perfil: docente.perfil,
           cat_minciencia: docente.cat_minciencia,
@@ -108,4 +115,6 @@ export class DocenteEditPageComponent {
   onCancel(): void {
     this.router.navigate(['/app/docente']);
   }
+
+
 }

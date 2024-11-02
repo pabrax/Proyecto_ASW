@@ -11,6 +11,7 @@ import { RedDocente, RedDocenteService } from '../../../../services/red-docente.
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
 import { AplicationHeaderComponent } from '../../../../components/aplication-header/aplication-header.component';
+import { Formater } from '../../../../classes/formater';
 
 
 @Component({
@@ -33,11 +34,11 @@ export class RedDocenteEditPageComponent {
   ) {
     // Inicializar el formulario vacío
     this.redDocenteForm = this.formBuilder.group({
-      departamento_id: ['', Validators.required],
-      dedicacion: ['', Validators.required],
-      modalidad: ['', Validators.required],
-      fecha_ingreso: ['', Validators.required],
-      fecha_salida: ['', Validators.required]
+      red: ['', Validators.required],
+      docente: ['', Validators.required],
+      fecha_inicio: ['', Validators.required],
+      fecha_fin: ['', Validators.required],
+      act_destacadas: ['', Validators.required]
     });
   }
 
@@ -48,13 +49,17 @@ export class RedDocenteEditPageComponent {
     // Cargar los datos del red docente usando el ID
     this.redDocenteService.getRedDocenteById(this.redDocenteId).subscribe(
       (redDocente: RedDocente) => {
+
+        redDocente.fecha_inicio = Formater.formatDate(redDocente.fecha_inicio);
+        redDocente.fecha_fin = Formater.formatDate(redDocente.fecha_fin);
         // Rellenar el formulario con los datos del red docente existente
         this.redDocenteForm.patchValue({
-          departamento_id: redDocente.departamento_id,
-          dedicacion: redDocente.dedicacion,
-          modalidad: redDocente.modalidad,
-          fecha_ingreso: redDocente.fecha_ingreso,
-          fecha_salida: redDocente.fecha_salida
+
+          red: redDocente.red,
+          docente: redDocente.docente,
+          fecha_inicio: redDocente.fecha_inicio,
+          fecha_fin: redDocente.fecha_fin,
+          act_destacadas: redDocente.act_destacadas
         });
       },
       (error) => {

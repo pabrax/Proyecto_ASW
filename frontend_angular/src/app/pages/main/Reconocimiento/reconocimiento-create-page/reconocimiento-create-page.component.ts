@@ -28,7 +28,7 @@ export class ReconocimientoCreatePageComponent {
   reconocimiento: Reconocimiento = {
     id: 0,
     tipo: '',
-    fecha: new Date(),
+    fecha: '',
     institucion: '',
     nombre: '',
     ambito: '',

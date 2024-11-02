@@ -22,7 +22,7 @@ namespace ProyectoBackend.Controllers
     {
         private readonly ControlConexion controlConexion; // Declara una instancia del servicio ControlConexion.
         private readonly IConfiguration _configuration; // Declara una instancia de la configuración de la aplicación.
-        
+
         // Constructor que recibe las dependencias necesarias y lanza excepciones si son nulas.
         public EntidadesController(ControlConexion controlConexion, IConfiguration configuration)
         {
@@ -30,568 +30,568 @@ namespace ProyectoBackend.Controllers
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-[AllowAnonymous] // Permite el acceso anónimo a este método.
-[HttpGet] // Define una ruta HTTP GET para este método.
-public IActionResult Listar(string nombreProyecto, string nombreTabla) // Método que lista todas las filas de una tabla dada.
-{
-    if (string.IsNullOrWhiteSpace(nombreTabla)) // Verifica si el nombre de la tabla está vacío o solo contiene espacios en blanco.
-        return BadRequest("El nombre de la tabla no puede estar vacío."); // Retorna una respuesta de error si el nombre de la tabla está vacío.
-
-    try
-    {
-        var listaFilas = new List<Dictionary<string, object?>>(); // Crea una lista para almacenar las filas resultantes en formato de diccionario.
-        string comandoSQL = $"SELECT * FROM {nombreTabla}"; // Define el comando SQL para seleccionar todas las filas de la tabla indicada.
-
-        controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
-        var tablaResultados = controlConexion.EjecutarConsultaSql(comandoSQL, null); // Ejecuta la consulta SQL y almacena el resultado en un DataTable.
-        controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
-
-        foreach (DataRow fila in tablaResultados.Rows) // Recorre cada fila en el DataTable.
+        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        [HttpGet] // Define una ruta HTTP GET para este método.
+        public IActionResult Listar(string nombreProyecto, string nombreTabla) // Método que lista todas las filas de una tabla dada.
         {
-            var propiedadesFila = fila.Table.Columns.Cast<DataColumn>()
-                                    .ToDictionary(columna => columna.ColumnName, columna => fila[columna] == DBNull.Value ? null : fila[columna]); // Convierte cada fila en un diccionario clave-valor.
-            listaFilas.Add(propiedadesFila); // Agrega el diccionario a la lista de filas.
+            if (string.IsNullOrWhiteSpace(nombreTabla)) // Verifica si el nombre de la tabla está vacío o solo contiene espacios en blanco.
+                return BadRequest("El nombre de la tabla no puede estar vacío."); // Retorna una respuesta de error si el nombre de la tabla está vacío.
+
+            try
+            {
+                var listaFilas = new List<Dictionary<string, object?>>(); // Crea una lista para almacenar las filas resultantes en formato de diccionario.
+                string comandoSQL = $"SELECT * FROM {nombreTabla}"; // Define el comando SQL para seleccionar todas las filas de la tabla indicada.
+
+                controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
+                var tablaResultados = controlConexion.EjecutarConsultaSql(comandoSQL, null); // Ejecuta la consulta SQL y almacena el resultado en un DataTable.
+                controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
+
+                foreach (DataRow fila in tablaResultados.Rows) // Recorre cada fila en el DataTable.
+                {
+                    var propiedadesFila = fila.Table.Columns.Cast<DataColumn>()
+                                            .ToDictionary(columna => columna.ColumnName, columna => fila[columna] == DBNull.Value ? null : fila[columna]); // Convierte cada fila en un diccionario clave-valor.
+                    listaFilas.Add(propiedadesFila); // Agrega el diccionario a la lista de filas.
+                }
+
+                return Ok(listaFilas); // Retorna la lista de filas en formato JSON.
+            }
+            catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución del código.
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna una respuesta de error 500 con el mensaje de la excepción capturada.
+            }
         }
 
-        return Ok(listaFilas); // Retorna la lista de filas en formato JSON.
-    }
-    catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución del código.
-    {
-        return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna una respuesta de error 500 con el mensaje de la excepción capturada.
-    }
-}
-
-[AllowAnonymous] // Permite el acceso anónimo a este método.
-[HttpGet("{nombreClave}/{valor}")] // Define una ruta HTTP GET con parámetros adicionales.
-public IActionResult ObtenerPorClave(string nombreProyecto, string nombreTabla, string nombreClave, string valor) // Método que obtiene una fila específica basada en una clave.
-{
-    if (string.IsNullOrWhiteSpace(nombreTabla) || string.IsNullOrWhiteSpace(nombreClave) || string.IsNullOrWhiteSpace(valor)) // Verifica si alguno de los parámetros está vacío.
-    {
-        return BadRequest("El nombre de la tabla, el nombre de la clave y el valor no pueden estar vacíos."); // Retorna una respuesta de error si algún parámetro está vacío.
-    }
-
-    controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
-    try
-    {
-        string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos desde la configuración.
-
-        string consultaSQL;
-        DbParameter[] parametros;
-
-        // Define la consulta SQL y los parámetros para SQL Server y LocalDB.
-        consultaSQL = "SELECT data_type FROM information_schema.columns WHERE table_name = @nombreTabla AND column_name = @nombreColumna";
-        parametros = new DbParameter[]
+        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        [HttpGet("{nombreClave}/{valor}")] // Define una ruta HTTP GET con parámetros adicionales.
+        public IActionResult ObtenerPorClave(string nombreProyecto, string nombreTabla, string nombreClave, string valor) // Método que obtiene una fila específica basada en una clave.
         {
+            if (string.IsNullOrWhiteSpace(nombreTabla) || string.IsNullOrWhiteSpace(nombreClave) || string.IsNullOrWhiteSpace(valor)) // Verifica si alguno de los parámetros está vacío.
+            {
+                return BadRequest("El nombre de la tabla, el nombre de la clave y el valor no pueden estar vacíos."); // Retorna una respuesta de error si algún parámetro está vacío.
+            }
+
+            controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
+            try
+            {
+                string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos desde la configuración.
+
+                string consultaSQL;
+                DbParameter[] parametros;
+
+                // Define la consulta SQL y los parámetros para SQL Server y LocalDB.
+                consultaSQL = "SELECT data_type FROM information_schema.columns WHERE table_name = @nombreTabla AND column_name = @nombreColumna";
+                parametros = new DbParameter[]
+                {
             CrearParametro("@nombreTabla", nombreTabla),
             CrearParametro("@nombreColumna", nombreClave)
-        };
+                };
 
-        Console.WriteLine($"Ejecutando consulta SQL: {consultaSQL} con parámetros: nombreTabla={nombreTabla}, nombreColumna={nombreClave}");
+                Console.WriteLine($"Ejecutando consulta SQL: {consultaSQL} con parámetros: nombreTabla={nombreTabla}, nombreColumna={nombreClave}");
 
-        var resultadoTipoDato = controlConexion.EjecutarConsultaSql(consultaSQL, parametros); // Ejecuta la consulta SQL para determinar el tipo de dato de la clave.
+                var resultadoTipoDato = controlConexion.EjecutarConsultaSql(consultaSQL, parametros); // Ejecuta la consulta SQL para determinar el tipo de dato de la clave.
 
-        if (resultadoTipoDato == null || resultadoTipoDato.Rows.Count == 0 || resultadoTipoDato.Rows[0]["data_type"] == DBNull.Value) // Verifica si se obtuvo un resultado válido.
-        {
-            return NotFound("No se pudo determinar el tipo de dato."); // Retorna una respuesta de error si no se pudo determinar el tipo de dato.
-        }
-
-        string tipoDato = resultadoTipoDato.Rows[0]["data_type"]?.ToString() ?? ""; // Obtiene el tipo de dato de la columna.
-        Console.WriteLine($"Tipo de dato detectado para la columna {nombreClave}: {tipoDato}");
-
-        if (string.IsNullOrEmpty(tipoDato)) // Verifica si el tipo de dato es válido.
-        {
-            return NotFound("No se pudo determinar el tipo de dato."); // Retorna una respuesta de error si el tipo de dato es inválido.
-        }
-
-        object valorConvertido;
-        string comandoSQL;
-
-        // Determina cómo tratar el valor y la consulta SQL según el tipo de dato, compatible con SQL Server y LocalDB.
-        switch (tipoDato.ToLower())
-        {
-            case "int":
-            case "bigint":
-            case "smallint":
-            case "tinyint":
-                if (int.TryParse(valor, out int valorEntero))
+                if (resultadoTipoDato == null || resultadoTipoDato.Rows.Count == 0 || resultadoTipoDato.Rows[0]["data_type"] == DBNull.Value) // Verifica si se obtuvo un resultado válido.
                 {
-                    valorConvertido = valorEntero;
-                    comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
+                    return NotFound("No se pudo determinar el tipo de dato."); // Retorna una respuesta de error si no se pudo determinar el tipo de dato.
                 }
-                else
-                {
-                    return BadRequest("El valor proporcionado no es válido para el tipo de datos entero.");
-                }
-                break;
-            case "decimal":
-            case "numeric":
-            case "money":
-            case "smallmoney":
-                if (decimal.TryParse(valor, out decimal valorDecimal))
-                {
-                    valorConvertido = valorDecimal;
-                    comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
-                }
-                else
-                {
-                    return BadRequest("El valor proporcionado no es válido para el tipo de datos decimal.");
-                }
-                break;
-            case "bit":
-                if (bool.TryParse(valor, out bool valorBooleano))
-                {
-                    valorConvertido = valorBooleano;
-                    comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
-                }
-                else
-                {
-                    return BadRequest("El valor proporcionado no es válido para el tipo de datos booleano.");
-                }
-                break;
-            case "float":
-            case "real":
-                if (double.TryParse(valor, out double valorDoble))
-                {
-                    valorConvertido = valorDoble;
-                    comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
-                }
-                else
-                {
-                    return BadRequest("El valor proporcionado no es válido para el tipo de datos flotante.");
-                }
-                break;
-            case "nvarchar":
-            case "varchar":
-            case "nchar":
-            case "char":
-            case "text":
-                valorConvertido = valor;
-                comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
-                break;
-            case "date":
-            case "datetime":
-            case "datetime2":
-            case "smalldatetime":
-                if (DateTime.TryParse(valor, out DateTime valorFecha))
-                {
-                    comandoSQL = $"SELECT * FROM {nombreTabla} WHERE CAST({nombreClave} AS DATE) = @Valor";
-                    valorConvertido = valorFecha.Date;
-                }
-                else
-                {
-                    return BadRequest("El valor proporcionado no es válido para el tipo de datos fecha.");
-                }
-                break;
-            default:
-                return BadRequest($"Tipo de dato no soportado: {tipoDato}"); // Retorna un error si el tipo de dato no es soportado.
-        }
 
-        var parametro = CrearParametro("@Valor", valorConvertido); // Crea el parámetro para la consulta SQL.
+                string tipoDato = resultadoTipoDato.Rows[0]["data_type"]?.ToString() ?? ""; // Obtiene el tipo de dato de la columna.
+                Console.WriteLine($"Tipo de dato detectado para la columna {nombreClave}: {tipoDato}");
 
-        Console.WriteLine($"Ejecutando consulta SQL: {comandoSQL} con parámetro: {parametro.ParameterName} = {parametro.Value}, DbType: {parametro.DbType}");
+                if (string.IsNullOrEmpty(tipoDato)) // Verifica si el tipo de dato es válido.
+                {
+                    return NotFound("No se pudo determinar el tipo de dato."); // Retorna una respuesta de error si el tipo de dato es inválido.
+                }
 
-        var resultado = controlConexion.EjecutarConsultaSql(comandoSQL, new DbParameter[] { parametro }); // Ejecuta la consulta SQL con el parámetro.
+                object valorConvertido;
+                string comandoSQL;
 
-        Console.WriteLine($"DataSet completado para la consulta: {comandoSQL}");
+                // Determina cómo tratar el valor y la consulta SQL según el tipo de dato, compatible con SQL Server y LocalDB.
+                switch (tipoDato.ToLower())
+                {
+                    case "int":
+                    case "bigint":
+                    case "smallint":
+                    case "tinyint":
+                        if (int.TryParse(valor, out int valorEntero))
+                        {
+                            valorConvertido = valorEntero;
+                            comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
+                        }
+                        else
+                        {
+                            return BadRequest("El valor proporcionado no es válido para el tipo de datos entero.");
+                        }
+                        break;
+                    case "decimal":
+                    case "numeric":
+                    case "money":
+                    case "smallmoney":
+                        if (decimal.TryParse(valor, out decimal valorDecimal))
+                        {
+                            valorConvertido = valorDecimal;
+                            comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
+                        }
+                        else
+                        {
+                            return BadRequest("El valor proporcionado no es válido para el tipo de datos decimal.");
+                        }
+                        break;
+                    case "bit":
+                        if (bool.TryParse(valor, out bool valorBooleano))
+                        {
+                            valorConvertido = valorBooleano;
+                            comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
+                        }
+                        else
+                        {
+                            return BadRequest("El valor proporcionado no es válido para el tipo de datos booleano.");
+                        }
+                        break;
+                    case "float":
+                    case "real":
+                        if (double.TryParse(valor, out double valorDoble))
+                        {
+                            valorConvertido = valorDoble;
+                            comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
+                        }
+                        else
+                        {
+                            return BadRequest("El valor proporcionado no es válido para el tipo de datos flotante.");
+                        }
+                        break;
+                    case "nvarchar":
+                    case "varchar":
+                    case "nchar":
+                    case "char":
+                    case "text":
+                        valorConvertido = valor;
+                        comandoSQL = $"SELECT * FROM {nombreTabla} WHERE {nombreClave} = @Valor";
+                        break;
+                    case "date":
+                    case "datetime":
+                    case "datetime2":
+                    case "smalldatetime":
+                        if (DateTime.TryParse(valor, out DateTime valorFecha))
+                        {
+                            comandoSQL = $"SELECT * FROM {nombreTabla} WHERE CAST({nombreClave} AS DATE) = @Valor";
+                            valorConvertido = valorFecha.Date;
+                        }
+                        else
+                        {
+                            return BadRequest("El valor proporcionado no es válido para el tipo de datos fecha.");
+                        }
+                        break;
+                    default:
+                        return BadRequest($"Tipo de dato no soportado: {tipoDato}"); // Retorna un error si el tipo de dato no es soportado.
+                }
 
-        if (resultado.Rows.Count > 0) // Verifica si hay filas en el resultado.
-        {
-            var lista = new List<Dictionary<string, object?>>();
-            foreach (DataRow fila in resultado.Rows)
-            {
-                var propiedades = resultado.Columns.Cast<DataColumn>()
-                                   .ToDictionary(columna => columna.ColumnName, columna => fila[columna] == DBNull.Value ? null : fila[columna]);
-                lista.Add(propiedades);
+                var parametro = CrearParametro("@Valor", valorConvertido); // Crea el parámetro para la consulta SQL.
+
+                Console.WriteLine($"Ejecutando consulta SQL: {comandoSQL} con parámetro: {parametro.ParameterName} = {parametro.Value}, DbType: {parametro.DbType}");
+
+                var resultado = controlConexion.EjecutarConsultaSql(comandoSQL, new DbParameter[] { parametro }); // Ejecuta la consulta SQL con el parámetro.
+
+                Console.WriteLine($"DataSet completado para la consulta: {comandoSQL}");
+
+                if (resultado.Rows.Count > 0) // Verifica si hay filas en el resultado.
+                {
+                    var lista = new List<Dictionary<string, object?>>();
+                    foreach (DataRow fila in resultado.Rows)
+                    {
+                        var propiedades = resultado.Columns.Cast<DataColumn>()
+                                           .ToDictionary(columna => columna.ColumnName, columna => fila[columna] == DBNull.Value ? null : fila[columna]);
+                        lista.Add(propiedades);
+                    }
+
+                    return Ok(lista); // Retorna las filas encontradas en formato JSON.
+                }
+
+                return NotFound(); // Retorna un error 404 si no se encontraron filas.
             }
-
-            return Ok(lista); // Retorna las filas encontradas en formato JSON.
-        }
-
-        return NotFound(); // Retorna un error 404 si no se encontraron filas.
-    }
-    catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
-    {
-        Console.WriteLine($"Ocurrió una excepción: {ex.Message}");
-        return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
-    }
-    finally
-    {
-        controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
-    }
-}
-
-// Método privado para convertir un JsonElement en su tipo correspondiente.
-private object? ConvertirJsonElement(JsonElement elementoJson)
-{
-    if (elementoJson.ValueKind == JsonValueKind.Null)
-        return null; // Si el valor es nulo, retorna null.
-
-    switch (elementoJson.ValueKind)
-    {
-        case JsonValueKind.String:
-            // Intenta convertir la cadena a un valor de tipo DateTime, si falla, retorna la cadena original.
-            return DateTime.TryParse(elementoJson.GetString(), out DateTime valorFecha) ? (object)valorFecha : elementoJson.GetString();
-        case JsonValueKind.Number:
-            // Intenta convertir el número a un valor entero, si falla, retorna el valor como doble.
-            return elementoJson.TryGetInt32(out var valorEntero) ? (object)valorEntero : elementoJson.GetDouble();
-        case JsonValueKind.True:
-            return true; // Retorna verdadero si el valor es de tipo booleano verdadero.
-        case JsonValueKind.False:
-            return false; // Retorna falso si el valor es de tipo booleano falso.
-        case JsonValueKind.Null:
-            return null; // Retorna null si el valor es nulo.
-        case JsonValueKind.Object:
-            return elementoJson.GetRawText(); // Retorna el texto crudo del objeto JSON.
-        case JsonValueKind.Array:
-            return elementoJson.GetRawText(); // Retorna el texto crudo del arreglo JSON.
-        default:
-            // Lanza una excepción si el tipo de valor JSON no está soportado.
-            throw new InvalidOperationException($"Tipo de JsonValueKind no soportado: {elementoJson.ValueKind}");
-    }
-}
-
-[AllowAnonymous] // Permite el acceso anónimo a este método.
-[HttpPost] // Define una ruta HTTP POST para este método.
-public IActionResult Crear(string nombreProyecto, string nombreTabla, [FromBody] Dictionary<string, object?> datosEntidad)  // Crea una nueva fila en la tabla especificada.
-{
-    if (string.IsNullOrWhiteSpace(nombreTabla) || datosEntidad == null || !datosEntidad.Any())  // Verifica si el nombre de la tabla o los datos están vacíos.
-        return BadRequest("El nombre de la tabla y los datos de la entidad no pueden estar vacíos.");  // Retorna un error si algún parámetro está vacío.
-
-    try
-    {
-        var propiedades = datosEntidad.ToDictionary(  // Convierte los datos de la entidad en un diccionario de propiedades.
-            kvp => kvp.Key,
-            kvp => kvp.Value is JsonElement elementoJson ? ConvertirJsonElement(elementoJson) : kvp.Value);
-
-        // Verifica si hay un campo de contraseña en los datos, y si lo hay, lo hashea.
-        var clavesContrasena = new[] { "password", "contrasena", "passw", "clave" };  // Lista de posibles nombres para campos de contraseña.
-        var claveContrasena = propiedades.Keys.FirstOrDefault(k => clavesContrasena.Any(pk => k.IndexOf(pk, StringComparison.OrdinalIgnoreCase) >= 0));  // Busca si alguno de los campos es una contraseña.
-
-        if (claveContrasena != null)  // Si se encontró un campo de contraseña.
-        {
-            var contrasenaPlano = propiedades[claveContrasena]?.ToString();  // Obtiene el valor de la contraseña.
-            if (!string.IsNullOrEmpty(contrasenaPlano))  // Si la contraseña no está vacía.
+            catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
             {
-                propiedades[claveContrasena] = BCrypt.Net.BCrypt.HashPassword(contrasenaPlano);  // Hashea la contraseña.
+                Console.WriteLine($"Ocurrió una excepción: {ex.Message}");
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
+            }
+            finally
+            {
+                controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
             }
         }
 
-        string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado.");  // Obtiene el proveedor de base de datos.
-        var columnas = string.Join(",", propiedades.Keys);  // Une los nombres de las columnas en una cadena.
-        var valores = string.Join(",", propiedades.Keys.Select(k => $"{ObtenerPrefijoParametro(proveedor)}{k}"));  // Une los nombres de los valores en una cadena con su prefijo.
-        string consultaSQL = $"INSERT INTO {nombreTabla} ({columnas}) VALUES ({valores})";  // Crea la consulta SQL para insertar una nueva fila.
-
-        var parametros = propiedades.Select(p => CrearParametro($"{ObtenerPrefijoParametro(proveedor)}{p.Key}", p.Value)).ToArray();  // Crea los parámetros para la consulta SQL.
-
-        Console.WriteLine($"Ejecutando consulta SQL: {consultaSQL} con parámetros:");  // Muestra la consulta SQL y los parámetros en la consola.
-        foreach (var parametro in parametros)  // Recorre cada parámetro.
+        // Método privado para convertir un JsonElement en su tipo correspondiente.
+        private object? ConvertirJsonElement(JsonElement elementoJson)
         {
-            Console.WriteLine($"{parametro.ParameterName} = {parametro.Value}, DbType: {parametro.DbType}");  // Muestra el nombre y valor del parámetro en la consola.
-        }
+            if (elementoJson.ValueKind == JsonValueKind.Null)
+                return null; // Si el valor es nulo, retorna null.
 
-        controlConexion.AbrirBd();  // Abre la conexión a la base de datos.
-        controlConexion.EjecutarComandoSql(consultaSQL, parametros);  // Ejecuta la consulta SQL para insertar la nueva fila.
-        controlConexion.CerrarBd();  // Cierra la conexión a la base de datos.
-
-        return Ok("Entidad creada exitosamente.");  // Retorna una respuesta de éxito.
-    }
-    catch (Exception ex)  // Captura cualquier excepción que ocurra durante la ejecución.
-    {
-        Console.WriteLine($"Ocurrió una excepción: {ex.Message}");  // Muestra el mensaje de la excepción en la consola.
-        return StatusCode(500, $"Error interno del servidor: {ex.Message}");  // Retorna un error 500 si ocurre una excepción.
-    }
-}
-
-
-[AllowAnonymous] // Permite el acceso anónimo a este método.
-[HttpPut("{nombreClave}/{valorClave}")] // Define una ruta HTTP PUT con parámetros adicionales.
-public IActionResult Actualizar(string nombreProyecto, string nombreTabla, string nombreClave, string valorClave, [FromBody] Dictionary<string, object?> datosEntidad) // Actualiza una fila en la tabla basada en una clave.
-{
-    if (string.IsNullOrWhiteSpace(nombreTabla) || string.IsNullOrWhiteSpace(nombreClave) || datosEntidad == null || !datosEntidad.Any()) // Verifica si alguno de los parámetros está vacío.
-        return BadRequest("El nombre de la tabla, el nombre de la clave y los datos de la entidad no pueden estar vacíos."); // Retorna un error si algún parámetro está vacío.
-
-    try
-    {
-        var propiedades = datosEntidad.ToDictionary( // Convierte los datos de la entidad en un diccionario de propiedades.
-            kvp => kvp.Key,
-            kvp => kvp.Value is JsonElement elementoJson ? ConvertirJsonElement(elementoJson) : kvp.Value);
-
-        // Verifica si hay un campo de contraseña en los datos, y si lo hay, lo hashea.
-        var clavesContrasena = new[] { "password", "contrasena", "passw", "clave" }; // Lista de posibles nombres para campos de contraseña.
-        var claveContrasena = propiedades.Keys.FirstOrDefault(k => clavesContrasena.Any(pk => k.IndexOf(pk, StringComparison.OrdinalIgnoreCase) >= 0)); // Busca si alguno de los campos es una contraseña.
-        
-        if (claveContrasena != null) // Si se encontró un campo de contraseña.
-        {
-            var contrasenaPlano = propiedades[claveContrasena]?.ToString(); // Obtiene el valor de la contraseña.
-            if (!string.IsNullOrEmpty(contrasenaPlano)) // Si la contraseña no está vacía.
+            switch (elementoJson.ValueKind)
             {
-                propiedades[claveContrasena] = BCrypt.Net.BCrypt.HashPassword(contrasenaPlano); // Hashea la contraseña.
+                case JsonValueKind.String:
+                    // Intenta convertir la cadena a un valor de tipo DateTime, si falla, retorna la cadena original.
+                    return DateTime.TryParse(elementoJson.GetString(), out DateTime valorFecha) ? (object)valorFecha : elementoJson.GetString();
+                case JsonValueKind.Number:
+                    // Intenta convertir el número a un valor entero, si falla, retorna el valor como doble.
+                    return elementoJson.TryGetInt32(out var valorEntero) ? (object)valorEntero : elementoJson.GetDouble();
+                case JsonValueKind.True:
+                    return true; // Retorna verdadero si el valor es de tipo booleano verdadero.
+                case JsonValueKind.False:
+                    return false; // Retorna falso si el valor es de tipo booleano falso.
+                case JsonValueKind.Null:
+                    return null; // Retorna null si el valor es nulo.
+                case JsonValueKind.Object:
+                    return elementoJson.GetRawText(); // Retorna el texto crudo del objeto JSON.
+                case JsonValueKind.Array:
+                    return elementoJson.GetRawText(); // Retorna el texto crudo del arreglo JSON.
+                default:
+                    // Lanza una excepción si el tipo de valor JSON no está soportado.
+                    throw new InvalidOperationException($"Tipo de JsonValueKind no soportado: {elementoJson.ValueKind}");
             }
         }
 
-        string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos.
-        var actualizaciones = string.Join(",", propiedades.Select(p => $"{p.Key}={ObtenerPrefijoParametro(proveedor)}{p.Key}")); // Crea la cadena de actualizaciones para la consulta SQL.
-        string consultaSQL = $"UPDATE {nombreTabla} SET {actualizaciones} WHERE {nombreClave}={ObtenerPrefijoParametro(proveedor)}ValorClave"; // Crea la consulta SQL para actualizar la fila.
-
-        var parametros = propiedades.Select(p => CrearParametro($"{ObtenerPrefijoParametro(proveedor)}{p.Key}", p.Value)).ToList(); // Crea los parámetros para la consulta SQL.
-        parametros.Add(CrearParametro($"{ObtenerPrefijoParametro(proveedor)}ValorClave", valorClave)); // Agrega el parámetro para la clave de la fila a actualizar.
-
-        Console.WriteLine($"Ejecutando consulta SQL: {consultaSQL} con parámetros:"); // Muestra la consulta SQL y los parámetros en la consola.
-        foreach (var parametro in parametros) // Recorre cada parámetro.
+        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        [HttpPost] // Define una ruta HTTP POST para este método.
+        public IActionResult Crear(string nombreProyecto, string nombreTabla, [FromBody] Dictionary<string, object?> datosEntidad)  // Crea una nueva fila en la tabla especificada.
         {
-            Console.WriteLine($"{parametro.ParameterName} = {parametro.Value}, DbType: {parametro.DbType}"); // Muestra el nombre y valor del parámetro en la consola.
-        }
+            if (string.IsNullOrWhiteSpace(nombreTabla) || datosEntidad == null || !datosEntidad.Any())  // Verifica si el nombre de la tabla o los datos están vacíos.
+                return BadRequest("El nombre de la tabla y los datos de la entidad no pueden estar vacíos.");  // Retorna un error si algún parámetro está vacío.
 
-        controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
-        controlConexion.EjecutarComandoSql(consultaSQL, parametros.ToArray()); // Ejecuta la consulta SQL para actualizar la fila.
-        controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
-
-        return Ok("Entidad actualizada exitosamente."); // Retorna una respuesta de éxito.
-    }
-    catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
-    {
-        Console.WriteLine($"Ocurrió una excepción: {ex.Message}"); // Muestra el mensaje de la excepción en la consola.
-        return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
-    }
-}
-
-
-// Método privado para obtener el prefijo adecuado para los parámetros SQL, según el proveedor de la base de datos.
-private string ObtenerPrefijoParametro(string proveedor)
-{
-    return "@"; // Para SQL Server y LocalDB, el prefijo es "@". En caso de otros proveedores, se pueden agregar más condiciones aquí.
-}
-
-
-[AllowAnonymous] // Permite el acceso anónimo a este método.
-[HttpDelete("{nombreClave}/{valorClave}")] // Define una ruta HTTP DELETE con parámetros adicionales.
-public IActionResult Eliminar(string nombreProyecto, string nombreTabla, string nombreClave, string valorClave) // Elimina una fila de la tabla basada en una clave.
-{
-    if (string.IsNullOrWhiteSpace(nombreTabla) || string.IsNullOrWhiteSpace(nombreClave)) // Verifica si alguno de los parámetros está vacío.
-        return BadRequest("El nombre de la tabla o el nombre de la clave no pueden estar vacíos."); // Retorna un error si algún parámetro está vacío.
-
-    try
-    {
-        string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos.
-        string consultaSQL = $"DELETE FROM {nombreTabla} WHERE {nombreClave}=@ValorClave"; // Crea la consulta SQL para eliminar la fila.
-        var parametro = CrearParametro("@ValorClave", valorClave); // Crea el parámetro para la clave de la fila a eliminar.
-
-        controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
-        controlConexion.EjecutarComandoSql(consultaSQL, new[] { parametro }); // Ejecuta la consulta SQL para eliminar la fila.
-        controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
-
-        return Ok("Entidad eliminada exitosamente."); // Retorna una respuesta de éxito.
-    }
-    catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
-    {
-        return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
-    }
-}
-
-
-[AllowAnonymous] // Permite el acceso anónimo a este método.
-[HttpGet("/")] // Define una ruta HTTP GET en la raíz de la API.
-public IActionResult ObtenerRaiz() // Método que retorna un mensaje indicando que la API está en funcionamiento.
-{
-    return Ok("La API está lista"); // Retorna un mensaje indicando que la API está en funcionamiento.
-}
-
-
-[AllowAnonymous] // Permite el acceso anónimo a este método.
-[HttpPost("verificar-contrasena")] // Define una ruta HTTP POST para verificar contraseñas.
-public IActionResult VerificarContrasena(string nombreProyecto, string nombreTabla, [FromBody] Dictionary<string, string> datos) // Verifica si la contraseña proporcionada coincide con la almacenada.
-{
-    if (string.IsNullOrWhiteSpace(nombreTabla) || datos == null || !datos.ContainsKey("campoUsuario") || !datos.ContainsKey("campoContrasena") || !datos.ContainsKey("valorUsuario") || !datos.ContainsKey("valorContrasena")) // Verifica si alguno de los parámetros está vacío.
-        return BadRequest("El nombre de la tabla, el campo de usuario, el campo de contraseña, el valor de usuario y el valor de contraseña no pueden estar vacíos."); // Retorna un error si algún parámetro está vacío.
-
-    try
-    {
-        string campoUsuario = datos["campoUsuario"]; // Obtiene el nombre del campo de usuario.
-        string campoContrasena = datos["campoContrasena"]; // Obtiene el nombre del campo de contraseña.
-        string valorUsuario = datos["valorUsuario"]; // Obtiene el valor del usuario.
-        string valorContrasena = datos["valorContrasena"]; // Obtiene el valor de la contraseña.
-
-        string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos.
-        string consultaSQL = $"SELECT {campoContrasena} FROM {nombreTabla} WHERE {campoUsuario} = @ValorUsuario"; // Crea la consulta SQL para obtener la contraseña almacenada.
-        var parametro = CrearParametro("@ValorUsuario", valorUsuario); // Crea el parámetro para el valor del usuario.
-
-        controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
-        var resultado = controlConexion.EjecutarConsultaSql(consultaSQL, new DbParameter[] { parametro }); // Ejecuta la consulta SQL para obtener la contraseña.
-        controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
-
-        if (resultado.Rows.Count == 0) // Verifica si no se encontró el usuario.
-        {
-            return NotFound("Usuario no encontrado."); // Retorna un error 404 si no se encontró el usuario.
-        }
-
-        string contrasenaHasheada = resultado.Rows[0][campoContrasena]?.ToString() ?? string.Empty; // Obtiene la contraseña hasheada almacenada.
-
-        // Verifica si el hash de la contraseña es válido.
-        if (!contrasenaHasheada.StartsWith("$2"))
-        {
-            throw new InvalidOperationException("El hash de la contraseña almacenada no es un hash válido de BCrypt."); // Lanza una excepción si el hash almacenado no es válido.
-        }
-
-        bool esContrasenaValida = BCrypt.Net.BCrypt.Verify(valorContrasena, contrasenaHasheada); // Verifica si la contraseña proporcionada coincide con el hash almacenado.
-
-        if (esContrasenaValida) // Si la contraseña es válida.
-        {
-            return Ok("Contraseña verificada exitosamente."); // Retorna una respuesta de éxito.
-        }
-        else // Si la contraseña no es válida.
-        {
-            return Unauthorized("Contraseña incorrecta."); // Retorna un error 401 si la contraseña es incorrecta.
-        }
-    }
-    catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
-    {
-        Console.WriteLine($"Ocurrió una excepción: {ex.Message}"); // Muestra el mensaje de la excepción en la consola.
-        return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
-    }
-}
-
-
-// Método para crear un parámetro de consulta SQL basado en el proveedor de base de datos.
-public DbParameter CrearParametro(string nombre, object? valor)
-{
-    return new SqlParameter(nombre, valor ?? DBNull.Value); // Crea un parámetro para SQL Server y LocalDB.
-}
-
-
-[AllowAnonymous]
-[HttpPost("ejecutar-consulta-parametrizada")]
-public IActionResult EjecutarConsultaParametrizada([FromBody] JsonElement cuerpoSolicitud)
-{
-    try
-    {
-        // Verifica si el cuerpo de la solicitud contiene la consulta SQL
-        if (!cuerpoSolicitud.TryGetProperty("consulta", out var consultaElement) || consultaElement.ValueKind != JsonValueKind.String)
-        {
-            return BadRequest("Debe proporcionar una consulta SQL válida en el cuerpo de la solicitud.");
-        }
-
-        string consultaSQL = consultaElement.GetString() ?? throw new ArgumentException("La consulta SQL no puede estar vacía.");
-
-        // Verifica si el cuerpo de la solicitud contiene los parámetros
-        var parametros = new List<DbParameter>();
-        if (cuerpoSolicitud.TryGetProperty("parametros", out var parametrosElement) && parametrosElement.ValueKind == JsonValueKind.Object)
-        {
-            foreach (var parametro in parametrosElement.EnumerateObject())
+            try
             {
-                string paramName = parametro.Name.StartsWith("@") ? parametro.Name : "@" + parametro.Name;
-                object? paramValue = parametro.Value.ValueKind == JsonValueKind.Null ? DBNull.Value : parametro.Value.GetRawText().Trim('"');
-                parametros.Add(controlConexion.CrearParametro(paramName, paramValue));
-            }
-        }
+                var propiedades = datosEntidad.ToDictionary(  // Convierte los datos de la entidad en un diccionario de propiedades.
+                    kvp => kvp.Key,
+                    kvp => kvp.Value is JsonElement elementoJson ? ConvertirJsonElement(elementoJson) : kvp.Value);
 
-        // Abrir la conexión a la base de datos
-        controlConexion.AbrirBd();
+                // Verifica si hay un campo de contraseña en los datos, y si lo hay, lo hashea.
+                var clavesContrasena = new[] { "password", "contrasena", "passw", "clave" };  // Lista de posibles nombres para campos de contraseña.
+                var claveContrasena = propiedades.Keys.FirstOrDefault(k => clavesContrasena.Any(pk => k.IndexOf(pk, StringComparison.OrdinalIgnoreCase) >= 0));  // Busca si alguno de los campos es una contraseña.
 
-        // Ejecutar la consulta SQL
-        var resultado = controlConexion.EjecutarConsultaSql(consultaSQL, parametros.ToArray());
-
-        // Cerrar la conexión a la base de datos
-        controlConexion.CerrarBd();
-
-        // Verifica si hay resultados
-        if (resultado.Rows.Count == 0)
-        {
-            return NotFound("No se encontraron resultados para la consulta proporcionada.");
-        }
-
-        // Procesar resultados a formato JSON
-        var lista = new List<Dictionary<string, object?>>();
-        foreach (DataRow fila in resultado.Rows)
-        {
-            var propiedades = resultado.Columns.Cast<DataColumn>()
-                .ToDictionary(col => col.ColumnName, col => fila[col] == DBNull.Value ? null : fila[col]);
-            lista.Add(propiedades);
-        }
-
-        // Retornar resultados en formato JSON
-        return Ok(lista);
-    }
-    catch (SqlException sqlEx)
-    {
-        // Manejo de excepciones SQL
-        controlConexion.CerrarBd(); // Asegura que la conexión se cierre en caso de error
-        Console.WriteLine($"SQL Error: {sqlEx.Message}");
-        return StatusCode(500, new { Mensaje = "Error en la base de datos.", Detalle = sqlEx.Message });
-    }
-    catch (Exception ex)
-    {
-        // Manejo de excepciones generales
-        controlConexion.CerrarBd(); // Asegura que la conexión se cierre en caso de error
-        Console.WriteLine($"Error: {ex.Message}");
-        return StatusCode(500, new { Mensaje = "Se presentó un error:", Detalle = ex.Message });
-    }
-}
-
-
-[AllowAnonymous]
-[HttpPost("ejecutar-procedimiento/{procedureName}")]
-public IActionResult EjecutarProcedimientoAlmacenado(string procedureName, [FromBody] JsonElement body)
-{
-    // Verificar que el nombre del procedimiento no esté vacío
-    if (string.IsNullOrWhiteSpace(procedureName))
-    {
-        return BadRequest(new { Mensaje = "El nombre del procedimiento es requerido." });
-    }
-
-    try
-    {
-        // Abrir la conexión a la base de datos
-        controlConexion.AbrirBd();
-
-        // Obtener la conexión
-        var connection = controlConexion.ObtenerConexion();
-        if (connection == null || connection.State != ConnectionState.Open)
-        {
-            return StatusCode(500, "No se pudo obtener una conexión válida a la base de datos.");
-        }
-
-        using (var command = new SqlCommand(procedureName, (SqlConnection)connection))
-        {
-            command.CommandType = CommandType.StoredProcedure;
-
-            // Agregar parámetros al comando
-            foreach (var property in body.EnumerateObject())
-            {
-                string paramName = property.Name.StartsWith("@") ? property.Name : "@" + property.Name;
-                if (property.Name.EndsWith("productos") && property.Value.ValueKind == JsonValueKind.Array)
+                if (claveContrasena != null)  // Si se encontró un campo de contraseña.
                 {
-                    var productosJson = JsonSerializer.Serialize(property.Value);
-                    command.Parameters.AddWithValue(paramName, productosJson);
+                    var contrasenaPlano = propiedades[claveContrasena]?.ToString();  // Obtiene el valor de la contraseña.
+                    if (!string.IsNullOrEmpty(contrasenaPlano))  // Si la contraseña no está vacía.
+                    {
+                        propiedades[claveContrasena] = BCrypt.Net.BCrypt.HashPassword(contrasenaPlano);  // Hashea la contraseña.
+                    }
                 }
-                else
+
+                string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado.");  // Obtiene el proveedor de base de datos.
+                var columnas = string.Join(",", propiedades.Keys);  // Une los nombres de las columnas en una cadena.
+                var valores = string.Join(",", propiedades.Keys.Select(k => $"{ObtenerPrefijoParametro(proveedor)}{k}"));  // Une los nombres de los valores en una cadena con su prefijo.
+                string consultaSQL = $"INSERT INTO {nombreTabla} ({columnas}) VALUES ({valores})";  // Crea la consulta SQL para insertar una nueva fila.
+
+                var parametros = propiedades.Select(p => CrearParametro($"{ObtenerPrefijoParametro(proveedor)}{p.Key}", p.Value)).ToArray();  // Crea los parámetros para la consulta SQL.
+
+                Console.WriteLine($"Ejecutando consulta SQL: {consultaSQL} con parámetros:");  // Muestra la consulta SQL y los parámetros en la consola.
+                foreach (var parametro in parametros)  // Recorre cada parámetro.
                 {
-                    command.Parameters.AddWithValue(paramName, property.Value.GetRawText().Trim('"'));
+                    Console.WriteLine($"{parametro.ParameterName} = {parametro.Value}, DbType: {parametro.DbType}");  // Muestra el nombre y valor del parámetro en la consola.
+                }
+
+                controlConexion.AbrirBd();  // Abre la conexión a la base de datos.
+                controlConexion.EjecutarComandoSql(consultaSQL, parametros);  // Ejecuta la consulta SQL para insertar la nueva fila.
+                controlConexion.CerrarBd();  // Cierra la conexión a la base de datos.
+
+                return Ok("Entidad creada exitosamente.");  // Retorna una respuesta de éxito.
+            }
+            catch (Exception ex)  // Captura cualquier excepción que ocurra durante la ejecución.
+            {
+                Console.WriteLine($"Ocurrió una excepción: {ex.Message}");  // Muestra el mensaje de la excepción en la consola.
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");  // Retorna un error 500 si ocurre una excepción.
+            }
+        }
+
+
+        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        [HttpPut("{nombreClave}/{valorClave}")] // Define una ruta HTTP PUT con parámetros adicionales.
+        public IActionResult Actualizar(string nombreProyecto, string nombreTabla, string nombreClave, string valorClave, [FromBody] Dictionary<string, object?> datosEntidad) // Actualiza una fila en la tabla basada en una clave.
+        {
+            if (string.IsNullOrWhiteSpace(nombreTabla) || string.IsNullOrWhiteSpace(nombreClave) || datosEntidad == null || !datosEntidad.Any()) // Verifica si alguno de los parámetros está vacío.
+                return BadRequest("El nombre de la tabla, el nombre de la clave y los datos de la entidad no pueden estar vacíos."); // Retorna un error si algún parámetro está vacío.
+
+            try
+            {
+                var propiedades = datosEntidad.ToDictionary( // Convierte los datos de la entidad en un diccionario de propiedades.
+                    kvp => kvp.Key,
+                    kvp => kvp.Value is JsonElement elementoJson ? ConvertirJsonElement(elementoJson) : kvp.Value);
+
+                // Verifica si hay un campo de contraseña en los datos, y si lo hay, lo hashea.
+                var clavesContrasena = new[] { "password", "contrasena", "passw", "clave" }; // Lista de posibles nombres para campos de contraseña.
+                var claveContrasena = propiedades.Keys.FirstOrDefault(k => clavesContrasena.Any(pk => k.IndexOf(pk, StringComparison.OrdinalIgnoreCase) >= 0)); // Busca si alguno de los campos es una contraseña.
+
+                if (claveContrasena != null) // Si se encontró un campo de contraseña.
+                {
+                    var contrasenaPlano = propiedades[claveContrasena]?.ToString(); // Obtiene el valor de la contraseña.
+                    if (!string.IsNullOrEmpty(contrasenaPlano)) // Si la contraseña no está vacía.
+                    {
+                        propiedades[claveContrasena] = BCrypt.Net.BCrypt.HashPassword(contrasenaPlano); // Hashea la contraseña.
+                    }
+                }
+
+                string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos.
+                var actualizaciones = string.Join(",", propiedades.Select(p => $"{p.Key}={ObtenerPrefijoParametro(proveedor)}{p.Key}")); // Crea la cadena de actualizaciones para la consulta SQL.
+                string consultaSQL = $"UPDATE {nombreTabla} SET {actualizaciones} WHERE {nombreClave}={ObtenerPrefijoParametro(proveedor)}ValorClave"; // Crea la consulta SQL para actualizar la fila.
+
+                var parametros = propiedades.Select(p => CrearParametro($"{ObtenerPrefijoParametro(proveedor)}{p.Key}", p.Value)).ToList(); // Crea los parámetros para la consulta SQL.
+                parametros.Add(CrearParametro($"{ObtenerPrefijoParametro(proveedor)}ValorClave", valorClave)); // Agrega el parámetro para la clave de la fila a actualizar.
+
+                Console.WriteLine($"Ejecutando consulta SQL: {consultaSQL} con parámetros:"); // Muestra la consulta SQL y los parámetros en la consola.
+                foreach (var parametro in parametros) // Recorre cada parámetro.
+                {
+                    Console.WriteLine($"{parametro.ParameterName} = {parametro.Value}, DbType: {parametro.DbType}"); // Muestra el nombre y valor del parámetro en la consola.
+                }
+
+                controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
+                controlConexion.EjecutarComandoSql(consultaSQL, parametros.ToArray()); // Ejecuta la consulta SQL para actualizar la fila.
+                controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
+
+                return Ok("Entidad actualizada exitosamente."); // Retorna una respuesta de éxito.
+            }
+            catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
+            {
+                Console.WriteLine($"Ocurrió una excepción: {ex.Message}"); // Muestra el mensaje de la excepción en la consola.
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
+            }
+        }
+
+
+        // Método privado para obtener el prefijo adecuado para los parámetros SQL, según el proveedor de la base de datos.
+        private string ObtenerPrefijoParametro(string proveedor)
+        {
+            return "@"; // Para SQL Server y LocalDB, el prefijo es "@". En caso de otros proveedores, se pueden agregar más condiciones aquí.
+        }
+
+
+        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        [HttpDelete("{nombreClave}/{valorClave}")] // Define una ruta HTTP DELETE con parámetros adicionales.
+        public IActionResult Eliminar(string nombreProyecto, string nombreTabla, string nombreClave, string valorClave) // Elimina una fila de la tabla basada en una clave.
+        {
+            if (string.IsNullOrWhiteSpace(nombreTabla) || string.IsNullOrWhiteSpace(nombreClave)) // Verifica si alguno de los parámetros está vacío.
+                return BadRequest("El nombre de la tabla o el nombre de la clave no pueden estar vacíos."); // Retorna un error si algún parámetro está vacío.
+
+            try
+            {
+                string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos.
+                string consultaSQL = $"DELETE FROM {nombreTabla} WHERE {nombreClave}=@ValorClave"; // Crea la consulta SQL para eliminar la fila.
+                var parametro = CrearParametro("@ValorClave", valorClave); // Crea el parámetro para la clave de la fila a eliminar.
+
+                controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
+                controlConexion.EjecutarComandoSql(consultaSQL, new[] { parametro }); // Ejecuta la consulta SQL para eliminar la fila.
+                controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
+
+                return Ok("Entidad eliminada exitosamente."); // Retorna una respuesta de éxito.
+            }
+            catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
+            }
+        }
+
+
+        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        [HttpGet("/")] // Define una ruta HTTP GET en la raíz de la API.
+        public IActionResult ObtenerRaiz() // Método que retorna un mensaje indicando que la API está en funcionamiento.
+        {
+            return Ok("La API está lista"); // Retorna un mensaje indicando que la API está en funcionamiento.
+        }
+
+
+        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        [HttpPost("verificar-contrasena")] // Define una ruta HTTP POST para verificar contraseñas.
+        public IActionResult VerificarContrasena(string nombreProyecto, string nombreTabla, [FromBody] Dictionary<string, string> datos) // Verifica si la contraseña proporcionada coincide con la almacenada.
+        {
+            if (string.IsNullOrWhiteSpace(nombreTabla) || datos == null || !datos.ContainsKey("campoUsuario") || !datos.ContainsKey("campoContrasena") || !datos.ContainsKey("valorUsuario") || !datos.ContainsKey("valorContrasena")) // Verifica si alguno de los parámetros está vacío.
+                return BadRequest("El nombre de la tabla, el campo de usuario, el campo de contraseña, el valor de usuario y el valor de contraseña no pueden estar vacíos."); // Retorna un error si algún parámetro está vacío.
+
+            try
+            {
+                string campoUsuario = datos["campoUsuario"]; // Obtiene el nombre del campo de usuario.
+                string campoContrasena = datos["campoContrasena"]; // Obtiene el nombre del campo de contraseña.
+                string valorUsuario = datos["valorUsuario"]; // Obtiene el valor del usuario.
+                string valorContrasena = datos["valorContrasena"]; // Obtiene el valor de la contraseña.
+
+                string proveedor = _configuration["DatabaseProvider"] ?? throw new InvalidOperationException("Proveedor de base de datos no configurado."); // Obtiene el proveedor de base de datos.
+                string consultaSQL = $"SELECT {campoContrasena} FROM {nombreTabla} WHERE {campoUsuario} = @ValorUsuario"; // Crea la consulta SQL para obtener la contraseña almacenada.
+                var parametro = CrearParametro("@ValorUsuario", valorUsuario); // Crea el parámetro para el valor del usuario.
+
+                controlConexion.AbrirBd(); // Abre la conexión a la base de datos.
+                var resultado = controlConexion.EjecutarConsultaSql(consultaSQL, new DbParameter[] { parametro }); // Ejecuta la consulta SQL para obtener la contraseña.
+                controlConexion.CerrarBd(); // Cierra la conexión a la base de datos.
+
+                if (resultado.Rows.Count == 0) // Verifica si no se encontró el usuario.
+                {
+                    return NotFound("Usuario no encontrado."); // Retorna un error 404 si no se encontró el usuario.
+                }
+
+                string contrasenaHasheada = resultado.Rows[0][campoContrasena]?.ToString() ?? string.Empty; // Obtiene la contraseña hasheada almacenada.
+
+                // Verifica si el hash de la contraseña es válido.
+                if (!contrasenaHasheada.StartsWith("$2"))
+                {
+                    throw new InvalidOperationException("El hash de la contraseña almacenada no es un hash válido de BCrypt."); // Lanza una excepción si el hash almacenado no es válido.
+                }
+
+                bool esContrasenaValida = BCrypt.Net.BCrypt.Verify(valorContrasena, contrasenaHasheada); // Verifica si la contraseña proporcionada coincide con el hash almacenado.
+
+                if (esContrasenaValida) // Si la contraseña es válida.
+                {
+                    return Ok("Contraseña verificada exitosamente."); // Retorna una respuesta de éxito.
+                }
+                else // Si la contraseña no es válida.
+                {
+                    return Unauthorized("Contraseña incorrecta."); // Retorna un error 401 si la contraseña es incorrecta.
                 }
             }
-
-            // Ejecutar el procedimiento almacenado
-            int filasAfectadas = command.ExecuteNonQuery();
-            controlConexion.CerrarBd(); // Cerrar la conexión a la base de datos
-
-            return Ok(new { Mensaje = "Procedimiento almacenado ejecutado exitosamente.", FilasAfectadas = filasAfectadas });
+            catch (Exception ex) // Captura cualquier excepción que ocurra durante la ejecución.
+            {
+                Console.WriteLine($"Ocurrió una excepción: {ex.Message}"); // Muestra el mensaje de la excepción en la consola.
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}"); // Retorna un error 500 si ocurre una excepción.
+            }
         }
-    }
-    catch (SqlException sqlEx)
-    {
-        controlConexion.CerrarBd(); // Asegura cerrar la conexión en caso de error
-        Console.WriteLine($"SQL Error: {sqlEx.Message}");
-        return StatusCode(500, new { Mensaje = "Error en la base de datos.", Detalle = sqlEx.Message });
-    }
-    catch (Exception ex)
-    {
-        controlConexion.CerrarBd(); // Asegura cerrar la conexión en caso de error general
-        Console.WriteLine($"Error: {ex.Message}");
-        return StatusCode(500, new { Mensaje = "Se presentó Un error:", Detalle = ex.Message });
-    }
-}
 
 
-}
+        // Método para crear un parámetro de consulta SQL basado en el proveedor de base de datos.
+        public DbParameter CrearParametro(string nombre, object? valor)
+        {
+            return new SqlParameter(nombre, valor ?? DBNull.Value); // Crea un parámetro para SQL Server y LocalDB.
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost("ejecutar-consulta-parametrizada")]
+        public IActionResult EjecutarConsultaParametrizada([FromBody] JsonElement cuerpoSolicitud)
+        {
+            try
+            {
+                // Verifica si el cuerpo de la solicitud contiene la consulta SQL
+                if (!cuerpoSolicitud.TryGetProperty("consulta", out var consultaElement) || consultaElement.ValueKind != JsonValueKind.String)
+                {
+                    return BadRequest("Debe proporcionar una consulta SQL válida en el cuerpo de la solicitud.");
+                }
+
+                string consultaSQL = consultaElement.GetString() ?? throw new ArgumentException("La consulta SQL no puede estar vacía.");
+
+                // Verifica si el cuerpo de la solicitud contiene los parámetros
+                var parametros = new List<DbParameter>();
+                if (cuerpoSolicitud.TryGetProperty("parametros", out var parametrosElement) && parametrosElement.ValueKind == JsonValueKind.Object)
+                {
+                    foreach (var parametro in parametrosElement.EnumerateObject())
+                    {
+                        string paramName = parametro.Name.StartsWith("@") ? parametro.Name : "@" + parametro.Name;
+                        object? paramValue = parametro.Value.ValueKind == JsonValueKind.Null ? DBNull.Value : parametro.Value.GetRawText().Trim('"');
+                        parametros.Add(controlConexion.CrearParametro(paramName, paramValue));
+                    }
+                }
+
+                // Abrir la conexión a la base de datos
+                controlConexion.AbrirBd();
+
+                // Ejecutar la consulta SQL
+                var resultado = controlConexion.EjecutarConsultaSql(consultaSQL, parametros.ToArray());
+
+                // Cerrar la conexión a la base de datos
+                controlConexion.CerrarBd();
+
+                // Verifica si hay resultados
+                if (resultado.Rows.Count == 0)
+                {
+                    return NotFound("No se encontraron resultados para la consulta proporcionada.");
+                }
+
+                // Procesar resultados a formato JSON
+                var lista = new List<Dictionary<string, object?>>();
+                foreach (DataRow fila in resultado.Rows)
+                {
+                    var propiedades = resultado.Columns.Cast<DataColumn>()
+                        .ToDictionary(col => col.ColumnName, col => fila[col] == DBNull.Value ? null : fila[col]);
+                    lista.Add(propiedades);
+                }
+
+                // Retornar resultados en formato JSON
+                return Ok(lista);
+            }
+            catch (SqlException sqlEx)
+            {
+                // Manejo de excepciones SQL
+                controlConexion.CerrarBd(); // Asegura que la conexión se cierre en caso de error
+                Console.WriteLine($"SQL Error: {sqlEx.Message}");
+                return StatusCode(500, new { Mensaje = "Error en la base de datos.", Detalle = sqlEx.Message });
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones generales
+                controlConexion.CerrarBd(); // Asegura que la conexión se cierre en caso de error
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, new { Mensaje = "Se presentó un error:", Detalle = ex.Message });
+            }
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost("ejecutar-procedimiento/{procedureName}")]
+        public IActionResult EjecutarProcedimientoAlmacenado(string procedureName, [FromBody] JsonElement body)
+        {
+            // Verificar que el nombre del procedimiento no esté vacío
+            if (string.IsNullOrWhiteSpace(procedureName))
+            {
+                return BadRequest(new { Mensaje = "El nombre del procedimiento es requerido." });
+            }
+
+            try
+            {
+                // Abrir la conexión a la base de datos
+                controlConexion.AbrirBd();
+
+                // Obtener la conexión
+                var connection = controlConexion.ObtenerConexion();
+                if (connection == null || connection.State != ConnectionState.Open)
+                {
+                    return StatusCode(500, "No se pudo obtener una conexión válida a la base de datos.");
+                }
+
+                using (var command = new SqlCommand(procedureName, (SqlConnection)connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetros al comando
+                    foreach (var property in body.EnumerateObject())
+                    {
+                        string paramName = property.Name.StartsWith("@") ? property.Name : "@" + property.Name;
+                        if (property.Name.EndsWith("productos") && property.Value.ValueKind == JsonValueKind.Array)
+                        {
+                            var productosJson = JsonSerializer.Serialize(property.Value);
+                            command.Parameters.AddWithValue(paramName, productosJson);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue(paramName, property.Value.GetRawText().Trim('"'));
+                        }
+                    }
+
+                    // Ejecutar el procedimiento almacenado
+                    int filasAfectadas = command.ExecuteNonQuery();
+                    controlConexion.CerrarBd(); // Cerrar la conexión a la base de datos
+
+                    return Ok(new { Mensaje = "Procedimiento almacenado ejecutado exitosamente.", FilasAfectadas = filasAfectadas });
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                controlConexion.CerrarBd(); // Asegura cerrar la conexión en caso de error
+                Console.WriteLine($"SQL Error: {sqlEx.Message}");
+                return StatusCode(500, new { Mensaje = "Error en la base de datos.", Detalle = sqlEx.Message });
+            }
+            catch (Exception ex)
+            {
+                controlConexion.CerrarBd(); // Asegura cerrar la conexión en caso de error general
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, new { Mensaje = "Se presentó Un error:", Detalle = ex.Message });
+            }
+        }
+
+
+    }
 }
 
 /*

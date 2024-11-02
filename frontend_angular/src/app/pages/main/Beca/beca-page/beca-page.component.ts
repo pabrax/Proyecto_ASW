@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+// clases
+import { Formater } from '../../../../classes/formater';
+
+
 // service
 
 import { Beca, BecaService } from '../../../../services/beca.service';
@@ -31,6 +35,11 @@ export class BecaPageComponent {
     this.becaService.getBecas().subscribe(
       (data) => {
         this.becas = data;
+        this.becas.forEach(beca => {
+          beca.fecha_inicio = Formater.formatDate(beca.fecha_inicio);
+          beca.fecha_fin = Formater.formatDate(beca.fecha_fin);
+        }
+        );
       },
       (error) => {
         console.error("error al obtener las becas", error);

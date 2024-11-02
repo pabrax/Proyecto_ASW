@@ -4,6 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+// clases
+
+import { Formater } from '../../../../classes/formater';
+
 // service
 
 import { Alianza, AlianzaService } from '../../../../services/alianza.service';
@@ -49,6 +53,10 @@ export class AlianzaEditPageComponent {
     // Cargar los datos de la alianza usando el ID
     this.alianzaService.getAlianzaById(this.alianzaId).subscribe(
       (alianza: Alianza) => {
+        
+        alianza.fecha_inicio = Formater.formatDate(alianza.fecha_inicio);
+        alianza.fecha_fin = Formater.formatDate(alianza.fecha_fin);
+
         // Rellenar el formulario con los datos de la alianza existente
         this.alianzaForm.patchValue({
           aliado_id: alianza.aliado,

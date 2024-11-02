@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+// clases
+import { Formater } from '../../../../classes/formater';
+
 // service
 
 import { Beca, BecaService } from '../../../../services/beca.service';
@@ -48,6 +51,9 @@ export class BecaEditPageComponent {
     // Cargar los datos de la beca usando el ID
     this.becaService.getBecaById(this.becaId).subscribe(
       (beca: Beca) => {
+        beca.fecha_inicio = Formater.formatDate(beca.fecha_inicio);
+        beca.fecha_fin = Formater.formatDate(beca.fecha_fin);
+        
         // Rellenar el formulario con los datos de la beca existente
         this.becaForm.patchValue({
           estudios: beca.estudios,
