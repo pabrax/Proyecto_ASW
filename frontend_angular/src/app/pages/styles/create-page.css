@@ -1,6 +1,7 @@
 /* Estilos generales */
 .view {
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     color: black;
@@ -20,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     align-self: center;
-    justify-content: center;
+    /* justify-content: center; */
     width: 90%;
     height: 100%; /* Adjust height to account for margin-top */
     margin-top: 2rem;
@@ -33,7 +34,7 @@
     /* justify-content: center; */
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 25%;
   }
   
   .title {
