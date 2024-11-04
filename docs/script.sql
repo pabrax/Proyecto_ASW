@@ -793,7 +793,7 @@ GO
 CREATE TABLE intereses_futuros (
   docente INT NOT NULL,
   termino_clave NVARCHAR(30) NOT NULL,
-  PRIMARY KEY (docente, termino_clave),
+  PRIMARY KEY (docente),
   CONSTRAINT fk_intereses_futuros_termino_clave FOREIGN KEY (docente)
     REFERENCES docente (cedula)
     ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -806,23 +806,22 @@ GO
 
 -- tablas necesarias para la autenticacion (falta adaptarse a la clase)
 
-create table usuario(
-  email nvarchar(50) not null primary key,
-  contrasena nvarchar(50) not null,
-);
 
-create table RutaRol(
-  id int identity(1,1) primary key,
-  ruta nvarchar(100) not null,
+create table rol(
+  id int not null primary key,
   rol nvarchar(50) not null
 );
 
+insert into rol values(1, 'admin');
+insert into rol values(2, 'usuario');
 
-create table rol_usuario (
-  email nvarchar(50) not null,
-  rol nvarchar(50) not null,
-  primary key (email, rol),
-  foreign key (email) references usuario(email),
-  foreign key (rol) references RutaRol(rol)
-)
+create table usuarios(
+  email nvarchar(50) not null primary key,
+  contrasena nvarchar(50) not null,
+  rol int not null default 2,
+);
 
+insert into usuarios values('admin@example.com', 'admin', 1);
+
+
+-- select * from usuarios;
