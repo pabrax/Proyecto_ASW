@@ -50,7 +50,7 @@ export class ApoyoProfesoralService {
   //delete
 
   deleteApoyoProfesoral(id: number): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/estudios/${id}`;
     return this.http.delete<void>(url, {responseType: 'text' as 'json'});
   }
 

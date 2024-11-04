@@ -17,7 +17,7 @@
                     <div class="main-form-content">
                         <div class="campo">
                             <label for="aliado">ID del Aliado:</label>
-                            <input id="aliado" formControlName="aliado" type="number">
+                            <input id="aliado" formControlName="aliado" type="number" readonly>
                             <div *ngIf="alianzaForm.get('aliado')?.invalid && alianzaForm.get('aliado')?.touched">
                                 El ID del aliado es requerido.
                             </div>

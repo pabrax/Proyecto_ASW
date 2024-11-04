@@ -16,17 +16,18 @@
                 <form [formGroup]="docenteDepartamentoForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
                         <div class="campo">
-                            <label for="docente_id">ID del Docente:</label>
-                            <input id="docente_id" formControlName="docente_id" type="number">
-                            <div *ngIf="docenteDepartamentoForm.get('docente_id')?.invalid && docenteDepartamentoForm.get('docente_id')?.touched">
+                            <label for="docente">ID del Docente:</label>
+                            <input id="docente" formControlName="docente" type="number"
+                            readonly>
+                            <div *ngIf="docenteDepartamentoForm.get('docente')?.invalid && docenteDepartamentoForm.get('docente')?.touched">
                                 El ID del docente es requerido.
                             </div>
                         </div>
 
                         <div class="campo">
-                            <label for="departamento_id">ID del Departamento:</label>
-                            <input id="departamento_id" formControlName="departamento_id" type="number">
-                            <div *ngIf="docenteDepartamentoForm.get('departamento_id')?.invalid && docenteDepartamentoForm.get('departamento_id')?.touched">
+                            <label for="departamento">ID del Departamento:</label>
+                            <input id="departamento" formControlName="departamento" type="number">
+                            <div *ngIf="docenteDepartamentoForm.get('departamento')?.invalid && docenteDepartamentoForm.get('departamento')?.touched">
                                 El ID del departamento es requerido.
                             </div>
                         </div>

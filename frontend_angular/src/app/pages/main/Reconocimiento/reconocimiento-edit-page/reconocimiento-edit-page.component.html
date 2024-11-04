@@ -15,10 +15,6 @@
             <div class="form-container">
                 <form [formGroup]="reconocimientoForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
-                        <div class="campo">
-                            <label for="id">ID:</label>
-                            <input id="id" formControlName="id" type="number" readonly>
-                        </div>
 
                         <div class="campo">
                             <label for="tipo">Tipo de Reconocimiento:</label>
@@ -62,7 +58,7 @@
 
                         <div class="campo">
                             <label for="docente">ID del Docente:</label>
-                            <input id="docente" formControlName="docente" type="number">
+                            <input id="docente" formControlName="docente" type="number" readonly>
                             <div *ngIf="reconocimientoForm.get('docente')?.invalid && reconocimientoForm.get('docente')?.touched">
                                 El ID del docente es requerido.
                             </div>

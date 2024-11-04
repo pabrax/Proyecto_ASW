@@ -35,8 +35,8 @@ export class DocenteDepartamentoEditPageComponent {
     private formBuilder: FormBuilder
   ) {
     this.docenteDepartamentoForm = this.formBuilder.group({
-      docente_id: ['', Validators.required],
-      departamento_id: ['', Validators.required],
+      docente: ['', Validators.required],
+      departamento: ['', Validators.required],
       dedicacion: ['', Validators.required],
       modalidad: ['', Validators.required],
       fecha_ingreso: ['', Validators.required],
@@ -55,8 +55,8 @@ export class DocenteDepartamentoEditPageComponent {
         docenteDepartamento.fecha_salida = Formater.formatDate(docenteDepartamento.fecha_salida);
 
         this.docenteDepartamentoForm.patchValue({
-          docente_id: docenteDepartamento.docente_id,
-          departamento_id: docenteDepartamento.departamento_id,
+          docente: docenteDepartamento.docente,
+          departamento: docenteDepartamento.departamento,
           dedicacion: docenteDepartamento.dedicacion,
           modalidad: docenteDepartamento.modalidad,
           fecha_ingreso: docenteDepartamento.fecha_ingreso,
@@ -72,14 +72,13 @@ export class DocenteDepartamentoEditPageComponent {
   onSubmit(): void {
     if (this.docenteDepartamentoForm.valid) {
       const docenteDepartamentoActualizado: DocenteDepartamento = {
-        id: this.docenteDepartamentoId,
         ...this.docenteDepartamentoForm.value
       };
 
       this.docenteDepartamentoService.updateDocenteDepartamento(this.docenteDepartamentoId, docenteDepartamentoActualizado).subscribe(
         (docenteDepartamento: DocenteDepartamento) => {
           console.log('Docente departamento actualizado', docenteDepartamento);
-          this.router.navigate(['/docente-departamento']);
+          this.router.navigate(['/app/docente-departamento']);
         },
         (error) => {
           console.error('Error al actualizar el docente departamento', error);

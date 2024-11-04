@@ -25,7 +25,6 @@ export class EvaluacionDocenteCreatePageComponent {
   
     evaluacionDocenteForm: FormGroup;
     evaluacionDocente: EvaluacionDocente = {
-      id: 0,
       calificacion: 0,
       semestre: '',
       docente: 0

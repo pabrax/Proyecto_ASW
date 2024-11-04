@@ -23,7 +23,8 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
 export class EvaluacionDocenteEditPageComponent {
 
   evaluacionDocenteForm: FormGroup;
-  evaluacionDocenteId: number = 0;  // Para almacenar el ID del evaluacionDocente, inicializado a 0
+  docenteId: number = 0;  // Para almacenar el ID del evaluacionDocente, inicializado a 0
+  evaluacionDocenteId: number = 0;
 
   constructor(
     private evaluacionDocenteService: EvaluacionDocenteService,
@@ -33,6 +34,7 @@ export class EvaluacionDocenteEditPageComponent {
   ) {
     // Inicializar el formulario vacío
     this.evaluacionDocenteForm = this.formBuilder.group({
+      id: [''],
       calificacion: ['', Validators.required],
       semestre: ['', Validators.required],
       docente: ['', Validators.required]
@@ -41,6 +43,7 @@ export class EvaluacionDocenteEditPageComponent {
 
   ngOnInit(): void {
     // Obtener el ID del evaluacionDocente desde los parámetros de la ruta
+    this.docenteId = Number(this.route.snapshot.paramMap.get('docente'));
     this.evaluacionDocenteId = Number(this.route.snapshot.paramMap.get('id'));
 
     // Cargar los datos del evaluacionDocente usando el ID
@@ -48,6 +51,7 @@ export class EvaluacionDocenteEditPageComponent {
       (evaluacionDocente: EvaluacionDocente) => {
         // Rellenar el formulario con los datos del evaluacionDocente existente
         this.evaluacionDocenteForm.patchValue({
+          id: evaluacionDocente.id,
           calificacion: evaluacionDocente.calificacion,
           semestre: evaluacionDocente.semestre,
           docente: evaluacionDocente.docente
@@ -62,12 +66,7 @@ export class EvaluacionDocenteEditPageComponent {
   // Actualizar evaluacionDocente
   onSubmit(): void {
     if (this.evaluacionDocenteForm.valid) {
-      const evaluacionDocenteActualizada: EvaluacionDocente = {
-        id: this.evaluacionDocenteId,
-        calificacion: this.evaluacionDocenteForm.value.calificacion,
-        semestre: this.evaluacionDocenteForm.value.semestre,
-        docente: this.evaluacionDocenteForm.value.docente
-      };
+      const { id, ...evaluacionDocenteActualizada } = this.evaluacionDocenteForm.value;
 
       this.evaluacionDocenteService.updateEvaluacionDocente(this.evaluacionDocenteId, evaluacionDocenteActualizada).subscribe(
         (evaluacionDocente: EvaluacionDocente) => {

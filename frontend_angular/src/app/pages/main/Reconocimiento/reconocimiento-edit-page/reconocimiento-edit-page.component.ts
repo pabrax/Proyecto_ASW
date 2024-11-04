@@ -72,7 +72,6 @@ export class ReconocimientoEditPageComponent {
   onSubmit(): void {
     if (this.reconocimientoForm.valid) {
       const reconocimientoActualizado: Reconocimiento = {
-        id: this.reconocimientoId,
         ...this.reconocimientoForm.value
       };
 

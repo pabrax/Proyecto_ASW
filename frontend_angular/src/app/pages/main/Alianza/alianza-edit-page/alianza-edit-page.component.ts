@@ -59,7 +59,7 @@ export class AlianzaEditPageComponent {
 
         // Rellenar el formulario con los datos de la alianza existente
         this.alianzaForm.patchValue({
-          aliado_id: alianza.aliado,
+          aliado: alianza.aliado,
           departamento: alianza.departamento,
           fecha_inicio: alianza.fecha_inicio,
           fecha_fin: alianza.fecha_fin,
@@ -76,7 +76,6 @@ export class AlianzaEditPageComponent {
   onSubmit(): void {
     if (this.alianzaForm.valid) {
       const alianzaActualizada: Alianza = {
-        aliado_id: this.alianzaId,
         ...this.alianzaForm.value
       };
       this.alianzaService.updateAlianza(this.alianzaId, alianzaActualizada).subscribe(

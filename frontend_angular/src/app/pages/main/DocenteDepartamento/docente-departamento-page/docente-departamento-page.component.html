@@ -33,15 +33,15 @@
             </thead>
             <tbody>
               <tr *ngFor="let doc_dep of docenteDepartamentos">
-                <td>{{ doc_dep.docente_id }}</td>
-                <td>{{ doc_dep.departamento_id }}</td>
+                <td>{{ doc_dep.docente }}</td>
+                <td>{{ doc_dep.departamento }}</td>
                 <td>{{ doc_dep.dedicacion }}</td>
                 <td>{{ doc_dep.modalidad }}</td>
                 <td>{{ doc_dep.fecha_ingreso }}</td>
                 <td>{{ doc_dep.fecha_salida }}</td>
                 <td>
-                  <button (click)="editDocenteDepartamento(doc_dep.docente_id)" class="editButton">Editar</button>
-                  <button (click)="deleteDocenteDepartamento(doc_dep.docente_id)" class="deleteButton">Eliminar</button>
+                  <button (click)="editDocenteDepartamento(doc_dep.docente)" class="editButton">Editar</button>
+                  <button (click)="deleteDocenteDepartamento(doc_dep.docente)" class="deleteButton">Eliminar</button>
                 </td>
               </tr>
             </tbody>

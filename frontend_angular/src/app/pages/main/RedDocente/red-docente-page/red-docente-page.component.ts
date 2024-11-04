@@ -63,6 +63,6 @@ export class RedDocentePageComponent {
 
   // Método para navegar al formulario de edición de una beca
   editRedDocente(id: number): void {
-    this.router.navigate(['app/red-docente/create', id]);
+    this.router.navigate(['app/red-docente/edit', id]);
   }
 }

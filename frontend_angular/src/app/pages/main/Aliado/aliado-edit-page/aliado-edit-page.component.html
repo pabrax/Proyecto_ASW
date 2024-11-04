@@ -15,14 +15,10 @@
             <div class="form-container">
                 <form [formGroup]="aliadoForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
-                        <div class="campo">
-                            <label for="id">ID:</label>
-                            <input id="id" formControlName="id" type="number" readonly>
-                        </div>
 
                         <div class="campo">
                             <label for="nit">NIT:</label>
-                            <input id="nit" formControlName="nit" type="number">
+                            <input id="nit" formControlName="nit" type="number" readonly>
                             <div *ngIf="aliadoForm.get('nit')?.invalid && aliadoForm.get('nit')?.touched">
                                 El NIT es requerido.
                             </div>

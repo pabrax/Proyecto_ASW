@@ -5,8 +5,8 @@ import { map } from 'rxjs/operators'; // Add this line
 
 
 export interface DocenteDepartamento {
-  docente_id: number;
-  departamento_id: number;
+  docente: number;
+  departamento: number;
   dedicacion: string;
   modalidad: string;
   fecha_ingreso: string;

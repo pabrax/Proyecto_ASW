@@ -24,9 +24,9 @@
                         </div>
 
                         <div class="campo">
-                            <label for="area_conocimiento_id">ID del Área de Conocimiento:</label>
-                            <input id="area_conocimiento_id" formControlName="area_conocimiento_id" type="number">
-                            <div *ngIf="estudioAcForm.get('area_conocimiento_id')?.invalid && estudioAcForm.get('area_conocimiento_id')?.touched">
+                            <label for="area_conocimiento">ID del Área de Conocimiento:</label>
+                            <input id="area_conocimiento" formControlName="area_conocimiento" type="number">
+                            <div *ngIf="estudioAcForm.get('area_conocimiento')?.invalid && estudioAcForm.get('area_conocimiento')?.touched">
                                 El ID del área de conocimiento es requerido.
                             </div>
                         </div>

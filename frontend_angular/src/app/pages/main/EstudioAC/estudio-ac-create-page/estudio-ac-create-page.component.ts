@@ -26,7 +26,7 @@ export class EstudioAcCreatePageComponent {
   estudioAcForm: FormGroup;
   estudioAc: EstudioAc = {
     estudio: 0,
-    area_conocimiento_id: 0
+    area_conocimiento: 0
   };
 
   constructor(
@@ -35,8 +35,8 @@ export class EstudioAcCreatePageComponent {
     private formBuilder: FormBuilder
   ) {
     this.estudioAcForm = this.formBuilder.group({
-      estudio_id: ['', Validators.required],
-      area_conocimiento_id: ['', Validators.required]
+      estudio: ['', Validators.required],
+      area_conocimiento: ['', Validators.required]
     });
   }
   createEstudioAc(): void {
@@ -55,7 +55,7 @@ export class EstudioAcCreatePageComponent {
   onSubmit(): void {
     if (this.estudioAcForm.valid) {
       this.estudioAc.estudio = this.estudioAcForm.value.estudio;
-      this.estudioAc.area_conocimiento_id = this.estudioAcForm.value.area_conocimiento_id;
+      this.estudioAc.area_conocimiento = this.estudioAcForm.value.area_conocimiento;
       this.createEstudioAc();
     }
   }

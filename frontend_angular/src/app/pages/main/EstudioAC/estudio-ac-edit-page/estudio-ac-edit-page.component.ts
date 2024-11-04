@@ -31,8 +31,8 @@ export class EstudioAcEditPageComponent {
     private formBuilder: FormBuilder
   ) {
     this.estudioAcForm = this.formBuilder.group({
-      estudio_id: ['', Validators.required],
-      area_conocimiento_id: ['', Validators.required]
+      estudio: ['', Validators.required],
+      area_conocimiento: ['', Validators.required]
     });
   }
 
@@ -42,8 +42,8 @@ export class EstudioAcEditPageComponent {
     this.estudioAcService.getEstudioById(this.estudioAcId).subscribe(
       (estudioAc: EstudioAc) => {
         this.estudioAcForm.patchValue({
-          estudio_id: estudioAc.estudio,
-          area_conocimiento_id: estudioAc.area_conocimiento_id
+          estudio: estudioAc.estudio,
+          area_conocimiento: estudioAc.area_conocimiento
         });
       },
       (error) => {
@@ -55,14 +55,13 @@ export class EstudioAcEditPageComponent {
   onSubmit(): void {
     if (this.estudioAcForm.valid) {
       const estudioAcActualizado: EstudioAc = {
-        estudio_id: this.estudioAcId,
         ...this.estudioAcForm.value
       };
 
       this.estudioAcService.updateEstudio(this.estudioAcId, estudioAcActualizado).subscribe(
         (estudioAc: EstudioAc) => {
           console.log('Estudio académico actualizado', estudioAc);
-          this.router.navigate(['/estudio-ac']);
+          this.router.navigate(['/app/estudio-ac']);
         },
         (error) => {
           console.error('Error al actualizar el estudio académico', error);

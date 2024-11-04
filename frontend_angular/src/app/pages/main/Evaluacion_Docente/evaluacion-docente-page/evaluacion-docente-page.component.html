@@ -23,23 +23,23 @@
           <thead>
             <tr>
               <th>ID</th>
+              <th>docente</th>
               <th>calificacion</th>
               <th>Semestre</th>
-              <th>docente</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let evaluacionDocente of evaluacionesDocente">
               <td>{{ evaluacionDocente.id }}</td>
+              <td>{{ evaluacionDocente.docente }}</td>
               <td>{{ evaluacionDocente.calificacion }}</td>
               <td>{{ evaluacionDocente.semestre }}</td>
-              <td>{{ evaluacionDocente.docente }}</td>
               <td>
-                <button (click)="editEvaluacionDocente(evaluacionDocente.id)" class="editButton">
+                <button (click)="editEvaluacionDocente(evaluacionDocente.id!)" class="editButton">
                   Editar
                 </button>
-                <button (click)="deleteEvaluacionDocente(evaluacionDocente.id)" class="deleteButton">
+                <button (click)="deleteEvaluacionDocente(evaluacionDocente.id!)" class="deleteButton">
                   Eliminar
                 </button>
               </td>

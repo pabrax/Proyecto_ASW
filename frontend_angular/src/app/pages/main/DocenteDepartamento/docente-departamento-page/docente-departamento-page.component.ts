@@ -51,7 +51,7 @@ export class DocenteDepartamentoPageComponent {
   deleteDocenteDepartamento(docente_id: number): void {
     this.docenteDepartamentoService.deleteDocenteDepartamento(docente_id).subscribe(
       () => {
-        this.docenteDepartamentos = this.docenteDepartamentos.filter(docenteDepartamento => docenteDepartamento.docente_id !== docente_id);
+        this.docenteDepartamentos = this.docenteDepartamentos.filter(docenteDepartamento => docenteDepartamento.docente !== docente_id);
       },
       (error) => {
         console.error('Error al eliminar el docenteDepartamento', error);

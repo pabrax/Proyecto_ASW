@@ -32,6 +32,7 @@ export class RedEditPageComponent {
   ) {
     // Inicializar el formulario vacío
     this.redForm = this.formBuilder.group({
+      idr: ['', Validators.required],
       nombre: ['', Validators.required],
       url: ['', Validators.required],
       pais: ['', Validators.required]
@@ -47,6 +48,7 @@ export class RedEditPageComponent {
       (red: Red) => {
         // Rellenar el formulario con los datos de la red existente
         this.redForm.patchValue({
+          idr: red.idr,
           nombre: red.nombre,
           url: red.url,
           pais: red.pais

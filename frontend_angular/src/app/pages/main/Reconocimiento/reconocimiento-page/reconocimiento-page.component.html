@@ -26,6 +26,7 @@
                             <th>tipo</th>
                             <th>fecha</th>
                             <th>institucion</th>
+                            <th>nombre</th>
                             <th>ambito</th>
                             <th>docente</th>
                             <th>Acciones</th>
@@ -42,8 +43,8 @@
                             <td>{{ reconocimiento.ambito }}</td>
                             <td>{{ reconocimiento.docente }}</td>
                             <td>
-                                <button (click)="editReconocimiento(reconocimiento.id)" class="editButton">Editar</button>
-                                <button (click)="deleteReconocimiento(reconocimiento.id)" class="deleteButton">Eliminar</button>
+                                <button (click)="editReconocimiento(reconocimiento.id!)" class="editButton">Editar</button>
+                                <button (click)="deleteReconocimiento(reconocimiento.id!)" class="deleteButton">Eliminar</button>
                             </td>
                         </tr>
                     </tbody>

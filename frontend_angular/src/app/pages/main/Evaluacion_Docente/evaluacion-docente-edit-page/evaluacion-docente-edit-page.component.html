@@ -15,10 +15,13 @@
             <div class="form-container">
                 <form [formGroup]="evaluacionDocenteForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
-
+                        
                         <div class="campo">
-                            <label for="id">ID:</label>
-                            <input id="id" formControlName="id" type="number" readonly>
+                            <label for="docente">ID del Docente:</label>
+                            <input id="docente" formControlName="docente" type="number" readonly>
+                            <div *ngIf="evaluacionDocenteForm.get('docente')?.invalid && evaluacionDocenteForm.get('docente')?.touched">
+                                El ID del docente es requerido.
+                            </div>
                         </div>
 
                         <div class="campo">
@@ -37,13 +40,6 @@
                             </div>
                         </div>
 
-                        <div class="campo">
-                            <label for="docente">ID del Docente:</label>
-                            <input id="docente" formControlName="docente" type="number">
-                            <div *ngIf="evaluacionDocenteForm.get('docente')?.invalid && evaluacionDocenteForm.get('docente')?.touched">
-                                El ID del docente es requerido.
-                            </div>
-                        </div>
                     </div>
 
                     <div class="button-container">

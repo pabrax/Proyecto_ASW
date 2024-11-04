@@ -24,8 +24,8 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
 export class DocenteDepartamentoCreatePageComponent {
   docenteDepartamentoForm: FormGroup;
   docenteDepartamento: DocenteDepartamento = {
-    docente_id: 0,
-    departamento_id: 0,
+    docente: 0,
+    departamento: 0,
     dedicacion: '',
     modalidad: '',
     fecha_ingreso: '',
@@ -38,8 +38,8 @@ export class DocenteDepartamentoCreatePageComponent {
     private formBuilder: FormBuilder
   ) {
     this.docenteDepartamentoForm = this.formBuilder.group({
-      docente_id: ['', Validators.required],
-      departamento_id: ['', Validators.required],
+      docente: ['', Validators.required],
+      departamento: ['', Validators.required],
       dedicacion: ['', Validators.required],
       modalidad: ['', Validators.required],
       fecha_ingreso: ['', Validators.required],
@@ -51,6 +51,7 @@ export class DocenteDepartamentoCreatePageComponent {
     this.docenteDepartamentoService.createDocenteDepartamento(this.docenteDepartamento).subscribe(
       (data) => {
         console.log('Docente Departamento creado', data);
+        this.router.navigate(['/app/docente-departamento']);
       },
       (error) => {
         console.error('Error al crear el Docente Departamento', error);
@@ -61,14 +62,13 @@ export class DocenteDepartamentoCreatePageComponent {
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.docenteDepartamentoForm.valid) {
-      this.docenteDepartamentoService.createDocenteDepartamento(this.docenteDepartamento).subscribe(
-        (data) => {
-          console.log('Docente Departamento creado', data);
-        },
-        (error) => {
-          console.error('Error al crear el Docente Departamento', error);
-        }
-      );
+      this.docenteDepartamento.docente = this.docenteDepartamentoForm.value.docente;
+      this.docenteDepartamento.departamento = this.docenteDepartamentoForm.value.departamento;
+      this.docenteDepartamento.dedicacion = this.docenteDepartamentoForm.value.dedicacion;
+      this.docenteDepartamento.modalidad = this.docenteDepartamentoForm.value.modalidad;
+      this.docenteDepartamento.fecha_ingreso = this.docenteDepartamentoForm.value.fecha_ingreso;
+      this.docenteDepartamento.fecha_salida = this.docenteDepartamentoForm.value.fecha_salida;
+      this.createDocenteDepartamento();
     }
   }
 }

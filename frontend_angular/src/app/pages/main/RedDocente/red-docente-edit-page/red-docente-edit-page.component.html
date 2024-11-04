@@ -13,50 +13,58 @@
             </div>
   
             <div class="form-container">
-                <h2>Crear Nueva Red</h2>
+                <h2>editar Red</h2>
 
                 <form [formGroup]="redDocenteForm" (ngSubmit)="onSubmit()" class="formContent">
 
-                    <div class="campo">
-                        <label for="red">Red:</label>
-                        <input id="red" formControlName="red" type="number">
-                        <div *ngIf="redDocenteForm.get('red')?.invalid && redDocenteForm.get('red')?.touched">
-                            El número de red es requerido.
+                    <div class="main-form-content">
+
+                        <div class="campo">
+                            <label for="red">Red:</label>
+                            <input id="red" formControlName="red" type="number">
+                            <div *ngIf="redDocenteForm.get('red')?.invalid && redDocenteForm.get('red')?.touched">
+                                El número de red es requerido.
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="docente">Docente:</label>
+                            <input id="docente" formControlName="docente" type="number">
+                            <div *ngIf="redDocenteForm.get('docente')?.invalid && redDocenteForm.get('docente')?.touched">
+                                El número de docente es requerido.
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="fecha_inicio">Fecha de Inicio:</label>
+                            <input id="fecha_inicio" formControlName="fecha_inicio" type="date">
+                            <div *ngIf="redDocenteForm.get('fecha_inicio')?.invalid && redDocenteForm.get('fecha_inicio')?.touched">
+                                La fecha de inicio es requerida.
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="fecha_fin">Fecha de Fin:</label>
+                            <input id="fecha_fin" formControlName="fecha_fin" type="date">
+                            <div *ngIf="redDocenteForm.get('fecha_fin')?.invalid && redDocenteForm.get('fecha_fin')?.touched">
+                                La fecha de fin es requerida.
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="act_destacadas">Actividades Destacadas:</label>
+                            <input id="act_destacadas" formControlName="act_destacadas" type="text">
+                            <div *ngIf="redDocenteForm.get('act_destacadas')?.invalid && redDocenteForm.get('act_destacadas')?.touched">
+                                Las actividades destacadas son requeridas.
+                            </div>
                         </div>
                     </div>
 
-                    <div class="campo">
-                        <label for="docente">Docente:</label>
-                        <input id="docente" formControlName="docente" type="number">
-                        <div *ngIf="redDocenteForm.get('docente')?.invalid && redDocenteForm.get('docente')?.touched">
-                            El número de docente es requerido.
-                        </div>
-                    </div>
 
-                    <div class="campo">
-                        <label for="fecha_inicio">Fecha de Inicio:</label>
-                        <input id="fecha_inicio" formControlName="fecha_inicio" type="date">
-                        <div *ngIf="redDocenteForm.get('fecha_inicio')?.invalid && redDocenteForm.get('fecha_inicio')?.touched">
-                            La fecha de inicio es requerida.
-                        </div>
-                    </div>
+                    <div class="button-container">
+                        <button type="submit" [disabled]="redDocenteForm.invalid" class="save-button">guardar cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">cancelar</button>
 
-                    <div class="campo">
-                        <label for="fecha_fin">Fecha de Fin:</label>
-                        <input id="fecha_fin" formControlName="fecha_fin" type="date">
-                        <div *ngIf="redDocenteForm.get('fecha_fin')?.invalid && redDocenteForm.get('fecha_fin')?.touched">
-                            La fecha de fin es requerida.
-                        </div>
                     </div>
-
-                    <div class="campo">
-                        <label for="act_destacadas">Actividades Destacadas:</label>
-                        <input id="act_destacadas" formControlName="act_destacadas" type="text">
-                        <div *ngIf="redDocenteForm.get('act_destacadas')?.invalid && redDocenteForm.get('act_destacadas')?.touched">
-                            Las actividades destacadas son requeridas.
-                        </div>
-                    </div>
-
-                    <button type="submit" [disabled]="redDocenteForm.invalid">Crear Red</button>
                 </form>
             </div>

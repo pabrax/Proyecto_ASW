@@ -57,14 +57,25 @@ export class RedDocenteCreatePageComponent {
   // Método para enviar los datos del formulario
   onSubmit(): void {
     if (this.redDocenteForm.valid) {
-      this.redDocenteService.createRedDocente(this.redDocente).subscribe(
-        (data) => {
+      
+      const redDocente: RedDocente = {
+        red: this.redDocenteForm.value.red,
+        docente: this.redDocenteForm.value.docente,
+        fecha_inicio: this.redDocenteForm.value.fecha_inicio,
+        fecha_fin: this.redDocenteForm.value.fecha_fin,
+        act_destacadas: this.redDocenteForm.value.act_destacadas
+      };
+
+      this.redDocenteService.createRedDocente(redDocente).subscribe({
+        next: (data) => {
           console.log('Red Docente creado', data);
+          this.router.navigate(['/app/red-docente']);
         },
-        (error) => {
+        error: (error) => {
           console.error('Error al crear el Red Docente', error);
         }
-      );
+      });
+
     }
   }
 }

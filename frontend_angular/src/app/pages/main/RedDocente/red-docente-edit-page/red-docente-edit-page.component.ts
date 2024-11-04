@@ -72,14 +72,13 @@ export class RedDocenteEditPageComponent {
   onSubmit(): void {
     if (this.redDocenteForm.valid) {
       const redDocenteActualizado: RedDocente = {
-        docente_id: this.redDocenteId,
         ...this.redDocenteForm.value
       };
 
       this.redDocenteService.updateRedDocente(this.redDocenteId, redDocenteActualizado).subscribe(
         (redDocente: RedDocente) => {
           console.log('Red docente actualizado', redDocente);
-          this.router.navigate(['/red-docente']);
+          this.router.navigate(['/app/red-docente']);
         },
         (error) => {
           console.error('Error al actualizar el red docente', error);

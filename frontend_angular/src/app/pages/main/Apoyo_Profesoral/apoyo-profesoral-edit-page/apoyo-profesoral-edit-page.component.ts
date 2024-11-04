@@ -64,7 +64,6 @@ export class ApoyoProfesoralEditPageComponent {
   onSubmit(): void {
     if (this.apoyoProfesoralForm.valid) {
       const apoyoProfesoralActualizado: ApoyoProfesoral = {
-        id: this.apoyoProfesoralId,
         ...this.apoyoProfesoralForm.value
       };
 

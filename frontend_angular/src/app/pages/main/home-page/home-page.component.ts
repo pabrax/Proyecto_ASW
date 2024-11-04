@@ -7,7 +7,7 @@ import { AplicationHeaderComponent } from "../../../components/aplication-header
   standalone: true,
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, AplicationHeaderComponent],
   templateUrl: './home-page.component.html',
-  styleUrl: '../../styles/view-page.css'
+  styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
 

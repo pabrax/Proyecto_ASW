@@ -26,7 +26,6 @@ export class ReconocimientoCreatePageComponent {
   reconocimientoForm: FormGroup;
 
   reconocimiento: Reconocimiento = {
-    id: 0,
     tipo: '',
     fecha: '',
     institucion: '',

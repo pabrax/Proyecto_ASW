@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'; // Add this line
 
 export interface Reconocimiento {
-  id: number;
+  id?: number;
   tipo: string;
   fecha: string;
   institucion: string;

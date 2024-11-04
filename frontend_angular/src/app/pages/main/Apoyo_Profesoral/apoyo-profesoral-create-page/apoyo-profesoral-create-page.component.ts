@@ -39,7 +39,7 @@ export class ApoyoProfesoralCreatePageComponent {
   ) {
     this.apoyoProfesoralForm = this.formBuilder.group({
       estudios: ['', Validators.required],
-      con_apoyo: ['', Validators.required],
+      con_apoyo: [''],
       institucion: ['', Validators.required],
       tipo: ['', Validators.required]
     });

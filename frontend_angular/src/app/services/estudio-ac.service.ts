@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators'; // Add this line
 
 export interface EstudioAc {
   estudio: number;
-  area_conocimiento_id: number;
+  area_conocimiento: number;
 }
 
 @Injectable({

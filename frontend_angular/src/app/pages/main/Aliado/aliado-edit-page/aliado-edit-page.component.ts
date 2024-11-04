@@ -68,7 +68,6 @@ export class AliadoEditPageComponent {
   onSubmit(): void {
     if (this.aliadoForm.valid) {
       const aliadoActualizado: Aliado = {
-        id: this.aliadoId,
         ...this.aliadoForm.value
       };
       this.aliadoService.updateAliado(this.aliadoId, aliadoActualizado).subscribe(
