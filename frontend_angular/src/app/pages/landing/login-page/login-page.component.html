@@ -1,15 +1,17 @@
 <div class="container">
     <div class="form-container">
         <h1>Login</h1>
-        <form class="formulario" action="" method="post">
+        <form [formGroup]="loginForm" class="formulario" (ngSubmit)="onSubmit()">
             <div class="form-item">
-                <label for="username">Username</label>
-                <input id="username" name="username" type="text">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email"
+                formControlName="email">
             </div>
     
             <div class="form-item">
-                <label for="password">password</label>
-                <input id="password" name="password" type="password">
+                <label for="contrasena">contrasena</label>
+                <input id="contrasena" name="contrasena" type="password"
+                formControlName="contrasena">
             </div>
     
             <button type="submit">Iniciar sesion</button>

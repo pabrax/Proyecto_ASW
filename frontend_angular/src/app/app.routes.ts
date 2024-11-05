@@ -22,6 +22,9 @@ import { EstudiosRealizadosRoutes } from './routes/estudios-realizados.routes';
 import { EstudioAcRoutes } from './routes/estudio-ac.routes';
 import { DocenteRoutes } from './routes/docente.routes';
 
+// auth guard
+import { authGuard } from './services/auth.guard';
+
 
 export const routes: Routes = [
 
@@ -29,7 +32,7 @@ export const routes: Routes = [
     ...landingRoutes,
     
     // private routes
-    {path: 'app', component: HomePageComponent},
+    {path: 'app', component: HomePageComponent, canActivate: [authGuard]},
     
     // aliado routes
     ...AliadoRoutes,

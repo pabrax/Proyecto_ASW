@@ -12,7 +12,7 @@ export class AuthService {
   login(email: string, contrasena: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = JSON.stringify({ email, contrasena });
-    return this.http.post<any>(`${this.apiUrl}/login`, body, { headers, responseType: 'text' as 'json' });
+    return this.http.post<any>(`${this.apiUrl}/login`, body, { headers });
   }
 
   logout() {

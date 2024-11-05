@@ -1,1 +1,29 @@
-<p>page-not-found works!</p>
+
+<div class="not-found-container">
+    <h1>404</h1>
+    <p>Oops! Esta pagina no existe, regresa al inicio</p>
+    <a routerLink="/" class="home-link">regresar</a>
+</div>
+
+<style>
+    .not-found-container {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .not-found-container h1 {
+        font-size: 100px;
+        margin-bottom: 20px;
+    }
+    .not-found-container p {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .home-link {
+        font-size: 18px;
+        color: #007bff;
+        text-decoration: none;
+    }
+    .home-link:hover {
+        text-decoration: underline;
+    }
+</style>
