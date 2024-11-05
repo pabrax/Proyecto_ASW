@@ -24,7 +24,7 @@ namespace ProyectoBackend.Controllers
         public IActionResult Login([FromBody] LoginModel login)
         {
             _controlConexion.AbrirBd();
-            string comandoSQL = "SELECT COUNT(*) FROM usuario WHERE email = @Email AND contrasena = @Contrasena";
+            string comandoSQL = "SELECT COUNT(*) FROM usuarios WHERE email = @Email AND contrasena = @Contrasena";
             var parametros = new[]
             {
                 new SqlParameter("@Email", login.Email),

@@ -792,7 +792,7 @@ GO
 -- Tabla intereses_futuros
 CREATE TABLE intereses_futuros (
   docente INT NOT NULL,
-  termino_clave NVARCHAR(30) NOT NULL,
+  termino_clave NVARCHAR(100) NOT NULL,
   PRIMARY KEY (docente),
   CONSTRAINT fk_intereses_futuros_termino_clave FOREIGN KEY (docente)
     REFERENCES docente (cedula)
@@ -817,7 +817,7 @@ insert into rol values(2, 'usuario');
 
 create table usuarios(
   email nvarchar(50) not null primary key,
-  contrasena nvarchar(50) not null,
+  contrasena nvarchar(100) not null,
   rol int not null default 2,
 );
 
