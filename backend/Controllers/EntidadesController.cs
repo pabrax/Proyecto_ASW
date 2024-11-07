@@ -30,7 +30,7 @@ namespace ProyectoBackend.Controllers
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        [AllowAnonymous] // Permite el acceso anónimo a este método.
+      //  [AllowAnonymous] // Permite el acceso anónimo a este método.
         [HttpGet] // Define una ruta HTTP GET para este método.
         public IActionResult Listar(string nombreProyecto, string nombreTabla) // Método que lista todas las filas de una tabla dada.
         {
@@ -61,7 +61,7 @@ namespace ProyectoBackend.Controllers
             }
         }
 
-        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        //[AllowAnonymous] // Permite el acceso anónimo a este método.
         [HttpGet("{nombreClave}/{valor}")] // Define una ruta HTTP GET con parámetros adicionales.
         public IActionResult ObtenerPorClave(string nombreProyecto, string nombreTabla, string nombreClave, string valor) // Método que obtiene una fila específica basada en una clave.
         {
@@ -250,7 +250,7 @@ namespace ProyectoBackend.Controllers
             }
         }
 
-        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        //[AllowAnonymous] // Permite el acceso anónimo a este método.
         [HttpPost] // Define una ruta HTTP POST para este método.
         public IActionResult Crear(string nombreProyecto, string nombreTabla, [FromBody] Dictionary<string, object?> datosEntidad)  // Crea una nueva fila en la tabla especificada.
         {
@@ -303,7 +303,7 @@ namespace ProyectoBackend.Controllers
         }
 
 
-        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        //[AllowAnonymous] // Permite el acceso anónimo a este método.
         [HttpPut("{nombreClave}/{valorClave}")] // Define una ruta HTTP PUT con parámetros adicionales.
         public IActionResult Actualizar(string nombreProyecto, string nombreTabla, string nombreClave, string valorClave, [FromBody] Dictionary<string, object?> datosEntidad) // Actualiza una fila en la tabla basada en una clave.
         {
@@ -363,7 +363,7 @@ namespace ProyectoBackend.Controllers
         }
 
 
-        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        //[AllowAnonymous] // Permite el acceso anónimo a este método.
         [HttpDelete("{nombreClave}/{valorClave}")] // Define una ruta HTTP DELETE con parámetros adicionales.
         public IActionResult Eliminar(string nombreProyecto, string nombreTabla, string nombreClave, string valorClave) // Elimina una fila de la tabla basada en una clave.
         {
@@ -389,7 +389,7 @@ namespace ProyectoBackend.Controllers
         }
 
 
-        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        //[AllowAnonymous] // Permite el acceso anónimo a este método.
         [HttpGet("/")] // Define una ruta HTTP GET en la raíz de la API.
         public IActionResult ObtenerRaiz() // Método que retorna un mensaje indicando que la API está en funcionamiento.
         {
@@ -397,7 +397,7 @@ namespace ProyectoBackend.Controllers
         }
 
 
-        [AllowAnonymous] // Permite el acceso anónimo a este método.
+        //[AllowAnonymous] // Permite el acceso anónimo a este método.
         [HttpPost("verificar-contrasena")] // Define una ruta HTTP POST para verificar contraseñas.
         public IActionResult VerificarContrasena(string nombreProyecto, string nombreTabla, [FromBody] Dictionary<string, string> datos) // Verifica si la contraseña proporcionada coincide con la almacenada.
         {
@@ -458,7 +458,7 @@ namespace ProyectoBackend.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("ejecutar-consulta-parametrizada")]
         public IActionResult EjecutarConsultaParametrizada([FromBody] JsonElement cuerpoSolicitud)
         {
@@ -528,7 +528,7 @@ namespace ProyectoBackend.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("ejecutar-procedimiento/{procedureName}")]
         public IActionResult EjecutarProcedimientoAlmacenado(string procedureName, [FromBody] JsonElement body)
         {
