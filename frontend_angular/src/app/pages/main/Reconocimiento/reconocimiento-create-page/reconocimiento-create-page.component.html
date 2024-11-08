@@ -60,10 +60,12 @@
             </div>
             
             <div class="campo">
-              <label for="docente">ID del Docente:</label>
-              <input id="docente" formControlName="docente" type="number">
+              <label for="docente">Docente:</label>
+              <select id="docente" formControlName="docente">
+              <option *ngFor="let docente of docentes" [value]="docente.cedula">{{ docente.nombres }}</option>
+              </select>
               <div *ngIf="reconocimientoForm.get('docente')?.invalid && reconocimientoForm.get('docente')?.touched">
-                El ID del docente es requerido.
+              El docente es requerido.
               </div>
             </div>
           </div>

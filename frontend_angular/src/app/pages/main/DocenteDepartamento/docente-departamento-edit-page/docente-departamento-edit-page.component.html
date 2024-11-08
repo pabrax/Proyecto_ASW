@@ -16,9 +16,8 @@
                 <form [formGroup]="docenteDepartamentoForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
                         <div class="campo">
-                            <label for="docente">ID del Docente:</label>
-                            <input id="docente" formControlName="docente" type="number"
-                            readonly>
+                            <label for="docente">Docente:</label>
+                            <input id="docente" formControlName="docente" type="text" readonly [value]="docenteId">
                             <div *ngIf="docenteDepartamentoForm.get('docente')?.invalid && docenteDepartamentoForm.get('docente')?.touched">
                                 El ID del docente es requerido.
                             </div>

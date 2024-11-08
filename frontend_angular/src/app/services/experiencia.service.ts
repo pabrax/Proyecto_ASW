@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators'; // Add this line
 
 
 export interface Experiencia {
-  id: number;
+  id?: number;
   nombre_cargo: string;
   institucion: string;
   tipo: string;

@@ -18,8 +18,8 @@
 
 
                         <div class="campo">
-                            <label for="estudios">Número de Estudios:</label>
-                            <input id="estudios" formControlName="estudios" type="number">
+                            <label for="estudios">Estudios:</label>
+                            <input id="estudios" formControlName="estudios" type="text" readonly [value]="estudioRealizadoId">
                             <div *ngIf="becaForm.get('estudios')?.invalid && becaForm.get('estudios')?.touched">
                                 El número de estudios es requerido.
                             </div>

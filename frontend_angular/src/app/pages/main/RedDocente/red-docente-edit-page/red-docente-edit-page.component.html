@@ -21,7 +21,7 @@
 
                         <div class="campo">
                             <label for="red">Red:</label>
-                            <input id="red" formControlName="red" type="number">
+                            <input id="red" formControlName="red" type="text" readonly [value]="redId">
                             <div *ngIf="redDocenteForm.get('red')?.invalid && redDocenteForm.get('red')?.touched">
                                 El número de red es requerido.
                             </div>
@@ -29,7 +29,7 @@
     
                         <div class="campo">
                             <label for="docente">Docente:</label>
-                            <input id="docente" formControlName="docente" type="number">
+                            <input id="docente" formControlName="docente" type="text" readonly [value]="docenteId">
                             <div *ngIf="redDocenteForm.get('docente')?.invalid && redDocenteForm.get('docente')?.touched">
                                 El número de docente es requerido.
                             </div>

@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 // service
 import { BecaService, Beca } from '../../../../services/beca.service';
+import { EstudiosRealizados, EstudiosRealizadosService } from '../../../../services/estudios-realizados.service';
+
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -18,7 +20,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './beca-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [BecaService]
+  providers: [BecaService, EstudiosRealizadosService]
 })
 export class BecaCreatePageComponent {
 
@@ -31,8 +33,11 @@ export class BecaCreatePageComponent {
     fecha_fin: ''
   };
 
+  estudiosRealizados: EstudiosRealizados[] = [];
+
   constructor(
     private becaService: BecaService,
+    private estudiosRealizadosService: EstudiosRealizadosService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -43,6 +48,17 @@ export class BecaCreatePageComponent {
       fecha_inicio: ['', Validators.required],
       fecha_fin: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.estudiosRealizadosService.getEstudiosRealizados().subscribe(
+      (data) => {
+        this.estudiosRealizados = data;
+      },
+      (error) => {
+        console.error('Error al cargar los estudios realizados', error);
+      }
+    );
   }
 
   createBeca(): void {

@@ -21,9 +21,11 @@
             
             <div class="campo">
               <label for="aliado">ID del Aliado:</label>
-              <input id="aliado" formControlName="aliado" type="number">
+              <select id="aliado" formControlName="aliado">
+              <option *ngFor="let aliado of aliados" [value]="aliado.nit">{{ aliado.nombre_contacto }}</option>
+              </select>
               <div *ngIf="alianzaForm.get('aliado')?.invalid && alianzaForm.get('aliado')?.touched">
-                El ID del aliado es requerido.
+              El ID del aliado es requerido.
               </div>
             </div>
             
@@ -53,9 +55,11 @@
             
             <div class="campo">
               <label for="docente">ID del Docente:</label>
-              <input id="docente" formControlName="docente" type="number">
+              <select id="docente" formControlName="docente">
+              <option *ngFor="let docente of docentes" [value]="docente.cedula">{{ docente.nombres }}</option>
+              </select>
               <div *ngIf="alianzaForm.get('docente')?.invalid && alianzaForm.get('docente')?.touched">
-                El ID del docente es requerido.
+              El ID del docente es requerido.
               </div>
             </div>
           </div>

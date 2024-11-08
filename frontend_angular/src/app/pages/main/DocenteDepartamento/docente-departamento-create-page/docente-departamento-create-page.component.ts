@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 // service
 
 import { DocenteDepartamento, DocenteDepartamentoService } from '../../../../services/docente-departamento.service';
+import { DocenteService, Docente } from '../../../../services/docente.service';
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -19,7 +20,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './docente-departamento-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [DocenteDepartamentoService]
+  providers: [DocenteDepartamentoService, DocenteService]
 })
 export class DocenteDepartamentoCreatePageComponent {
   docenteDepartamentoForm: FormGroup;
@@ -32,8 +33,11 @@ export class DocenteDepartamentoCreatePageComponent {
     fecha_salida: ''
   };
 
+  docentes: Docente[] = [];
+
   constructor(
     private docenteDepartamentoService: DocenteDepartamentoService,
+    private docenteService: DocenteService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -45,6 +49,17 @@ export class DocenteDepartamentoCreatePageComponent {
       fecha_ingreso: ['', Validators.required],
       fecha_salida: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.docenteService.getDocentes().subscribe(
+      (data) => {
+        this.docentes = data;
+      },
+      (error) => {
+        console.error('Error al cargar los docentes', error);
+      }
+    );
   }
 
   createDocenteDepartamento(): void {

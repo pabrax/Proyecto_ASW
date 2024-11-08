@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 // service
 
 import { InteresesFuturos, InteresesFuturosService } from '../../../../services/intereses-futuros.service';
+import { DocenteService, Docente } from '../../../../services/docente.service';
+
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -18,7 +20,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [ AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './intereses-futuros-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [InteresesFuturosService]
+  providers: [InteresesFuturosService, DocenteService]
 })
 export class InteresesFuturosCreatePageComponent {
   interesesFuturosForm: FormGroup;
@@ -27,8 +29,11 @@ export class InteresesFuturosCreatePageComponent {
     termino_clave: ''
   };
 
+  docentes: Docente[] = [];
+
   constructor(
     private interesesFuturosService: InteresesFuturosService,
+    private docenteService: DocenteService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -36,6 +41,16 @@ export class InteresesFuturosCreatePageComponent {
       docente: ['', Validators.required],
       termino_clave: ['', Validators.required]
     });
+  }
+  ngOnInit(): void {
+    this.docenteService.getDocentes().subscribe(
+      (data) => {
+        this.docentes = data;
+      },
+      (error) => {
+        console.error('Error al cargar los docentes', error);
+      }
+    );
   }
 
   createInteresesFuturos(): void {

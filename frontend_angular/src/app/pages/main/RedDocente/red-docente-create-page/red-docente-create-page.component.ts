@@ -5,9 +5,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClientModule } from '@angular/common/http';
 
 
-// service
+// services
 
 import { RedDocente, RedDocenteService } from '../../../../services/red-docente.service';
+import { RedService, Red } from '../../../../services/red.service';
+import { DocenteService, Docente } from '../../../../services/docente.service';
+
+
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
 import { AplicationHeaderComponent } from '../../../../components/aplication-header/aplication-header.component';
@@ -17,7 +21,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [ AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './red-docente-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [RedDocenteService]
+  providers: [RedDocenteService, RedService, DocenteService]
 })
 export class RedDocenteCreatePageComponent {
   redDocenteForm: FormGroup;
@@ -29,8 +33,13 @@ export class RedDocenteCreatePageComponent {
     act_destacadas: ''
   };
 
+  redes: Red[] = [];
+  docentes: Docente[] = [];
+
   constructor(
     private redDocenteService: RedDocenteService,
+    private redService: RedService,
+    private docenteService: DocenteService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -41,6 +50,27 @@ export class RedDocenteCreatePageComponent {
       fecha_fin: ['', Validators.required],
       act_destacadas: ['', Validators.required]
     });
+  }
+
+  // inicia el componente y carga los servicios de Red y Docente
+  ngOnInit(): void {
+    this.redService.getRedes().subscribe(
+      (data) => {
+        this.redes = data;
+      },
+      (error) => {
+        console.error('Error al cargar las Redes', error);
+      }
+    );
+
+    this.docenteService.getDocentes().subscribe(
+      (data) => {
+        this.docentes = data;
+      },
+      (error) => {
+        console.error('Error al cargar los Docentes', error);
+      }
+    );
   }
 
   createRedDocente(): void {

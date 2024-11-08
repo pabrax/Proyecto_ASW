@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 // service
 
 import { EstudiosRealizados, EstudiosRealizadosService } from '../../../../services/estudios-realizados.service';
+import { DocenteService, Docente } from '../../../../services/docente.service';
+
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
 import { AplicationHeaderComponent } from '../../../../components/aplication-header/aplication-header.component';
@@ -18,7 +20,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [ AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './estudios-realizados-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [EstudiosRealizadosService]
+  providers: [EstudiosRealizadosService, DocenteService]
 })
 export class EstudiosRealizadosCreatePageComponent {
   estudioRealizadoForm: FormGroup;
@@ -36,8 +38,11 @@ export class EstudiosRealizadosCreatePageComponent {
     pais: ''
   };
 
+  docentes: Docente[] = [];
+
   constructor(
     private estudioRealizadoService: EstudiosRealizadosService,
+    private docenteService: DocenteService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -54,6 +59,17 @@ export class EstudiosRealizadosCreatePageComponent {
       perfil_egresado: ['', Validators.required],
       pais: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.docenteService.getDocentes().subscribe(
+      (data) => {
+        this.docentes = data;
+      },
+      (error) => {
+        console.error('Error al cargar los docentes', error);
+      }
+    );
   }
 
   createEstudioRealizado(): void {

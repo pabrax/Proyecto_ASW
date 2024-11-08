@@ -11,6 +11,8 @@ import { Formater } from '../../../../classes/formater';
 // service
 
 import { Alianza, AlianzaService } from '../../../../services/alianza.service';
+import  { Aliado, AliadoService} from '../../../../services/aliado.service';
+import { Docente, DocenteService } from '../../../../services/docente.service';
 
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
@@ -23,15 +25,20 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [ AplicationHeaderComponent, AplicationNavbarComponent, CommonModule, HttpClientModule, ReactiveFormsModule ],
   templateUrl: './alianza-edit-page.component.html',
   styleUrl: '../../../styles/edit-page.css',
-  providers: [ AlianzaService ]
+  providers: [ AlianzaService, AliadoService, DocenteService ]
 })
 export class AlianzaEditPageComponent {
 
   alianzaForm: FormGroup;
   alianzaId: number = 0;  // Para almacenar el ID de la alianza, inicializado a 0
 
+  aliadoId: number = 0;
+  docenteId: number = 0;
+
   constructor(
     private alianzaService: AlianzaService,
+    private aliadoService: AliadoService,
+    private docenteService: DocenteService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -54,17 +61,42 @@ export class AlianzaEditPageComponent {
     this.alianzaService.getAlianzaById(this.alianzaId).subscribe(
       (alianza: Alianza) => {
         
+        
+        this.aliadoId = alianza.aliado;
+        this.docenteId = alianza.docente;
+        
+        
         alianza.fecha_inicio = Formater.formatDate(alianza.fecha_inicio);
         alianza.fecha_fin = Formater.formatDate(alianza.fecha_fin);
 
         // Rellenar el formulario con los datos de la alianza existente
         this.alianzaForm.patchValue({
-          aliado: alianza.aliado,
           departamento: alianza.departamento,
           fecha_inicio: alianza.fecha_inicio,
           fecha_fin: alianza.fecha_fin,
-          docente: alianza.docente
         });
+
+        this.aliadoService.getAliadoByNit(this.aliadoId).subscribe(
+          (aliado: Aliado) => {
+            this.alianzaForm.patchValue({
+              aliado: aliado.nombre_contacto,
+            });
+          },
+          (error) => {
+            console.error('Error al obtener el docente', error);
+          }
+        );
+
+        this.docenteService.getDocenteById(this.docenteId).subscribe(
+          (docente: Docente) => {
+            this.alianzaForm.patchValue({
+              docente: docente.nombres + ' ' + docente.apellidos,
+            });
+          },
+          (error) => {
+            console.error('Error al obtener el docente', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al obtener la alianza', error);
@@ -74,6 +106,10 @@ export class AlianzaEditPageComponent {
 
   // updateAlianza
   onSubmit(): void {
+
+    this.alianzaForm.value.aliado = this.aliadoId;
+    this.alianzaForm.value.docente = this.docenteId;
+
     if (this.alianzaForm.valid) {
       const alianzaActualizada: Alianza = {
         ...this.alianzaForm.value

@@ -22,29 +22,34 @@
           class="formContent"
         >
           <div class="main-form-content">
+
             <div class="campo">
               <label for="red">Red:</label>
-              <input id="red" formControlName="red" type="number" />
+              <select id="red" formControlName="red">
+                <option *ngFor="let red of redes" [value]="red.idr">{{ red.nombre }}</option>
+              </select>
               <div
                 *ngIf="
                   redDocenteForm.get('red')?.invalid &&
                   redDocenteForm.get('red')?.touched
                 "
               >
-                El número de red es requerido.
+                La red es requerida.
               </div>
             </div>
 
             <div class="campo">
               <label for="docente">Docente:</label>
-              <input id="docente" formControlName="docente" type="number" />
+              <select id="docente" formControlName="docente">
+              <option *ngFor="let docente of docentes" [value]="docente.cedula">{{ docente.nombres }}</option>
+              </select>
               <div
-                *ngIf="
-                  redDocenteForm.get('docente')?.invalid &&
-                  redDocenteForm.get('docente')?.touched
-                "
+              *ngIf="
+                redDocenteForm.get('docente')?.invalid &&
+                redDocenteForm.get('docente')?.touched
+              "
               >
-                El número de docente es requerido.
+              El docente es requerido.
               </div>
             </div>
 

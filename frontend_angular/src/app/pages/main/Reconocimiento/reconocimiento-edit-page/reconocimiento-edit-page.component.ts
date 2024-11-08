@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 // service
 import { ReconocimientoService, Reconocimiento } from '../../../../services/reconocimiento.service';
+import { DocenteService, Docente } from '../../../../services/docente.service';
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -19,15 +20,18 @@ import { Formater } from '../../../../classes/formater';
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './reconocimiento-edit-page.component.html',
   styleUrl: '../../../styles/edit-page.css',
-  providers: [ReconocimientoService]
+  providers: [ReconocimientoService, DocenteService],
 })
 export class ReconocimientoEditPageComponent {
 
   reconocimientoForm: FormGroup;
   reconocimientoId: number = 0;  // Para almacenar el ID del reconocimiento, inicializado a 0
 
+  docenteId: number = 0; // Para almacenar el ID del Docente, inicializado a 0
+
   constructor(
     private reconocimientoService: ReconocimientoService,
+    private docenteService: DocenteService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -52,14 +56,28 @@ export class ReconocimientoEditPageComponent {
       (reconocimiento: Reconocimiento) => {
         reconocimiento.fecha = Formater.formatDate(reconocimiento.fecha);
         // Rellenar el formulario con los datos del reconocimiento existente
+        this.docenteId = reconocimiento.docente;
+
         this.reconocimientoForm.patchValue({
           tipo: reconocimiento.tipo,
           fecha: reconocimiento.fecha,
           institucion: reconocimiento.institucion,
           nombre: reconocimiento.nombre,
           ambito: reconocimiento.ambito,
-          docente: reconocimiento.docente
         });
+
+        // Cargar los datos del docente usando el ID actualizado
+        this.docenteService.getDocenteById(this.docenteId).subscribe(
+          (docente: Docente) => {
+            // Rellenar el formulario con los datos del docente existente
+            this.reconocimientoForm.patchValue({
+              docente: docente.nombres + ' ' + docente.apellidos,
+            });
+          },
+          (error) => {
+            console.error('Error al obtener el docente', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al obtener el reconocimiento', error);
@@ -70,6 +88,9 @@ export class ReconocimientoEditPageComponent {
   // updateReconocimiento
 
   onSubmit(): void {
+
+    this.reconocimientoForm.value.docente = this.docenteId;
+
     if (this.reconocimientoForm.valid) {
       const reconocimientoActualizado: Reconocimiento = {
         ...this.reconocimientoForm.value

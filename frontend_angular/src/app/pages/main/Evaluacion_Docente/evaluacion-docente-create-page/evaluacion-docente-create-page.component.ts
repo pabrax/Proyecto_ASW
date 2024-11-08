@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // service
 import { EvaluacionDocente, EvaluacionDocenteService } from '../../../../services/evaluacion-docente.service';
+import { DocenteService, Docente } from '../../../../services/docente.service';
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -19,7 +20,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './evaluacion-docente-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [EvaluacionDocenteService]
+  providers: [EvaluacionDocenteService, DocenteService]
 })
 export class EvaluacionDocenteCreatePageComponent {
   
@@ -29,9 +30,12 @@ export class EvaluacionDocenteCreatePageComponent {
       semestre: '',
       docente: 0
     };
+
+    docentes: Docente[] = [];
   
     constructor(
       private evaluacionDocenteService: EvaluacionDocenteService,
+      private docenteService: DocenteService,
       private router: Router,
       private formBuilder: FormBuilder
     ) {
@@ -40,6 +44,18 @@ export class EvaluacionDocenteCreatePageComponent {
         semestre: ['', Validators.required],
         docente: ['', Validators.required]
       });
+    }
+
+    // Inicializa el componente y carga los servicios de Docente
+    ngOnInit(): void {
+      this.docenteService.getDocentes().subscribe(
+        (data) => {
+          this.docentes = data;
+        },
+        (error) => {
+          console.error('Error al cargar los docentes', error);
+        }
+      );
     }
   
     createEvaluacionDocente(): void {

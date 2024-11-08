@@ -144,6 +144,36 @@
     color: #ff968e;
   }
   
+  .campo select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .campo select:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+  }
+
+  /* estiliza los checkbox dentro de campo */
+  .campo input[type="checkbox"] {
+    align-self: center;
+    width: 1rem;
+    height: 1rem;
+    accent-color: #4caf50; /* Change the color of the checkbox */
+    cursor: pointer; /* Change cursor to pointer when hovering */
+    transition: transform 0.3s; /* Smooth transition for transform */
+  }
+
+  .campo input[type="checkbox"]:hover {
+    transform: scale(1.2); /* Slightly enlarge the checkbox on hover */
+  }
+
   .button-container {
     display: flex;
     justify-content: center;

@@ -23,12 +23,12 @@
           <thead>
             <tr>
               <th>ID</th>
+              <th>docente</th>
               <th>Nombre cargo</th>
               <th>Institucion</th>
               <th>tipo</th>
               <th>fecha inicio</th>
               <th>fecha fin</th>
-              <th>docente</th>
               <th>Acciones</th>
 
             </tr>
@@ -36,15 +36,15 @@
           <tbody>
             <tr *ngFor="let Experiencia of experiencias">
               <td>{{ Experiencia.id }}</td>
+              <td>{{ Experiencia.docente }}</td>
               <td>{{ Experiencia.nombre_cargo }}</td>
               <td>{{ Experiencia.institucion }}</td>
               <td>{{ Experiencia.tipo }}</td>
               <td>{{ Experiencia.fecha_inicio }}</td>
               <td>{{ Experiencia.fecha_fin }}</td>
-              <td>{{ Experiencia.docente }}</td>
               <td>
-                <button (click)="editExperiencia(Experiencia.id)" class="editButton">Editar</button>
-                <button (click)="deleteExperiencia(Experiencia.id)" class="deleteButton">
+                <button (click)="editExperiencia(Experiencia.id!)" class="editButton">Editar</button>
+                <button (click)="deleteExperiencia(Experiencia.id!)" class="deleteButton">
                   Eliminar
                 </button>
               </td>

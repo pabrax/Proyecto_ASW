@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 // service
 
 import { InteresesFuturos, InteresesFuturosService } from '../../../../services/intereses-futuros.service';
+import { Docente, DocenteService } from '../../../../services/docente.service';
 
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
@@ -18,14 +19,17 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './intereses-futuros-edit-page.component.html',
   styleUrl: '../../../styles/edit-page.css',
-  providers: [InteresesFuturosService]
+  providers: [InteresesFuturosService, DocenteService]
 })
 export class InteresesFuturosEditPageComponent {
   interesesFuturosForm: FormGroup;
   interesesFuturosId: number = 0;
 
+  docenteId: number = 0;
+
   constructor(
     private interesesFuturosService: InteresesFuturosService,
+    private docenteService: DocenteService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -41,10 +45,23 @@ export class InteresesFuturosEditPageComponent {
 
     this.interesesFuturosService.getInteresesFuturosById(this.interesesFuturosId).subscribe(
       (interesesFuturos: InteresesFuturos) => {
+        this.docenteId = interesesFuturos.docente;
+
         this.interesesFuturosForm.patchValue({
-          docente_id: interesesFuturos.docente,
+          docente: interesesFuturos.docente,
           termino_clave: interesesFuturos.termino_clave
         });
+
+        this.docenteService.getDocenteById(this.docenteId).subscribe(
+          (docente: Docente) => {
+            this.interesesFuturosForm.patchValue({
+              docente: docente.nombres + ' ' + docente.apellidos,
+            });
+          },
+          (error) => {
+            console.error('Error al obtener el docente', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al obtener los intereses futuros', error);
@@ -53,6 +70,10 @@ export class InteresesFuturosEditPageComponent {
   }
 
   onSubmit(): void {
+
+    
+    this.interesesFuturosForm.value.docente = this.docenteId;
+
     if (this.interesesFuturosForm.valid) {
       const interesesFuturosActualizados: InteresesFuturos = {
         id: this.interesesFuturosId,

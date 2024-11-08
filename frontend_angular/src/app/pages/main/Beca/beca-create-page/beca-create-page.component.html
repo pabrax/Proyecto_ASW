@@ -20,10 +20,13 @@
           <div class="main-form-content">
             
             <div class="campo">
-              <label for="estudios">Estudios (ID):</label>
-              <input id="estudios" formControlName="estudios" type="number">
+              <label for="estudios">Estudios Realizados:</label>
+              <select id="estudios" formControlName="estudios">
+              <option value="" disabled selected>Seleccione una opción</option>
+              <option *ngFor="let estudio of estudiosRealizados" [value]="estudio.id">{{ estudio.titulo }}</option>
+              </select>
               <div *ngIf="becaForm.get('estudios')?.invalid && becaForm.get('estudios')?.touched">
-                El ID de estudios es requerido.
+              Los estudios realizados son requeridos.
               </div>
             </div>
             

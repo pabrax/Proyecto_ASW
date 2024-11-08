@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // service
 import { Reconocimiento, ReconocimientoService } from '../../../../services/reconocimiento.service';
+import { DocenteService, Docente } from '../../../../services/docente.service';
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -19,7 +20,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './reconocimiento-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [ReconocimientoService]
+  providers: [ReconocimientoService, DocenteService]
 })
 export class ReconocimientoCreatePageComponent {
 
@@ -34,8 +35,11 @@ export class ReconocimientoCreatePageComponent {
     docente: 0
   };
 
+  docentes: Docente[] = [];
+
   constructor(
     private reconocimientoService: ReconocimientoService,
+    private docenteService: DocenteService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -47,6 +51,18 @@ export class ReconocimientoCreatePageComponent {
       ambito: ['', Validators.required],
       docente: ['', Validators.required]
     });
+  }
+
+  // Inicializa el componente y carga los servicios de Docente
+  ngOnInit(): void {
+    this.docenteService.getDocentes().subscribe(
+      (data) => {
+        this.docentes = data;
+      },
+      (error) => {
+        console.error('Error al cargar los docentes', error);
+      }
+    );
   }
 
   createReconocimiento(): void {

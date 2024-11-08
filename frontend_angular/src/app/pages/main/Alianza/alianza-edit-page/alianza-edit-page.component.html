@@ -16,8 +16,8 @@
                 <form [formGroup]="alianzaForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
                         <div class="campo">
-                            <label for="aliado">ID del Aliado:</label>
-                            <input id="aliado" formControlName="aliado" type="number" readonly>
+                            <label for="aliado">Aliado:</label>
+                            <input id="aliado" formControlName="aliado" type="text" readonly [value]="aliadoId">
                             <div *ngIf="alianzaForm.get('aliado')?.invalid && alianzaForm.get('aliado')?.touched">
                                 El ID del aliado es requerido.
                             </div>
@@ -49,8 +49,8 @@
                         </div>
 
                         <div class="campo">
-                            <label for="docente">ID del Docente:</label>
-                            <input id="docente" formControlName="docente" type="number">
+                            <label for="docente">Docente:</label>
+                            <input id="docente" formControlName="docente" type="text" readonly [value]="docenteId">
                             <div *ngIf="alianzaForm.get('docente')?.invalid && alianzaForm.get('docente')?.touched">
                                 El ID del docente es requerido.
                             </div>

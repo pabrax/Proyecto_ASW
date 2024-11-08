@@ -11,6 +11,7 @@ import { Formater } from '../../../../classes/formater';
 // service
 
 import { EstudiosRealizados, EstudiosRealizadosService } from '../../../../services/estudios-realizados.service';
+import { Docente, DocenteService } from '../../../../services/docente.service';
 
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
@@ -22,14 +23,17 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './estudios-realizados-edit-page.component.html',
   styleUrl: '../../../styles/edit-page.css',
-  providers: [EstudiosRealizadosService]
+  providers: [EstudiosRealizadosService, DocenteService]
 })
 export class EstudiosRealizadosEditPageComponent {
   estudiosRealizadosForm: FormGroup;
   estudiosRealizadosId: number = 0;
 
+  docenteId: number = 0;
+
   constructor(
     private estudiosRealizadosService: EstudiosRealizadosService,
+    private docenteService: DocenteService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -54,8 +58,9 @@ export class EstudiosRealizadosEditPageComponent {
 
     this.estudiosRealizadosService.getEstudioRealizadoById(this.estudiosRealizadosId).subscribe(
       (estudioRealizado: EstudiosRealizados) => {
-
         estudioRealizado.fecha = Formater.formatDate(estudioRealizado.fecha);
+
+        this.docenteId = estudioRealizado.docente;
 
         this.estudiosRealizadosForm.patchValue({
           id: estudioRealizado.id,
@@ -70,6 +75,17 @@ export class EstudiosRealizadosEditPageComponent {
           perfil_egresado: estudioRealizado.perfil_egresado,
           pais: estudioRealizado.pais
         });
+
+        this.docenteService.getDocenteById(this.docenteId).subscribe(
+          (docente: Docente) => {
+            this.estudiosRealizadosForm.patchValue({
+              docente: docente.nombres + ' ' + docente.apellidos,
+            });
+          },
+          (error) => {
+            console.error('Error al obtener el docente', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al obtener el estudio realizado', error);
@@ -78,6 +94,9 @@ export class EstudiosRealizadosEditPageComponent {
   }
 
   onSubmit(): void {
+
+    this.estudiosRealizadosForm.value.docente = this.docenteId;
+    
     if (this.estudiosRealizadosForm.valid) {
       const estudioRealizadoActualizado: EstudiosRealizados = {
         id: this.estudiosRealizadosId,

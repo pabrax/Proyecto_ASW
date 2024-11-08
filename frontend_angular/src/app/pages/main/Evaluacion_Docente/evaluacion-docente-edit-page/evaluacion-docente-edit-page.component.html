@@ -17,8 +17,8 @@
                     <div class="main-form-content">
                         
                         <div class="campo">
-                            <label for="docente">ID del Docente:</label>
-                            <input id="docente" formControlName="docente" type="number" readonly>
+                            <label for="docente">Docente:</label>
+                            <input id="docente" formControlName="docente" type="text" readonly [value]="docenteId">
                             <div *ngIf="evaluacionDocenteForm.get('docente')?.invalid && evaluacionDocenteForm.get('docente')?.touched">
                                 El ID del docente es requerido.
                             </div>

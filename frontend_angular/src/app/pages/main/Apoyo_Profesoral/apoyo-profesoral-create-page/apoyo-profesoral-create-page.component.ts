@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // service
 import { ApoyoProfesoralService, ApoyoProfesoral } from '../../../../services/apoyo-profesoral.service';
+import { EstudiosRealizados, EstudiosRealizadosService } from '../../../../services/estudios-realizados.service';
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -19,7 +20,7 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './apoyo-profesoral-create-page.component.html',
   styleUrl: '../../../styles/create-page.css',
-  providers: [ApoyoProfesoralService]
+  providers: [ApoyoProfesoralService, EstudiosRealizadosService]
 })
 export class ApoyoProfesoralCreatePageComponent {
 
@@ -32,8 +33,11 @@ export class ApoyoProfesoralCreatePageComponent {
     tipo: ''
   };
 
+  estudiosRealizados: EstudiosRealizados[] = [];
+
   constructor(
     private apoyoProfesoralService: ApoyoProfesoralService,
+    private estudiosRealizadosService: EstudiosRealizadosService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -43,6 +47,17 @@ export class ApoyoProfesoralCreatePageComponent {
       institucion: ['', Validators.required],
       tipo: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.estudiosRealizadosService.getEstudiosRealizados().subscribe(
+      (data) => {
+        this.estudiosRealizados = data;
+      },
+      (error) => {
+        console.error('Error al cargar los estudios realizados', error);
+      }
+    );
   }
 
   createApoyoProfesoral(): void {

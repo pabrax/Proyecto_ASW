@@ -20,10 +20,12 @@
                     <div class="main-form-content">
                         
                         <div class="campo">
-                            <label for="estudio">ID del Estudio:</label>
-                            <input id="estudio" formControlName="estudio" type="number">
+                            <label for="estudio">Estudios Realizados:</label>
+                            <select id="estudio" formControlName="estudio">
+                                <option *ngFor="let estudio of estudiosRealizados" [value]="estudio.id">{{ estudio.titulo }}</option>
+                            </select>
                             <div *ngIf="estudioAcForm.get('estudio')?.invalid && estudioAcForm.get('estudio')?.touched">
-                                El ID del estudio es requerido.
+                                Seleccione un estudio realizado.
                             </div>
                         </div>
                         

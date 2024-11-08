@@ -16,8 +16,8 @@
                 <form [formGroup]="estudioAcForm" (ngSubmit)="onSubmit()" class="formContent">
                     <div class="main-form-content">
                         <div class="campo">
-                            <label for="estudio">ID del Estudio:</label>
-                            <input id="estudio" formControlName="estudio" type="number">
+                            <label for="estudio">Estudio:</label>
+                            <input id="estudio" formControlName="estudio" type="text" readonly [value]="estudioRealizadoId">
                             <div *ngIf="estudioAcForm.get('estudio')?.invalid && estudioAcForm.get('estudio')?.touched">
                                 El ID del estudio es requerido.
                             </div>

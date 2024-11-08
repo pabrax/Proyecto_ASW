@@ -23,12 +23,12 @@
             <thead>
               <tr>
                 <th>ID</th>
+                <th>docente</th>
                 <th>Titulo</th>
                 <th>Universidad</th>
                 <th>fecha</th>
                 <th>tipo</th>
                 <th>ciudad</th>
-                <th>docente_id</th>
                 <th>ins_acreditada</th>
                 <th>metodologia</th>
                 <th>perfil_egresado</th>
@@ -40,12 +40,12 @@
             <tbody>
               <tr *ngFor="let Estudio of estudiosRealizados">
                 <td>{{ Estudio.id }}</td>
+                <td>{{ Estudio.docente }}</td>
                 <td>{{ Estudio.titulo }}</td>
                 <td>{{ Estudio.universidad }}</td>
                 <td>{{ Estudio.fecha }}</td>
                 <td>{{ Estudio.tipo }}</td>
                 <td>{{ Estudio.ciudad }}</td>
-                <td>{{ Estudio.docente }}</td>
                 <td>{{ Estudio.ins_acreditada }}</td>
                 <td>{{ Estudio.metodologia }}</td>
                 <td>{{ Estudio.perfil_egresado }}</td>

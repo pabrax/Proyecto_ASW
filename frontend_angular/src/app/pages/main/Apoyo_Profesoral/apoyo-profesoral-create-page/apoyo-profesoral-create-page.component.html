@@ -21,9 +21,11 @@
             
             <div class="campo">
               <label for="estudios">Estudios:</label>
-              <input id="estudios" formControlName="estudios" type="number">
+              <select id="estudios" formControlName="estudios">
+              <option *ngFor="let estudio of estudiosRealizados" [value]="estudio.id">{{ estudio.titulo }}</option>
+              </select>
               <div *ngIf="apoyoProfesoralForm.get('estudios')?.invalid && apoyoProfesoralForm.get('estudios')?.touched">
-                El campo de estudios es requerido.
+              El campo de estudios es requerido.
               </div>
             </div>
             

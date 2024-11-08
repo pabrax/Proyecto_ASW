@@ -28,7 +28,7 @@ export class BecaService {
 
   // get by id
   getBecaById(id: number): Observable<Beca> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/estudios/${id}`;
     return this.http.get<Beca[]>(url).pipe(
       map(results => results[0])
       );

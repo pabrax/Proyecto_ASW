@@ -23,12 +23,12 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>docente</th>
+                            <th>nombre</th>
                             <th>tipo</th>
                             <th>fecha</th>
                             <th>institucion</th>
-                            <th>nombre</th>
                             <th>ambito</th>
-                            <th>docente</th>
                             <th>Acciones</th>
 
                         </tr>
@@ -36,12 +36,12 @@
                     <tbody>
                         <tr *ngFor="let reconocimiento of reconocimientos">
                             <td>{{ reconocimiento.id }}</td>
+                            <td>{{ reconocimiento.docente }}</td>
+                            <td>{{reconocimiento.nombre}}</td>
                             <td>{{ reconocimiento.tipo }}</td>
                             <td>{{ reconocimiento.fecha }}</td>
                             <td>{{ reconocimiento.institucion }}</td>
-                            <td>{{reconocimiento.nombre}}</td>
                             <td>{{ reconocimiento.ambito }}</td>
-                            <td>{{ reconocimiento.docente }}</td>
                             <td>
                                 <button (click)="editReconocimiento(reconocimiento.id!)" class="editButton">Editar</button>
                                 <button (click)="deleteReconocimiento(reconocimiento.id!)" class="deleteButton">Eliminar</button>

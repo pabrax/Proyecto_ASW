@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 // service
 import { ApoyoProfesoralService, ApoyoProfesoral } from '../../../../services/apoyo-profesoral.service';
+import { EstudiosRealizadosService, EstudiosRealizados } from '../../../../services/estudios-realizados.service';
 
 // shared
 import { AplicationNavbarComponent } from "../../../../components/aplication-navbar/aplication-navbar.component";
@@ -17,15 +18,18 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './apoyo-profesoral-edit-page.component.html',
   styleUrl: '../../../styles/edit-page.css',
-  providers: [ApoyoProfesoralService]
+  providers: [ApoyoProfesoralService, EstudiosRealizadosService],
 })
 export class ApoyoProfesoralEditPageComponent {
   
   apoyoProfesoralForm: FormGroup;
   apoyoProfesoralId: number = 0;  // Para almacenar el ID del apoyoProfesoral, inicializado a 0
 
+  EstudioRealizadoId: number = 0; // Para almacenar el ID del Docente, inicializado a 0
+
   constructor(
     private apoyoProfesoralService: ApoyoProfesoralService,
+    private estudiosRealizadosService: EstudiosRealizadosService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -53,6 +57,20 @@ export class ApoyoProfesoralEditPageComponent {
           institucion: apoyoProfesoral.institucion,
           tipo: apoyoProfesoral.tipo
         });
+
+        // Cargar los datos del estudioRealizado usando el ID actualizado
+        this.EstudioRealizadoId = apoyoProfesoral.estudios;
+        this.estudiosRealizadosService.getEstudioRealizadoById(this.EstudioRealizadoId).subscribe(
+          (estudioRealizado: EstudiosRealizados) => {
+            // Rellenar el formulario con los datos del estudioRealizado existente
+            this.apoyoProfesoralForm.patchValue({
+              estudios: estudioRealizado.titulo
+            });
+          },
+          (error) => {
+            console.error('Error al obtener el estudioRealizado', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al obtener el apoyoProfesoral', error);
@@ -62,6 +80,9 @@ export class ApoyoProfesoralEditPageComponent {
 
   // updateApoyoProfesoral
   onSubmit(): void {
+
+    this.apoyoProfesoralForm.value.estudios = this.EstudioRealizadoId;
+
     if (this.apoyoProfesoralForm.valid) {
       const apoyoProfesoralActualizado: ApoyoProfesoral = {
         ...this.apoyoProfesoralForm.value

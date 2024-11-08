@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 // service
 
 import { EstudioAc, EstudioAcService } from '../../../../services/estudio-ac.service';
+import { EstudiosRealizados, EstudiosRealizadosService } from '../../../../services/estudios-realizados.service';
 
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
@@ -18,14 +19,17 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './estudio-ac-edit-page.component.html',
   styleUrl: '../../../styles/edit-page.css',
-  providers: [EstudioAcService]
+  providers: [EstudioAcService, EstudiosRealizadosService],
 })
 export class EstudioAcEditPageComponent {
   estudioAcForm: FormGroup;
   estudioAcId: number = 0;
 
+  estudioRealizadoId: number = 0;
+
   constructor(
     private estudioAcService: EstudioAcService,
+    private estudiosRealizadosService: EstudiosRealizadosService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -41,10 +45,23 @@ export class EstudioAcEditPageComponent {
 
     this.estudioAcService.getEstudioById(this.estudioAcId).subscribe(
       (estudioAc: EstudioAc) => {
+        
+        this.estudioRealizadoId = estudioAc.estudio;
+
         this.estudioAcForm.patchValue({
-          estudio: estudioAc.estudio,
           area_conocimiento: estudioAc.area_conocimiento
         });
+
+        this.estudiosRealizadosService.getEstudioRealizadoById(this.estudioRealizadoId).subscribe(
+          (estudioRealizado: EstudiosRealizados) => {
+            this.estudioAcForm.patchValue({
+              estudio: estudioRealizado.titulo
+            });
+          },
+          (error) => {
+            console.error('Error al obtener el estudio realizado', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al obtener el estudio académico', error);
@@ -53,6 +70,7 @@ export class EstudioAcEditPageComponent {
   }
 
   onSubmit(): void {
+    this.estudioAcForm.value.estudio = this.estudioRealizadoId;
     if (this.estudioAcForm.valid) {
       const estudioAcActualizado: EstudioAc = {
         ...this.estudioAcForm.value

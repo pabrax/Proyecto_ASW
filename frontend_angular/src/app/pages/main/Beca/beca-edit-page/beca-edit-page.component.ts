@@ -10,6 +10,8 @@ import { Formater } from '../../../../classes/formater';
 // service
 
 import { Beca, BecaService } from '../../../../services/beca.service';
+import { EstudiosRealizadosService, EstudiosRealizados } from '../../../../services/estudios-realizados.service';
+
 
 // shared components
 import { AplicationNavbarComponent } from '../../../../components/aplication-navbar/aplication-navbar.component';
@@ -21,15 +23,18 @@ import { AplicationHeaderComponent } from '../../../../components/aplication-hea
   imports: [AplicationNavbarComponent, AplicationHeaderComponent, CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './beca-edit-page.component.html',
   styleUrl: '../../../styles/edit-page.css',
-  providers: [BecaService]
+  providers: [BecaService, EstudiosRealizadosService],
 })
 export class BecaEditPageComponent {
 
   becaForm: FormGroup;
   becaId: number = 0;  // Para almacenar el ID de la beca, inicializado a 0
 
+  estudioRealizadoId: number = 0; // Para almacenar el ID del Docente, inicializado a 0
+
   constructor(
     private becaService: BecaService,
+    private estudiosRealizadosService: EstudiosRealizadosService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
@@ -53,15 +58,28 @@ export class BecaEditPageComponent {
       (beca: Beca) => {
         beca.fecha_inicio = Formater.formatDate(beca.fecha_inicio);
         beca.fecha_fin = Formater.formatDate(beca.fecha_fin);
-        
+
         // Rellenar el formulario con los datos de la beca existente
         this.becaForm.patchValue({
-          estudios: beca.estudios,
           tipo: beca.tipo,
           institucion: beca.institucion,
           fecha_inicio: beca.fecha_inicio,
           fecha_fin: beca.fecha_fin
         });
+
+        // Cargar los datos de estudios realizados usando el ID actualizado
+        this.estudioRealizadoId = beca.estudios;
+        this.estudiosRealizadosService.getEstudioRealizadoById(this.estudioRealizadoId).subscribe(
+          (estudiosRealizados: EstudiosRealizados) => {
+            // Rellenar el formulario con los datos de estudios realizados existentes
+            this.becaForm.patchValue({
+              estudios: estudiosRealizados.titulo
+            });
+          },
+          (error) => {
+            console.error('Error al obtener los estudios realizados', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al obtener la beca', error);
@@ -71,6 +89,10 @@ export class BecaEditPageComponent {
 
   // updateBeca
   onSubmit(): void {
+
+    // Asignar el ID de los estudios realizados al formulario
+    this.becaForm.value.estudios = this.estudioRealizadoId;
+
     if (this.becaForm.valid) {
       const becaActualizada: Beca = {
         id: this.becaId,
