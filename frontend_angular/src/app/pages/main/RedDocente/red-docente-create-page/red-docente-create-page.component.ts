@@ -57,20 +57,20 @@ export class RedDocenteCreatePageComponent {
     this.redService.getRedes().subscribe(
       (data) => {
         this.redes = data;
+        this.docenteService.getDocentes().subscribe(
+          (data) => {
+            this.docentes = data;
+          },
+          (error) => {
+            console.error('Error al cargar los Docentes', error);
+          }
+        );
       },
       (error) => {
         console.error('Error al cargar las Redes', error);
       }
     );
 
-    this.docenteService.getDocentes().subscribe(
-      (data) => {
-        this.docentes = data;
-      },
-      (error) => {
-        console.error('Error al cargar los Docentes', error);
-      }
-    );
   }
 
   createRedDocente(): void {
