@@ -818,10 +818,20 @@ insert into rol values(2, 'usuario');
 create table usuarios(
   email nvarchar(50) not null primary key,
   contrasena nvarchar(100) not null,
-  rol int not null default 2,
 );
+insert into usuarios values('admin@example.com', 'admin');
+insert into usuarios values('ususario@ejemplo.com', '12345');
 
-insert into usuarios values('admin@example.com', 'admin', 1);
+create table rol_usuario (
+	correo_usuario nvarchar(50) not null,
+	id_rol int not null default 2, 
+
+	constraint fk_rol_usuario_rol FOREIGN KEY (id_rol) references rol (id),
+	constraint fk_rol_usuario_usuario FOREIGN KEY (correo_usuario) references usuarios (email)
+)
+
+insert into rol_usuario values ('admin@example.com', 1);
+insert into rol_usuario values ('ususario@ejemplo.com'); -- agarra el valor por defecto 2
 
 
 -- select * from usuarios;
