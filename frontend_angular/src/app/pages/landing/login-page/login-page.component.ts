@@ -54,12 +54,13 @@ export class LoginPageComponent {
       }
     );
   }
-
+  
   onSubmit() {
     if (this.loginForm.valid) {
       this.email = this.loginForm.value.email;
       this.contrasena = this.loginForm.value.contrasena;
       this.login();
+      // this.authService.getUserRole();
     }
   }
 }

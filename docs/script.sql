@@ -831,7 +831,7 @@ create table rol_usuario (
 )
 
 insert into rol_usuario values ('admin@example.com', 1);
-insert into rol_usuario values ('ususario@ejemplo.com'); -- agarra el valor por defecto 2
+insert into rol_usuario values ('ususario@ejemplo.com', 2); -- agarra el valor por defecto 2
 
 
 -- select * from usuarios;
