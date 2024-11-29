@@ -1,1 +1,38 @@
-<p>rol-create-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        <div class="content">
+
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Roles</h1>
+                    <p>apartado para crear los roles que se asignarán a los usuarios.</p>
+                </section>
+            </div>  
+
+            <div class="form-container">
+                <h2>Crear Nuevo Rol</h2>
+            
+                <form [formGroup]="rolForm" (ngSubmit)="onSubmit()" class="formContent">
+            
+                    <div class="main-form-content">
+                        
+                        <div class="campo">
+                            <label for="rol">Nombre del Rol:</label>
+                            <input id="rol" formControlName="rol" type="text">
+                            <div *ngIf="rolForm.get('rol')?.invalid && rolForm.get('rol')?.touched">
+                                Proporcione un nombre de rol válido.
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="button-container">
+                        <button type="submit" [disabled]="rolForm.invalid">Crear Rol</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

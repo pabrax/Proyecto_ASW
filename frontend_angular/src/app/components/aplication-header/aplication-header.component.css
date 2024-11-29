@@ -44,6 +44,16 @@
     font-size: 14px;
 }
 
+.btn-logout {
+    background-color: #656565; /* Gray button background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
 
 /* Estilos responsivos */
 @media (max-width: 768px) {

@@ -1,1 +1,44 @@
-<p>rol-usuario-page works!</p>
+<div class="view">
+
+    <app-aplication-navbar />
+    
+    <div class="main">
+      <app-aplication-header />
+      <div class="content">
+        <div class="titleZone">
+          <section class="title">
+            <h1>Rol Usuario</h1>
+            <p>apartado para manejar la relación entre los Roles y los Usuarios</p>
+          </section>
+    
+          <!-- botón de redirección a página para asignar un rol a un usuario -->
+          <section class="createModelButton">
+            <button (click)="createRolUsuario()">Asignar Rol a Usuario</button>
+          </section>
+        </div>
+    
+        <div class="tableContainer">
+          <!-- Tabla para mostrar las relaciones rol-usuario -->
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Correo Usuario</th>
+                <th>ID Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let rolUsuario of rolUsuarios">
+                <td>{{ rolUsuario.correo_usuario }}</td>
+                <td>{{ rolUsuario.id_rol }}</td>
+                <td>
+                  <button (click)="editRolUsuario(rolUsuario.correo_usuario)" class="editButton">Editar</button>
+                  <button (click)="deleteRolUsuario(rolUsuario.correo_usuario, rolUsuario.id_rol)" class="deleteButton">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

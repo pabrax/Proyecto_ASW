@@ -1,1 +1,43 @@
-<p>usuario-page works!</p>
+<div class="view">
+    <app-aplication-navbar />
+
+    <div class="main">
+        <app-aplication-header />
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Usuarios</h1>
+                    <p>apartado para manejar y ver los usuarios</p>
+                </section>
+
+                <!-- boton de redireccion a pagina para crear un usuario -->
+                <section class="createModelButton">
+                    <button (click)="createUsuario()">Crear usuario</button>
+                </section>
+            </div>
+
+            <div class="tableContainer">
+                <!-- Tabla para mostrar los usuarios -->
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Contraseña</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios">
+                            <td>{{ usuario.email }}</td>
+                            <td>{{ usuario.contrasena }}</td>
+                            <td>
+                                <button (click)="editUsuario(usuario.email)" class="editButton">Editar</button>
+                                <button (click)="deleteUsuario(usuario.email)" class="deleteButton">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

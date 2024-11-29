@@ -1,1 +1,43 @@
-<p>usuario-edit-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Editar Usuario</h1>
+                    <p>Modifica los detalles del usuario seleccionado.</p>
+                </section>
+            </div>
+  
+            <div class="form-container">
+                <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="formContent">
+                    <div class="main-form-content">
+                        <div class="campo">
+                            <label for="email">Correo Electrónico:</label>
+                            <input id="email" formControlName="email" type="email" readonly>
+                            <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">
+                                El correo electrónico es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="contrasena">Contraseña:</label>
+                            <input id="contrasena" formControlName="contrasena" type="password">
+                            <div *ngIf="usuarioForm.get('contrasena')?.invalid && usuarioForm.get('contrasena')?.touched">
+                                La contraseña es requerida.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" [disabled]="usuarioForm.invalid" class="save-button">Guardar Cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -42,6 +42,7 @@ export class LoginPageComponent {
     this.authService.login(this.email, this.contrasena).subscribe(
       (data) => {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('email', this.email);
         if (data && data.token) {
           console.log('Login exitoso', data.token);
         } else {

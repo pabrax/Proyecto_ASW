@@ -1,1 +1,47 @@
-<p>usuario-create-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        <div class="content">
+
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Usuarios</h1>
+                    <p>apartado para crear los usuarios que interacturan con la aplicacion.</p>
+                </section>
+            </div>  
+
+            <div class="form-container">
+                <h2>Crear Nuevo Usuario</h2>
+            
+                <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="formContent">
+            
+                    <div class="main-form-content">
+                        
+                        <div class="campo">
+                            <label for="email">Correo Electrónico:</label>
+                            <input id="email" formControlName="email" type="email">
+                            <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">
+                                Proporcione un correo válido.
+                            </div>
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="contrasena">Contraseña:</label>
+                            <input id="contrasena" formControlName="contrasena" type="password">
+                            <div *ngIf="usuarioForm.get('contrasena')?.invalid && usuarioForm.get('contrasena')?.touched">
+                                La contraseña es requerida.
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="button-container">
+                        <button type="submit" [disabled]="usuarioForm.invalid">Crear Usuario</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

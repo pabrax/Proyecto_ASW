@@ -814,13 +814,16 @@ create table rol(
 
 insert into rol values(1, 'admin');
 insert into rol values(2, 'usuario');
+insert into rol values(3, 'gerente');
+insert into rol values(4, 'profesor');
+
 
 create table usuarios(
   email nvarchar(50) not null primary key,
   contrasena nvarchar(100) not null,
 );
 insert into usuarios values('admin@example.com', 'admin');
-insert into usuarios values('ususario@ejemplo.com', '12345');
+insert into usuarios values('usuario@ejemplo.com', '12345');
 
 create table rol_usuario (
 	correo_usuario nvarchar(50) not null,
@@ -831,7 +834,16 @@ create table rol_usuario (
 )
 
 insert into rol_usuario values ('admin@example.com', 1);
-insert into rol_usuario values ('ususario@ejemplo.com', 2); -- agarra el valor por defecto 2
+insert into rol_usuario values ('admin@example.com', 3);
+insert into rol_usuario values ('usuario@ejemplo.com', 4);
+insert into rol_usuario values ('usuario@ejemplo.com', 2); -- agarra el valor por defecto 2
 
 
 -- select * from usuarios;
+
+
+select * from rol_usuario
+where correo_usuario = 'admin@example.com';
+
+select * from rol_usuario
+where correo_usuario = 'usuario@ejemplo.com';

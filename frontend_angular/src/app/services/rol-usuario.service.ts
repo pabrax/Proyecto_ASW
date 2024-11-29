@@ -12,7 +12,7 @@ export interface RolUsuario {
 })
 export class RolUsuarioService {
 
-  private apiUrl = 'http://localhost:5254/api/rol_usuario'; // Cambia esta URL según tu API
+  private apiUrl = 'http://localhost:5254/api/ProyectoBackend/rol_usuario'; // Cambia esta URL según tu API
   constructor(private http: HttpClient) {}
 
   // Obtener todas las relaciones rol-usuario
@@ -22,8 +22,9 @@ export class RolUsuarioService {
 
   // Obtener los roles de un usuario por su correo electrónico
   getRolesByUsuario(correoUsuario: string): Observable<RolUsuario[]> {
-    const url = `${this.apiUrl}/usuario/${encodeURIComponent(correoUsuario)}`;
-    return this.http.get<RolUsuario[]>(url);
+    const url = `${this.apiUrl}/correo_usuario/${encodeURIComponent(correoUsuario)}`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` });
+    return this.http.get<RolUsuario[]>(url, { headers });
   }
 
   // Obtener los usuarios asignados a un rol específico por ID de rol
@@ -40,14 +41,14 @@ export class RolUsuarioService {
 
   // Actualizar el rol de un usuario específico
   updateRolUsuario(correoUsuario: string, rolUsuario: RolUsuario): Observable<RolUsuario> {
-    const url = `${this.apiUrl}/usuario/${encodeURIComponent(correoUsuario)}`;
+    const url = `${this.apiUrl}/correo_usuario/${encodeURIComponent(correoUsuario)}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put<RolUsuario>(url, rolUsuario, { headers });
   }
 
   // Eliminar un rol asignado a un usuario
   deleteRolUsuario(correoUsuario: string, idRol: number): Observable<void> {
-    const url = `${this.apiUrl}/usuario/${encodeURIComponent(correoUsuario)}/rol/${idRol}`;
+    const url = `${this.apiUrl}/correo_usuario/${encodeURIComponent(correoUsuario)}/rol/${idRol}`;
     return this.http.delete<void>(url);
   }
 }

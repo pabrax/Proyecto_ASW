@@ -1,1 +1,43 @@
-<p>rol-page works!</p>
+<div class="view">
+    <app-aplication-navbar />
+
+    <div class="main">
+        <app-aplication-header />
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Roles</h1>
+                    <p>apartado para manejar y ver los roles</p>
+                </section>
+
+                <!-- boton de redireccion a pagina para crear un rol -->
+                <section class="createModelButton">
+                    <button (click)="createRol()">Crear rol</button>
+                </section>
+            </div>
+
+            <div class="tableContainer">
+                <!-- Tabla para mostrar los roles -->
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rol of roles">
+                            <td>{{ rol.id }}</td>
+                            <td>{{ rol.rol }}</td>
+                            <td>
+                                <button (click)="editRol(rol.id)" class="editButton">Editar</button>
+                                <button (click)="deleteRol(rol.id)" class="deleteButton">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

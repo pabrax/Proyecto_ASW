@@ -12,7 +12,7 @@ export interface Usuario {
 })
 export class UsuarioService {
 
-  private apiUrl = 'http://localhost:5254/api/usuarios'; // Cambia esta URL según tu API
+  private apiUrl = 'http://localhost:5254/api/ProyectoBackend/usuarios'; // Cambia esta URL según tu API
   constructor(private http: HttpClient) {}
 
   // Obtener todos los usuarios

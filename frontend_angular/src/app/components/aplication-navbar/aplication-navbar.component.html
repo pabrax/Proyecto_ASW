@@ -1,24 +1,38 @@
 
 <div class="navigator">
     <h3>Gestion Profesoral</h3>
-    <ul>
-        <li><a routerLink="/app">Inicio</a></li>
-        <li><a routerLink="/app/red">Red</a></li>
-        <li><a routerLink="/app/evaluacion-docentes">Evaluacion Docentes</a></li>
-        <li><a routerLink="/app/aliado">Aliado</a></li>
-        <li><a routerLink="/app/experiencia">Experiencia</a></li>
-        <li><a routerLink="/app/reconocimiento">Reconocimiento</a></li>
-        <li><a routerLink="/app/beca">Beca</a></li>
-        <li><a routerLink="/app/apoyo-profesoral">Apoyo Profesoral</a></li>
-        <li><a routerLink="/app/estudios-realizados">Estudios Realizados</a></li>
-        <li><a routerLink="/app/docente">Docente</a></li>
-        <li><a routerLink="/app/intereses-futuros">Intereses Futuros</a></li>
-        
-        <li><a routerLink="/app/alianza">Alianza</a></li>
-        <!-- Modelos Con errores (tablas muchos a muchos) -->
-        
-        <li><a routerLink="/app/estudio-ac">Estudio AC</a></li>
-        <li><a routerLink="/app/red-docente">Red Docente</a></li>
-        <li><a routerLink="/app/docente-departamento">Docente Departamento</a></li>
-    </ul>
+
+
+    <div *ngIf="isAdmin" class="admin-routes-container">
+        <h4>Administracion</h4>
+        <select class="admin-routes" onchange="location = this.value;">
+            <option value="" disabled selected>Seleccione...</option>
+            <option value="/admin/usuario">Usuarios</option>
+            <option value="/admin/rol">Roles</option>
+            <option value="/admin/rol_usuario">Permisos</option>
+        </select>
+    </div>
+
+    <div class="model-routes-container">
+        <h4>Modelos</h4>
+        <select class="model-routes" onchange="location = this.value;">
+            <option value="" disabled selected>Seleccione...</option>
+            <option value="/app">Inicio</option>
+            <option value="/app/red">Red</option>
+            <option value="/app/evaluacion-docentes">Evaluacion Docentes</option>
+            <option value="/app/aliado">Aliado</option>
+            <option value="/app/experiencia">Experiencia</option>
+            <option value="/app/reconocimiento">Reconocimiento</option>
+            <option value="/app/beca">Beca</option>
+            <option value="/app/apoyo-profesoral">Apoyo Profesoral</option>
+            <option value="/app/estudios-realizados">Estudios Realizados</option>
+            <option value="/app/docente">Docente</option>
+            <option value="/app/intereses-futuros">Intereses Futuros</option>
+            <option value="/app/alianza">Alianza</option>
+            <option value="/app/estudio-ac">Estudio AC</option>
+            <option value="/app/red-docente">Red Docente</option>
+            <option value="/app/docente-departamento">Docente Departamento</option>
+        </select>
+    </div>
+    
 </div>

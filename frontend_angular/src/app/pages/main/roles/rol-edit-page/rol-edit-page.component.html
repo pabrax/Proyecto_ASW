@@ -1,1 +1,43 @@
-<p>rol-edit-page works!</p>
+<div class="view">
+    <app-aplication-navbar></app-aplication-navbar>
+  
+    <div class="main">
+        <app-aplication-header></app-aplication-header>
+        
+        <div class="content">
+            <div class="titleZone">
+                <section class="title">
+                    <h1>Editar Rol</h1>
+                    <p>Modifica los detalles del rol seleccionado.</p>
+                </section>
+            </div>
+  
+            <div class="form-container">
+                <form [formGroup]="rolForm" (ngSubmit)="onSubmit()" class="formContent">
+                    <div class="main-form-content">
+                        <div class="campo">
+                            <label for="id">ID:</label>
+                            <input id="id" formControlName="id" type="number" readonly [value]="rolId">
+                            <div *ngIf="rolForm.get('id')?.invalid && rolForm.get('id')?.touched">
+                                El ID del rol es requerido.
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="rol">Rol:</label>
+                            <input id="rol" formControlName="rol" type="text">
+                            <div *ngIf="rolForm.get('rol')?.invalid && rolForm.get('rol')?.touched">
+                                El nombre del rol es requerido.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" [disabled]="rolForm.invalid" class="save-button">Guardar Cambios</button>
+                        <button type="button" (click)="onCancel()" class="deleteButton">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,6 +22,8 @@ import { EstudiosRealizadosRoutes } from './routes/estudios-realizados.routes';
 import { EstudioAcRoutes } from './routes/estudio-ac.routes';
 import { DocenteRoutes } from './routes/docente.routes';
 
+import { AdminRoutes } from './routes/admin.routes';
+
 // auth guard
 import { authGuard } from './services/auth.guard';
 
@@ -75,6 +77,9 @@ export const routes: Routes = [
     
     // red docente routes
     ...RedDocenteRoutes,
+
+    // admin routes
+    ...AdminRoutes,
 
     // page not found, verifica si la ruta no existe
     { path: '**', component: PageNotFoundComponent } 
