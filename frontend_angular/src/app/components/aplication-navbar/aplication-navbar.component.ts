@@ -23,9 +23,9 @@ export class AplicationNavbarComponent {
   ){
     this.checkAdmin();
   }
+  
   async checkAdmin() {
-    await this.rolController.verifyAdmin(localStorage.getItem('email') || '');
-    this.isAdmin = this.rolController.isAdmin();
+    this.isAdmin = await this.rolController.verifyAdmin(localStorage.getItem('email') || '');
     console.log('isAdmin', this.isAdmin);
   }
 
